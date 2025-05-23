@@ -1,0 +1,272 @@
+{
+  "@@locale": "zh_CN",
+  "appTitle": "焕新之旅",
+  "helloWorld": "你好，世界！",
+  "onboardingTitle": "欢迎来到焕新之旅",
+  "homeTab": "首页",
+  "achievementsTab": "成就",
+  "settingsTab": "设置",
+  "appSlogan": "告别烟瘾，焕新生活，从每一次呼吸开始。",
+  "loadingYourFuture": "正在加载您的无烟未来...",
+  "loginPageTitle": "登录",
+  "welcomeBack": "欢迎回来！",
+  "loginToContinue": "登录以继续您的焕新之旅。",
+  "emailLabel": "邮箱",
+  "emailHint": "请输入您的邮箱",
+  "passwordLabel": "密码",
+  "passwordHint": "请输入您的密码",
+  "loginButtonText": "登录",
+  "forgotPasswordButtonText": "忘记密码？",
+  "orText": "或",
+  "navigateToRegisterPrompt": "还没有账户？",
+  "navigateToRegisterLink": "注册",
+  "invalidCredentialsError": "邮箱或密码无效。",
+  "loginFailedError": "登录失败，请重试。",
+  "fieldRequiredError": "此字段不能为空。",
+  "invalidEmailFormatError": "邮箱格式无效。",
+  "registrationPageTitle": "创建账户",
+  "createYourAccount": "创建您的账户",
+  "confirmPasswordLabel": "确认密码",
+  "confirmPasswordHint": "再次输入您的密码",
+  "registerButtonText": "注册",
+  "navigateToLoginPrompt": "已有账户？",
+  "navigateToLoginLink": "登录",
+  "passwordMismatchError": "两次输入的密码不一致。",
+  "emailAlreadyInUseError": "此邮箱已被注册。",
+  "registrationFailedError": "注册失败，请重试。",
+  "termsAndConditionsCheckboxLabel": "我已阅读并同意[服务条款]和[隐私政策]。",
+  "onboardingPageTitle": "初始设置",
+  "nextButtonText": "下一步",
+  "backButtonText": "上一步",
+  "finishButtonText": "完成并开启焕新之旅",
+  "step1Title": "您想什么时候开始戒烟？",
+  "step1Description": "选择一个确切的日期和时间，作为您焕新之旅的起点。",
+  "selectDateButton": "选择日期",
+  "selectTimeButton": "选择时间",
+  "step2Title": "您通常每天吸多少支烟？",
+  "step2Description": "这将帮助我们计算您未来的健康和经济收益。",
+  "dailyCigarettesLabel": "每日吸烟量 (支)",
+  "step3Title": "您常买的香烟每包多少钱？",
+  "step3Description": "我们会帮您追踪戒烟后节省的开销。",
+  "packPriceLabel": "每包价格",
+  "step4Title": "您的烟龄有多久了？",
+  "step4Description": "(可选) 此信息有助于更全面了解您的情况。",
+  "smokingYearsLabel": "烟龄 (年)",
+  "step5Title": "是什么激励您戒烟？",
+  "step5Description": "写下您的戒烟宣言！当您动摇时，它可以给您力量。",
+  "quitReasonHint": "我的戒烟理由是...",
+  "fieldCannotBeEmpty": "此项不能为空。",
+  "pleaseSelectDateTime": "请选择日期和时间。",
+  "invalidNumberError": "请输入有效的数字。",
+  "numberMustBePositiveError": "请输入大于零的数字。",
+  "tooManyDecimalPlacesError": "请输入最多包含两位小数的值。",
+  "numberCannotBeNegativeError": "请输入非负数字。",
+  "genericError": "发生未知错误，请重试。",
+  "bottomNavHome": "首页",
+  "bottomNavAchievements": "成就",
+  "bottomNavSettings": "设置",
+  "homePageTitle": "首页",
+  "achievementsPageTitle": "我的成就",
+  "settingsPageTitle": "设置",
+
+  "homeProgressTitle": "我的戒烟进度",
+  "homeProgressTime": "已戒烟 {days}天 {hours}小时 {minutes}分钟 {seconds}秒",
+  "@homeProgressTime": {
+    "description": "Real-time progress of quitting smoking",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressMoneySaved": "已节省金额：¥{amount}",
+  "@homeProgressMoneySaved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressCigarettesNotSmoked": "少吸烟支数：{count}支",
+  "@homeProgressCigarettesNotSmoked": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressLifeGained": "预估延长寿命：{days}天",
+  "@homeProgressLifeGained": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+
+  "homeHealthBenefitsTitle": "健康效益快览",
+  "homeHealthBenefit1Title": "心率和血压",
+  "homeHealthBenefit1Desc": "心率和血压已开始下降。",
+  "homeHealthBenefit2Title": "一氧化碳水平",
+  "homeHealthBenefit2Desc": "血液中一氧化碳水平已恢复正常。",
+  "homeHealthBenefitsNothingToShow": "继续加油！您的健康效益将很快在此展示。",
+  "healthBenefitsDetailPageTitle": "健康效益详情",
+  "healthBenefitsDetailPlaceholderTitle": "更多详情即将推出！",
+  "healthBenefitsDetailPlaceholderDesc": "此页面将显示所有已达成和即将达成的健康效益的时间轴和详细说明。",
+
+  "healthBenefitTitle_20mins": "心率恢复正常",
+  "healthBenefitDesc_20mins": "20分钟后，您的心率和血压开始回落到正常水平。",
+  "healthBenefitTitle_8hours": "血氧水平回升",
+  "healthBenefitDesc_8hours": "8小时后，血液中的一氧化碳水平减半，血氧水平恢复正常。",
+  "healthBenefitTitle_24hours": "心脏病风险降低",
+  "healthBenefitDesc_24hours": "24小时后，您心脏病发作的风险开始降低。",
+  "healthBenefitTitle_48hours": "神经末梢再生",
+  "healthBenefitDesc_48hours": "48小时后，神经末梢开始再生，您的嗅觉和味觉开始改善。",
+  "healthBenefitTitle_2weeks": "血液循环改善",
+  "healthBenefitDesc_2weeks": "2周到3个月，您的血液循环改善，肺功能有所增强。",
+  "healthBenefitTitle_1month": "肺部开始清洁",
+  "healthBenefitDesc_1month": "1个月后，你的肺部毛细支气管开始修复，纤毛重新生长，肺部开始清除积累的黏液和细菌。",
+
+  "homeQuitReasonTitle": "我的戒烟宣言",
+  "homeQuitReasonPlaceholder": "您还没有填写戒烟宣言。",
+
+  "homeDailyCheckInTitle": "每日打卡",
+  "homeDailyCheckInPrompt": "今天感觉怎么样？记录您的坚持！",
+  "homeDailyCheckInButton": "打卡",
+  "homeDailyCheckInConfirmation": "打卡成功，太棒了！",
+  "homeDailyCheckInButtonCheckedIn": "今日已打卡",
+  "homeDailyCheckInSuccessToast": "打卡成功，太棒了！",
+  "homeDailyCheckInButtonError": "重试打卡",
+  "errorUnknown": "发生未知错误。",
+
+  "homeEmergencyButton": "我想吸烟",
+
+  "achievementUnlockedTitle": "成就解锁！",
+  "continueButtonLabel": "继续",
+  
+  "achievement7DaysName": "第一周无烟",
+  "achievement7DaysDesc": "连续7天不吸烟",
+  "achievement7DaysStory": "第一周通常是戒烟最困难的时期。你已经证明了对自己和健康的承诺。这是一个重要的里程碑！",
+  
+  "achievement30DaysName": "一个月里程碑",
+  "achievement30DaysDesc": "连续30天不吸烟",
+  "achievement30DaysStory": "一个月不吸烟！你的肺功能正在改善，血液循环更好，你正在形成强大的新习惯。继续加油！",
+  
+  "achievement100DaysName": "百日俱乐部",
+  "achievement100DaysDesc": "连续100天不吸烟",
+  "achievement100DaysStory": "100天不吸烟是一项令人难以置信的成就。你的身体已经显著恢复，无烟的生活方式正在成为你的第二天性。",
+
+  "appSettingsTitle": "应用设置",
+  "notificationsSettingTitle": "通知设置",
+  "notificationsSettingSubtitle": "管理戒烟提醒和成就通知",
+  "languageSettingTitle": "语言设置",
+  "languageSettingSubtitle": "更改应用语言",
+  "themeSettingTitle": "主题设置",
+  "themeSettingSubtitle": "切换浅色/深色主题",
+  
+  "healthDataSettingsTitle": "健康数据设置",
+  "smokingDataSettingTitle": "吸烟数据",
+  "smokingDataSettingSubtitle": "更新每日香烟量和香烟价格",
+  "quitDateSettingTitle": "戒烟日期",
+  "quitDateSettingSubtitle": "更改您的戒烟开始日期",
+  "resetDataSettingTitle": "重置数据",
+  "resetDataSettingSubtitle": "重置所有戒烟进度数据",
+  
+  "aboutAndSupportTitle": "关于与支持",
+  "aboutAppSettingTitle": "关于应用",
+  "aboutAppSettingSubtitle": "查看应用信息和法律声明",
+  "helpAndSupportSettingTitle": "帮助与支持",
+  "helpAndSupportSettingSubtitle": "获取帮助和联系客服",
+  "privacyPolicySettingTitle": "隐私政策",
+  "privacyPolicySettingSubtitle": "查看我们的隐私政策",
+  
+  "logoutButtonText": "退出登录",
+
+  "cravingCopingStrategiesTitle": "烟瘾管理",
+  "cravingCopingStrategiesSubtitle": "选择一种策略帮助您度过这一刻:",
+  
+  "cravingStrategyBreathingTitle": "深呼吸练习",
+  "cravingStrategyBreathingDesc": "花点时间专注于呼吸，减轻压力。",
+  
+  "cravingStrategyWaterTitle": "喝水",
+  "cravingStrategyWaterDesc": "补水可以帮助减轻烟瘾，并让您的手保持忙碌。",
+  
+  "cravingStrategyDistractionTitle": "分散注意力技巧",
+  "cravingStrategyDistractionDesc": "简单的活动，让您的思维远离吸烟。",
+  "cravingStrategyDistractionTipsTitle": "尝试这些分散注意力的技巧:",
+  "cravingStrategyDistractionTip1Title": "听音乐",
+  "cravingStrategyDistractionTip1Desc": "播放您喜欢的歌曲或播放列表，专注于歌词或旋律。",
+  "cravingStrategyDistractionTip2Title": "散步",
+  "cravingStrategyDistractionTip2Desc": "即使是短短5分钟的散步也能显著减轻烟瘾。",
+  "cravingStrategyDistractionTip3Title": "打电话给朋友",
+  "cravingStrategyDistractionTip3Desc": "联系一位支持您的人，帮助您将注意力从吸烟转移开。",
+  
+  "cravingStrategyCompleted": "做得好！您已成功完成这个应对策略。",
+  "cravingLogButtonText": "记录此次烟瘾",
+  
+  "breathingExerciseTitle": "深呼吸练习",
+  "breathingExerciseInstruction": "跟随圆圈的节奏进行1分钟的引导呼吸练习。",
+  "breathingPhaseInhale": "吸气",
+  "breathingPhaseHold": "屏息",
+  "breathingPhaseExhale": "呼气",
+  "breathingExerciseTimeRemaining": "剩余 {seconds} 秒",
+  "@breathingExerciseTimeRemaining": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "breathingExerciseCompletedTitle": "练习完成！",
+  "breathingExerciseCompleted": "做得好！",
+  "breathingExerciseCompletedDesc": "您已成功完成呼吸练习。现在感觉如何？",
+  "breathingExerciseFinishEarly": "提前结束",
+  "backToStrategiesButton": "返回策略列表",
+  
+  "cravingLogTitle": "记录您的烟瘾",
+  "cravingLogIntensityLabel": "您的烟瘾有多强烈？(1-5)",
+  "cravingLogIntensityLow": "轻微",
+  "cravingLogIntensityHigh": "非常强烈",
+  "cravingLogTriggerLabel": "是什么触发了这次烟瘾？",
+  "cravingLogTriggerStress": "压力",
+  "cravingLogTriggerBoredom": "无聊",
+  "cravingLogTriggerSocial": "社交场合",
+  "cravingLogTriggerMeal": "饭后",
+  "cravingLogTriggerAlcohol": "饮酒",
+  "cravingLogTriggerCoffee": "咖啡/茶",
+  "cravingLogTriggerOther": "其他",
+  "cravingLogNotesLabel": "额外备注",
+  "cravingLogNotesHint": "记录任何其他想法或感受...",
+  "cravingLogSavedMessage": "烟瘾记录保存成功！",
+  
+  "dialogCloseButton": "关闭",
+  "cancelButtonLabel": "取消",
+  "saveButtonLabel": "保存",
+  
+  "notificationTypesTitle": "通知类型",
+  "achievementNotificationsTitle": "成就通知",
+  "achievementNotificationsSubtitle": "当您解锁新成就时获得通知",
+  "healthMilestoneNotificationsTitle": "健康里程碑通知",
+  "healthMilestoneNotificationsSubtitle": "当您达到健康改善里程碑时获得通知",
+  "dailyCheckInNotificationsTitle": "每日打卡提醒",
+  "dailyCheckInNotificationsSubtitle": "获取每日打卡提醒",
+  "encouragementNotificationsTitle": "鼓励消息",
+  "encouragementNotificationsSubtitle": "接收定期鼓励消息",
+  "notificationTimeSettingsTitle": "提醒时间设置",
+  "checkInReminderTimeTitle": "打卡提醒时间",
+  "doNotDisturbTitle": "勿扰模式",
+  "doNotDisturbSettingsTitle": "勿扰时段设置",
+  "startTime": "开始时间",
+  "endTime": "结束时间",
+  "settingsSaved": "设置已保存",
+  "cancel": "取消"
+}

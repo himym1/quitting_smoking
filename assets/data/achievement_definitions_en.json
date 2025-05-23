@@ -1,0 +1,68 @@
+[
+  {
+    "id": "ach_1_day",
+    "name": "First Day Milestone",
+    "description": "Successfully completed your first day without smoking!",
+    "nameKey": "achievement_1_day_name",
+    "descriptionKey": "achievement_1_day_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_1_day_unlocked.png",
+    "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 1},
+    "storyKey": "achievement_1_day_story"
+  },
+  {
+    "id": "ach_7_days",
+    "name": "One Week Champion",
+    "description": "A whole week smoke-free! Your body is already healing.",
+    "nameKey": "achievement_7_days_name",
+    "descriptionKey": "achievement_7_days_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_7_days_unlocked.png",
+    "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 7},
+    "storyKey": "achievement_7_days_story"
+  },
+  {
+    "id": "ach_30_days",
+    "name": "Thirty Days Strong",
+    "description": "A full month without smoking. Your lungs are thanking you!",
+    "nameKey": "achievement_30_days_name",
+    "descriptionKey": "achievement_30_days_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_30_days_unlocked.png",
+    "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 30},
+    "storyKey": "achievement_30_days_story"
+  },
+  {
+    "id": "ach_100_days",
+    "name": "Century Celebration",
+    "description": "100 days smoke-free! You've proven your incredible willpower.",
+    "nameKey": "achievement_100_days_name",
+    "descriptionKey": "achievement_100_days_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_100_days_unlocked.png",
+    "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 100},
+    "storyKey": "achievement_100_days_story"
+  },
+  {
+    "id": "ach_money_saved",
+    "name": "Money Saver",
+    "description": "You've saved $100 by not buying cigarettes!",
+    "nameKey": "achievement_money_saved_name",
+    "descriptionKey": "achievement_money_saved_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_money_saved_unlocked.png",
+    "unlockCondition": {"type": "money_saved", "value": 100},
+    "storyKey": "achievement_money_saved_story"
+  },
+  {
+    "id": "ach_resist_craving",
+    "name": "Craving Conqueror",
+    "description": "Successfully resisted a strong craving using coping strategies!",
+    "nameKey": "achievement_resist_craving_name",
+    "descriptionKey": "achievement_resist_craving_desc",
+    "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
+    "iconUnlockedAssetPath": "assets/images/achievements/ach_resist_craving_unlocked.png",
+    "unlockCondition": {"type": "craving_resisted", "value": 1},
+    "storyKey": "achievement_resist_craving_story"
+  }
+] 

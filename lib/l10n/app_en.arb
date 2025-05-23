@@ -1,0 +1,274 @@
+{
+  "@@locale": "en",
+  "appTitle": "Quit Journey",
+  "helloWorld": "Hello World!",
+  "onboardingTitle": "Welcome to Quit Journey",
+  "homeTab": "Home",
+  "achievementsTab": "Achievements",
+  "settingsTab": "Settings",
+  "appSlogan": "Quit addiction, refresh life, start with every breath.",
+  "loadingYourFuture": "Loading your smoke-free future...",
+  "loginPageTitle": "Login",
+  "welcomeBack": "Welcome Back!",
+  "loginToContinue": "Login to continue your quit journey.",
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "passwordLabel": "Password",
+  "passwordHint": "Enter your password",
+  "loginButtonText": "Login",
+  "forgotPasswordButtonText": "Forgot Password?",
+  "orText": "OR",
+  "navigateToRegisterPrompt": "Don't have an account?",
+  "navigateToRegisterLink": "Sign Up",
+  "invalidCredentialsError": "Invalid email or password.",
+  "loginFailedError": "Login failed. Please try again.",
+  "fieldRequiredError": "This field is required.",
+  "invalidEmailFormatError": "Invalid email format.",
+  "registrationPageTitle": "Create Account",
+  "createYourAccount": "Create Your Account",
+  "confirmPasswordLabel": "Confirm Password",
+  "confirmPasswordHint": "Re-enter your password",
+  "registerButtonText": "Sign Up",
+  "navigateToLoginPrompt": "Already have an account?",
+  "navigateToLoginLink": "Login",
+  "passwordMismatchError": "Passwords do not match.",
+  "emailAlreadyInUseError": "This email is already in use.",
+  "registrationFailedError": "Registration failed. Please try again.",
+  "termsAndConditionsCheckboxLabel": "I have read and agree to the [Terms of Service] and [Privacy Policy].",
+  "onboardingPageTitle": "Initial Setup",
+  "nextButtonText": "Next",
+  "backButtonText": "Back",
+  "finishButtonText": "Finish & Start Journey",
+  "step1Title": "When do you want to quit?",
+  "step1Description": "Select a date and time to start your new journey.",
+  "selectDateButton": "Select Date",
+  "selectTimeButton": "Select Time",
+  "step2Title": "How much do you usually smoke?",
+  "step2Description": "This helps us calculate your future health and financial benefits.",
+  "dailyCigarettesLabel": "Cigarettes per day",
+  "step3Title": "Price per pack?",
+  "step3Description": "We'll help you track savings after quitting.",
+  "packPriceLabel": "Price per pack",
+  "step4Title": "How long have you been smoking?",
+  "step4Description": "(Optional) This information helps us understand your situation better.",
+  "smokingYearsLabel": "Smoking years",
+  "step5Title": "What motivates you to quit?",
+  "step5Description": "Write down your reasons. It can give you strength when you waver.",
+  "quitReasonHint": "My reasons for quitting are...",
+  "fieldCannotBeEmpty": "This field cannot be empty.",
+  "pleaseSelectDateTime": "Please select a date and time.",
+  "invalidNumberError": "Please enter a valid number.",
+  "numberMustBePositiveError": "Please enter a number greater than zero.",
+  "tooManyDecimalPlacesError": "Please enter a value with no more than two decimal places.",
+  "numberCannotBeNegativeError": "Please enter a non-negative number.",
+  "genericError": "An unexpected error occurred. Please try again.",
+  "bottomNavHome": "Home",
+  "bottomNavAchievements": "Achievements",
+  "bottomNavSettings": "Settings",
+  "homePageTitle": "Home",
+  "achievementsPageTitle": "My Achievements",
+  "settingsPageTitle": "Settings",
+
+  "homeProgressTitle": "My Quit Progress",
+  "homeProgressTime": "Smoke-free for {days}d {hours}h {minutes}m {seconds}s",
+  "@homeProgressTime": {
+    "description": "Real-time progress of quitting smoking",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressMoneySaved": "Money Saved: ¥{amount}",
+  "@homeProgressMoneySaved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressCigarettesNotSmoked": "Cigarettes Not Smoked: {count}",
+  "@homeProgressCigarettesNotSmoked": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProgressLifeGained": "Estimated Life Gained: {days} days",
+  "@homeProgressLifeGained": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+
+  "homeHealthBenefitsTitle": "Health Benefits Overview",
+  "homeHealthBenefit1Title": "Heart Rate & Blood Pressure",
+  "homeHealthBenefit1Desc": "Your heart rate and blood pressure have started to drop.",
+  "homeHealthBenefit2Title": "Carbon Monoxide Level",
+  "homeHealthBenefit2Desc": "The carbon monoxide level in your blood has returned to normal.",
+  "homeHealthBenefitsNothingToShow": "Keep going! Your health benefits will appear here soon.",
+  "healthBenefitsDetailPageTitle": "Health Benefits",
+  "healthBenefitsDetailPlaceholderTitle": "More Details Coming Soon!",
+  "healthBenefitsDetailPlaceholderDesc": "This page will show a timeline and detailed descriptions of all health benefits achieved and upcoming.",
+
+  "healthBenefitTitle_20mins": "Heart Rate Normalizes",
+  "healthBenefitDesc_20mins": "After 20 minutes, your heart rate and blood pressure begin to drop back to normal levels.",
+  "healthBenefitTitle_8hours": "Oxygen Levels Rise",
+  "healthBenefitDesc_8hours": "After 8 hours, the carbon monoxide level in your blood drops by half, and oxygen levels return to normal.",
+  "healthBenefitTitle_24hours": "Heart Attack Risk Drops",
+  "healthBenefitDesc_24hours": "After 24 hours, your risk of having a heart attack begins to decrease.",
+  "healthBenefitTitle_48hours": "Nerve Endings Regrow",
+  "healthBenefitDesc_48hours": "After 48 hours, nerve endings start to regrow, and your sense of smell and taste begin to improve.",
+  "healthBenefitTitle_2weeks": "Circulation Improves",
+  "healthBenefitDesc_2weeks": "Between 2 weeks and 3 months, your circulation improves and lung function increases.",
+  "healthBenefitTitle_1month": "Lungs Begin to Clear",
+  "healthBenefitDesc_1month": "After 1 to 9 months, coughing and shortness of breath decrease. Cilia (tiny hair-like structures) regain normal function in the lungs, increasing the ability to handle mucus, clean the lungs, and reduce infection.",
+
+  "homeQuitReasonTitle": "My Quit Declaration",
+  "homeQuitReasonPlaceholder": "You haven't written your quit declaration yet.",
+
+  "homeDailyCheckInTitle": "Daily Check-in",
+  "homeDailyCheckInPrompt": "How are you feeling today? Log your progress!",
+  "homeDailyCheckInButton": "Check-in",
+  "homeDailyCheckInConfirmation": "Checked in successfully, great job!",
+  "homeDailyCheckInButtonCheckedIn": "Checked-in Today",
+  "homeDailyCheckInSuccessToast": "Check-in successful, awesome!",
+  "homeDailyCheckInButtonError": "Retry Check-in",
+  "errorUnknown": "An unknown error occurred.",
+
+  "homeEmergencyButton": "I Want to Smoke",
+  
+  "cravingCopingStrategiesTitle": "Craving Management",
+  "cravingCopingStrategiesSubtitle": "Choose a strategy to help you get through this moment:",
+  
+  "cravingStrategyBreathingTitle": "Deep Breathing Exercise",
+  "cravingStrategyBreathingDesc": "Take a moment to focus on your breath and reduce stress.",
+  
+  "cravingStrategyWaterTitle": "Drink Water",
+  "cravingStrategyWaterDesc": "Hydrating can help reduce cravings and keep your hands busy.",
+  
+  "cravingStrategyDistractionTitle": "Distraction Techniques",
+  "cravingStrategyDistractionDesc": "Simple activities to keep your mind off smoking.",
+  "cravingStrategyDistractionTipsTitle": "Try these distraction tips:",
+  "cravingStrategyDistractionTip1Title": "Listen to Music",
+  "cravingStrategyDistractionTip1Desc": "Put on your favorite song or playlist and focus on the lyrics or melody.",
+  "cravingStrategyDistractionTip2Title": "Take a Walk",
+  "cravingStrategyDistractionTip2Desc": "Even a short 5-minute walk can help reduce cravings significantly.",
+  "cravingStrategyDistractionTip3Title": "Call a Friend",
+  "cravingStrategyDistractionTip3Desc": "Reach out to someone supportive who can help take your mind off smoking.",
+  
+  "cravingStrategyCompleted": "Great job! You've successfully completed this coping strategy.",
+  "cravingLogButtonText": "Log This Craving",
+  
+  "breathingExerciseTitle": "Deep Breathing Exercise",
+  "breathingExerciseInstruction": "Follow the circle's rhythm for a 1-minute guided breathing exercise.",
+  "breathingPhaseInhale": "Inhale",
+  "breathingPhaseHold": "Hold",
+  "breathingPhaseExhale": "Exhale",
+  "breathingExerciseTimeRemaining": "{seconds} seconds remaining",
+  "@breathingExerciseTimeRemaining": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "breathingExerciseCompletedTitle": "Exercise Complete!",
+  "breathingExerciseCompleted": "Well done!",
+  "breathingExerciseCompletedDesc": "You've successfully completed the breathing exercise. How do you feel now?",
+  "breathingExerciseFinishEarly": "Finish Early",
+  "backToStrategiesButton": "Back to Strategies",
+  
+  "cravingLogTitle": "Log Your Craving",
+  "cravingLogIntensityLabel": "How strong is your craving? (1-5)",
+  "cravingLogIntensityLow": "Mild",
+  "cravingLogIntensityHigh": "Very Strong",
+  "cravingLogTriggerLabel": "What triggered this craving?",
+  "cravingLogTriggerStress": "Stress",
+  "cravingLogTriggerBoredom": "Boredom",
+  "cravingLogTriggerSocial": "Social Situation",
+  "cravingLogTriggerMeal": "After Meal",
+  "cravingLogTriggerAlcohol": "Alcohol",
+  "cravingLogTriggerCoffee": "Coffee/Tea",
+  "cravingLogTriggerOther": "Other",
+  "cravingLogNotesLabel": "Additional Notes",
+  "cravingLogNotesHint": "Write any additional thoughts or feelings...",
+  "cravingLogSavedMessage": "Craving log saved successfully!",
+  
+  "dialogCloseButton": "Close",
+  "cancelButtonLabel": "Cancel",
+  "saveButtonLabel": "Save",
+
+  "achievementUnlockedTitle": "Achievement Unlocked!",
+  "continueButtonLabel": "Continue",
+  
+  "achievement7DaysName": "First Week Free",
+  "achievement7DaysDesc": "Smoke-free for 7 consecutive days",
+  "achievement7DaysStory": "The first week is often the hardest part of quitting. You've proven your commitment to yourself and your health. This is a major milestone!",
+  
+  "achievement30DaysName": "One Month Milestone",
+  "achievement30DaysDesc": "Smoke-free for 30 consecutive days",
+  "achievement30DaysStory": "One month smoke-free! Your lung function is improving, your circulation is better, and you're forming powerful new habits. Keep going!",
+  
+  "achievement100DaysName": "100 Days Club",
+  "achievement100DaysDesc": "Smoke-free for 100 days",
+  "achievement100DaysStory": "100 days without smoking is an incredible achievement. Your body has significantly recovered, and the smoke-free lifestyle is becoming your second nature.",
+  
+  "settingsPageTitle": "Settings",
+  "appSettingsTitle": "App Settings",
+  "notificationsSettingTitle": "Notifications",
+  "notificationsSettingSubtitle": "Manage quit reminders and achievement notifications",
+  "languageSettingTitle": "Language",
+  "languageSettingSubtitle": "Change application language",
+  "themeSettingTitle": "Theme",
+  "themeSettingSubtitle": "Toggle light/dark theme",
+  
+  "healthDataSettingsTitle": "Health Data Settings",
+  "smokingDataSettingTitle": "Smoking Data",
+  "smokingDataSettingSubtitle": "Update daily cigarettes and cigarette price",
+  "quitDateSettingTitle": "Quit Date",
+  "quitDateSettingSubtitle": "Change your quit start date",
+  "resetDataSettingTitle": "Reset Data",
+  "resetDataSettingSubtitle": "Reset all quit progress data",
+  
+  "aboutAndSupportTitle": "About & Support",
+  "aboutAppSettingTitle": "About",
+  "aboutAppSettingSubtitle": "View app information and legal notices",
+  "helpAndSupportSettingTitle": "Help & Support",
+  "helpAndSupportSettingSubtitle": "Get help and contact support",
+  "privacyPolicySettingTitle": "Privacy Policy",
+  "privacyPolicySettingSubtitle": "View our privacy policy",
+  
+  "logoutButtonText": "Logout",
+  "achievementsPageTitle": "My Achievements",
+
+  "notificationTypesTitle": "Notification Types",
+  "achievementNotificationsTitle": "Achievement Notifications",
+  "achievementNotificationsSubtitle": "Get notified when you unlock new achievements",
+  "healthMilestoneNotificationsTitle": "Health Milestone Notifications",
+  "healthMilestoneNotificationsSubtitle": "Get notified when you reach health improvement milestones",
+  "dailyCheckInNotificationsTitle": "Daily Check-in Reminders",
+  "dailyCheckInNotificationsSubtitle": "Get daily reminders to check in",
+  "encouragementNotificationsTitle": "Encouragement Messages",
+  "encouragementNotificationsSubtitle": "Receive periodic encouragement messages",
+  "notificationTimeSettingsTitle": "Reminder Time Settings",
+  "checkInReminderTimeTitle": "Check-in Reminder Time",
+  "doNotDisturbTitle": "Do Not Disturb Period",
+  "doNotDisturbSettingsTitle": "Do Not Disturb Settings",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "settingsSaved": "Settings saved",
+  "cancel": "Cancel"
+}

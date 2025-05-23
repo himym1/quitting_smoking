@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hb_20_mins",
+    "titleKey": "healthBenefitTitle_20mins",
+    "descriptionKey": "healthBenefitDesc_20mins",
+    "iconName": "favorite_border",
+    "timeThresholdInMinutes": 20
+  },
+  {
+    "id": "hb_8_hours",
+    "titleKey": "healthBenefitTitle_8hours",
+    "descriptionKey": "healthBenefitDesc_8hours",
+    "iconName": "bloodtype",
+    "timeThresholdInMinutes": 480
+  },
+  {
+    "id": "hb_24_hours",
+    "titleKey": "healthBenefitTitle_24hours",
+    "descriptionKey": "healthBenefitDesc_24hours",
+    "iconName": "local_hospital", 
+    "timeThresholdInMinutes": 1440
+  },
+  {
+    "id": "hb_48_hours",
+    "titleKey": "healthBenefitTitle_48hours",
+    "descriptionKey": "healthBenefitDesc_48hours",
+    "iconName": "self_improvement",
+    "timeThresholdInMinutes": 2880
+  },
+  {
+    "id": "hb_2_weeks",
+    "titleKey": "healthBenefitTitle_2weeks",
+    "descriptionKey": "healthBenefitDesc_2weeks",
+    "iconName": "directions_walk",
+    "timeThresholdInMinutes": 20160
+  },
+  {
+    "id": "hb_1_month",
+    "titleKey": "healthBenefitTitle_1month",
+    "descriptionKey": "healthBenefitDesc_1month",
+    "iconName": "healing",
+    "timeThresholdInMinutes": 43200
+  }
+]

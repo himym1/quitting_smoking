@@ -60,7 +60,7 @@ class _OnboardingStepPackPriceState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     ref.listen<OnboardingState>(onboardingNotifierProvider, (previous, next) {
       if (previous?.packPrice != next.packPrice) {
         if (next.packPrice != null) {

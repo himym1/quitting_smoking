@@ -5,9 +5,11 @@ import 'package:quitting_smoking/domain/entities/user_profile.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
 import 'package:quitting_smoking/presentation/features/home/providers/daily_check_in_notifier.dart';
 import 'package:quitting_smoking/presentation/features/home/providers/health_benefits_provider.dart';
-import 'package:quitting_smoking/domain/entities/health_benefit_milestone.dart';
 import 'package:quitting_smoking/presentation/features/home/providers/home_dashboard_stats_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quitting_smoking/presentation/widgets/monthly_smoking_calendar.dart';
+import 'package:quitting_smoking/presentation/providers/smoking_record_provider.dart';
+import 'package:quitting_smoking/main.dart';
 
 import '../../../../l10n/app_localizations.dart'; // For navigation
 
@@ -50,6 +52,10 @@ class HomePage extends ConsumerWidget {
 
           // 4. Daily Check-in Area
           _buildDailyCheckInSection(context, localizations, ref),
+          const SizedBox(height: 16),
+
+          // 5. Monthly Smoking Calendar
+          _buildMonthlySmokingCalendar(context, ref, localizations),
           const SizedBox(height: 32), // Extra space before the emergency button
         ],
       ),
@@ -131,7 +137,7 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '已节省',
+                      localizations.progressSavedMoney,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
@@ -150,7 +156,7 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '少吸支数',
+                      localizations.progressCigarettesNotSmoked,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
@@ -170,7 +176,7 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '延长寿命(天)',
+                      localizations.progressLifeExtended,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
@@ -415,50 +421,56 @@ class HomePage extends ConsumerWidget {
 
     Widget buttonChild;
     VoidCallback? onPressed;
+    String statusText;
 
     switch (dailyCheckInState.status) {
       case DailyCheckInStatus.initial:
         buttonChild = const CircularProgressIndicator(color: Colors.white);
         onPressed = null;
+        statusText = localizations.checkingTodayStatus;
         break;
       case DailyCheckInStatus.checkedIn:
-        buttonChild = Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.check_circle_outline, color: Colors.white),
-            const SizedBox(width: 8),
-            Text(
-              localizations.homeDailyCheckInButtonCheckedIn,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ],
-        );
-        onPressed = null; // Already checked in
+        if (dailyCheckInState.isAutoCheckedIn) {
+          statusText = localizations.autoCheckInSuccess;
+          buttonChild = Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.check_circle_outline, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                localizations.alreadyAutoCheckedIn,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          );
+        } else {
+          statusText = localizations.manualCheckInSuccess;
+          buttonChild = Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.check_circle_outline, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                localizations.homeDailyCheckInButtonCheckedIn,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          );
+        }
+        onPressed = null; // 已经打卡
         break;
       case DailyCheckInStatus.notCheckedIn:
-        buttonChild = Text(localizations.homeDailyCheckInButton);
-        onPressed = () async {
-          final success = await dailyCheckInNotifier.performCheckIn();
-          if (success && context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(localizations.homeDailyCheckInSuccessToast),
-              ),
-            );
-          }
-        };
+        statusText = localizations.cannotCheckInSmoking;
+        buttonChild = Text(localizations.todayAlreadySmoked);
+        onPressed = null; // 不能打卡，因为有吸烟记录
         break;
       case DailyCheckInStatus.error:
-        buttonChild = Text(localizations.homeDailyCheckInButtonError);
+        statusText =
+            "❌ ${dailyCheckInState.errorMessage ?? localizations.statusCheckFailed}";
+        buttonChild = Text(localizations.recheckStatus);
         onPressed = () {
-          // Optionally allow retry or show more info
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                dailyCheckInState.errorMessage ?? localizations.errorUnknown,
-              ),
-            ),
-          );
+          // 重新检查状态
+          dailyCheckInNotifier.onSmokingRecorded();
         };
         break;
     }
@@ -480,7 +492,7 @@ class HomePage extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  localizations.homeDailyCheckInTitle,
+                  localizations.dailyCheckInStatus,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -488,29 +500,162 @@ class HomePage extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Text(localizations.homeDailyCheckInPrompt),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 44), // Full width
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                backgroundColor:
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color:
                     dailyCheckInState.status == DailyCheckInStatus.checkedIn
-                        ? Colors.green
-                        : (dailyCheckInState.status == DailyCheckInStatus.error
-                            ? Theme.of(context).colorScheme.error
-                            : Theme.of(context).primaryColor),
-                foregroundColor: Colors.white,
+                        ? Colors.green.withOpacity(0.1)
+                        : dailyCheckInState.status ==
+                            DailyCheckInStatus.notCheckedIn
+                        ? Colors.red.withOpacity(0.1)
+                        : Colors.grey.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
               ),
-              child: buttonChild,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    statusText,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    localizations.autoCheckInRule,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.grey[600],
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (dailyCheckInState.status == DailyCheckInStatus.notCheckedIn &&
+                onPressed != null) ...[
+              const SizedBox(height: 12),
+              ElevatedButton(
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 44),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                ),
+                child: buttonChild,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMonthlySmokingCalendar(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations localizations,
+  ) {
+    final currentMonth = DateTime.now();
+    final smokingCountsAsyncValue = ref.watch(
+      currentMonthSmokingCountsProvider,
+    );
+    final dailyCheckInRepository = ref.watch(dailyCheckInRepositoryProvider);
+
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.calendar_month,
+                  color: Theme.of(context).primaryColor,
+                  size: 22,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  localizations.monthlyCalendar,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            smokingCountsAsyncValue.when(
+              data: (smokingCounts) {
+                return FutureBuilder<Map<DateTime, bool>>(
+                  future: _getCheckInDays(dailyCheckInRepository, currentMonth),
+                  builder: (context, snapshot) {
+                    final checkInDays = snapshot.data ?? {};
+                    return MonthlySmokingCalendar(
+                      currentMonth: currentMonth,
+                      smokingCounts: smokingCounts,
+                      checkInDays: checkInDays,
+                      onDateTap: (date) {
+                        // TODO: 可以在这里添加日期点击事件处理
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              localizations.clickedDay(date.day.toString()),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error:
+                  (error, stackTrace) => Center(
+                    child: Text(
+                      localizations.loadingCalendarError(error.toString()),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                  ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Future<Map<DateTime, bool>> _getCheckInDays(
+    repository,
+    DateTime month,
+  ) async {
+    try {
+      final allCheckIns = await repository.getAllCheckIns();
+      final checkInDays = <DateTime, bool>{};
+
+      for (final checkIn in allCheckIns) {
+        if (checkIn.date.year == month.year &&
+            checkIn.date.month == month.month &&
+            checkIn.isCheckedIn) {
+          final dateKey = DateTime(
+            checkIn.date.year,
+            checkIn.date.month,
+            checkIn.date.day,
+          );
+          checkInDays[dateKey] = true;
+        }
+      }
+
+      return checkInDays;
+    } catch (e) {
+      return {};
+    }
   }
 
   Widget _buildEmergencyButton(

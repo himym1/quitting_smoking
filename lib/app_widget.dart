@@ -19,8 +19,8 @@ class AppWidget extends ConsumerWidget {
     // 获取Flutter主题模式
     final themeMode = ref.watch(flutterThemeModeProvider);
 
-    // 获取当前语言设置
-    final localeState = ref.watch(localeProvider);
+    // 获取当前语言设置 - 暂时强制使用中文
+    final currentLocale = ref.watch(currentLocaleProvider);
 
     return MaterialApp.router(
       routerConfig: router, // Use the router from provider
@@ -33,7 +33,7 @@ class AppWidget extends ConsumerWidget {
       themeMode: themeMode,
 
       // 设置当前语言环境
-      locale: localeState.locale,
+      locale: currentLocale,
 
       // 配置国际化
       localizationsDelegates: const [
@@ -46,7 +46,7 @@ class AppWidget extends ConsumerWidget {
 
       // 动态设置应用标题，使其也支持国际化
       onGenerateTitle: (BuildContext context) {
-        return AppLocalizations.of(context).appTitle ?? 'Quit Journey';
+        return AppLocalizations.of(context).appTitle;
       },
     );
   }

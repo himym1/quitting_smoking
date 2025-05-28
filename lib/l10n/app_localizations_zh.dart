@@ -15,7 +15,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get helloWorld => '你好，世界！';
 
   @override
-  String get onboardingTitle => '欢迎使用焕新之旅';
+  String get onboardingTitle => '欢迎来到焕新之旅';
 
   @override
   String get homeTab => '首页';
@@ -27,10 +27,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTab => '设置';
 
   @override
-  String get appSlogan => '戒除成瘾，焕发生活，从每一次呼吸开始。';
+  String get appSlogan => '告别烟瘾，焕新生活，从每一次呼吸开始。';
 
   @override
-  String get loadingYourFuture => '正在加载无烟的未来...';
+  String get loadingYourFuture => '正在加载您的无烟未来...';
 
   @override
   String get loginPageTitle => '登录';
@@ -505,6 +505,93 @@ class AppLocalizationsZh extends AppLocalizations {
   String get achievement100DaysStory => '100天不吸烟是一项令人难以置信的成就。你的身体已经显著恢复，无烟的生活方式正在成为你的第二天性。';
 
   @override
+  String get achievement1DayName => '第1天';
+
+  @override
+  String get achievement1DayDesc => '您已成功完成第一天不吸烟！';
+
+  @override
+  String get achievement1DayStory => '第一天总是最困难的。您已经迈出了通向健康生活的最重要一步。';
+
+  @override
+  String get achievement1WeekName => '第1周';
+
+  @override
+  String get achievement1WeekDesc => '您已成功完成第一周不吸烟！';
+
+  @override
+  String get achievement1WeekStory => '一周不吸烟！您的身体已经开始愈合和恢复。';
+
+  @override
+  String get achievement1MonthName => '第1个月';
+
+  @override
+  String get achievement1MonthDesc => '您已成功完成第一个月不吸烟！';
+
+  @override
+  String get achievement1MonthStory => '一个月是一个重要的里程碑。您的肺功能正在显著改善。';
+
+  @override
+  String get achievement1YearName => '第1年';
+
+  @override
+  String get achievement1YearDesc => '您已成功完成第一年不吸烟！';
+
+  @override
+  String get achievement1YearStory => '一年不吸烟！您患心脏病和中风的风险已大幅降低。';
+
+  @override
+  String get achievementSave100Name => '节省¥100';
+
+  @override
+  String get achievementSave100Desc => '通过不吸烟，您已节省了¥100！';
+
+  @override
+  String get achievementSave100Story => '看看您节省了多少钱！想想您可以用这些额外的钱做什么。';
+
+  @override
+  String get achievementSave1000Name => '节省¥1000';
+
+  @override
+  String get achievementSave1000Desc => '通过不吸烟，您已节省了¥1000！';
+
+  @override
+  String get achievementSave1000Story => '节省了一千元！这可以是一次不错的旅行或一次重要的购买。';
+
+  @override
+  String get achievementSave10000Name => '节省¥10000';
+
+  @override
+  String get achievementSave10000Desc => '通过不吸烟，您已节省了¥10000！';
+
+  @override
+  String get achievementSave10000Story => '一万元！这是改变生活的钱，您可以投资于自己的未来。';
+
+  @override
+  String get noAchievementsAvailable => '暂无可用成就';
+
+  @override
+  String get achievementStoryTitle => '故事';
+
+  @override
+  String get achievementMoneySavedName => '存钱达人';
+
+  @override
+  String get achievementMoneySavedDesc => '通过不购买香烟，你已经节省了钱！';
+
+  @override
+  String get achievementMoneySavedStory => '每一支你没有购买的香烟都是为未来节省的钱。';
+
+  @override
+  String get achievementResistCravingName => '烟瘾征服者';
+
+  @override
+  String get achievementResistCravingDesc => '成功利用应对策略抵抗了强烈的烟瘾！';
+
+  @override
+  String get achievementResistCravingStory => '你已经证明了可以用正确的策略克服烟瘾。';
+
+  @override
   String get appSettingsTitle => '应用设置';
 
   @override
@@ -547,25 +634,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resetDataSettingSubtitle => '重置所有戒烟进度数据';
 
   @override
-  String get aboutAndSupportTitle => '关于和支持';
+  String get aboutAndSupportTitle => '关于与支持';
 
   @override
   String get aboutAppSettingTitle => '关于应用';
 
   @override
-  String get aboutAppSettingSubtitle => '版本信息和开发者';
+  String get aboutAppSettingSubtitle => '查看应用信息和法律声明';
 
   @override
-  String get helpAndSupportSettingTitle => '帮助和支持';
+  String get helpAndSupportSettingTitle => '帮助与支持';
 
   @override
-  String get helpAndSupportSettingSubtitle => '获取帮助或报告问题';
+  String get helpAndSupportSettingSubtitle => '获取帮助和联系客服';
 
   @override
   String get privacyPolicySettingTitle => '隐私政策';
 
   @override
-  String get privacyPolicySettingSubtitle => '了解我们如何保护您的数据';
+  String get privacyPolicySettingSubtitle => '查看我们的隐私政策';
 
   @override
   String get logoutButtonText => '退出登录';
@@ -574,40 +661,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notificationTypesTitle => '通知类型';
 
   @override
-  String get achievementNotificationsTitle => '成就提醒';
+  String get achievementNotificationsTitle => '成就通知';
 
   @override
-  String get achievementNotificationsSubtitle => '当你解锁新成就时收到通知';
+  String get achievementNotificationsSubtitle => '当您解锁新成就时获得通知';
 
   @override
-  String get healthMilestoneNotificationsTitle => '健康里程碑提醒';
+  String get healthMilestoneNotificationsTitle => '健康里程碑通知';
 
   @override
-  String get healthMilestoneNotificationsSubtitle => '当达到健康改善里程碑时收到通知';
-
-  @override
-  String get dailyCheckInNotificationsTitle => '每日打卡提醒';
-
-  @override
-  String get dailyCheckInNotificationsSubtitle => '每天定时收到打卡提醒';
+  String get healthMilestoneNotificationsSubtitle => '当您达到健康改善里程碑时获得通知';
 
   @override
   String get encouragementNotificationsTitle => '鼓励消息';
 
   @override
-  String get encouragementNotificationsSubtitle => '定期收到鼓励信息';
+  String get encouragementNotificationsSubtitle => '接收定期鼓励消息';
 
   @override
   String get notificationTimeSettingsTitle => '提醒时间设置';
 
   @override
-  String get checkInReminderTimeTitle => '打卡提醒时间';
+  String get doNotDisturbTitle => '勿扰模式';
 
   @override
-  String get doNotDisturbTitle => '免打扰时段';
-
-  @override
-  String get doNotDisturbSettingsTitle => '免打扰时段设置';
+  String get doNotDisturbSettingsTitle => '勿扰时段设置';
 
   @override
   String get startTime => '开始时间';
@@ -620,6 +698,335 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cancel => '取消';
+
+  @override
+  String get calendarLegend => '图例：';
+
+  @override
+  String get calendarCheckedIn => '已打卡';
+
+  @override
+  String get calendarCigarettes1to5 => '1-5支';
+
+  @override
+  String get calendarCigarettes6to10 => '6-10支';
+
+  @override
+  String get calendarCigarettes10plus => '10支以上';
+
+  @override
+  String get calendarCigarettesUnit => '支';
+
+  @override
+  String get progressSavedMoney => '已节省';
+
+  @override
+  String get progressCigarettesNotSmoked => '少吸支数';
+
+  @override
+  String get progressLifeExtended => '延长寿命(天)';
+
+  @override
+  String get dailyCheckInStatus => '每日戒烟状态';
+
+  @override
+  String get checkingTodayStatus => '正在检查今日状态...';
+
+  @override
+  String get autoCheckInSuccess => '✅ 今日自动打卡成功（无吸烟记录）';
+
+  @override
+  String get alreadyAutoCheckedIn => '已自动打卡';
+
+  @override
+  String get manualCheckInSuccess => '✅ 今日手动打卡成功';
+
+  @override
+  String get cannotCheckInSmoking => '❌ 今日有吸烟记录，无法打卡';
+
+  @override
+  String get todayAlreadySmoked => '今日已吸烟';
+
+  @override
+  String get statusCheckFailed => '状态检查失败';
+
+  @override
+  String get recheckStatus => '重新检查';
+
+  @override
+  String get autoCheckInRule => '💡 自动打卡规则：如果当天没有吸烟记录，系统会自动为您打卡';
+
+  @override
+  String get monthlyCalendar => '月度日历';
+
+  @override
+  String clickedDay(String day) {
+    return '点击了 $day 日';
+  }
+
+  @override
+  String loadingCalendarError(String error) {
+    return '加载日历数据时出错: $error';
+  }
+
+  @override
+  String get achievements => '成就';
+
+  @override
+  String get resetAchievements => '重置成就';
+
+  @override
+  String get resetAchievementsDialog => '这将清除所有已解锁的成就数据。此操作不可撤销，确定要继续吗？';
+
+  @override
+  String get achievementsReset => '成就数据已重置';
+
+  @override
+  String get confirm => '确定';
+
+  @override
+  String get days => '天';
+
+  @override
+  String get recordSmokingTitle => '记录吸烟情况';
+
+  @override
+  String get recordSmokingDescription => '诚实记录有助于更好地了解你的戒烟进程';
+
+  @override
+  String get howManyCigarettes => '这次吸了多少支香烟？';
+
+  @override
+  String get cigarettesUnit => ' 支';
+
+  @override
+  String get additionalThoughts => '记录当时的感受、环境或想法...';
+
+  @override
+  String get relapseLearning => '记住：每一次复吸都是学习的机会，不要放弃！';
+
+  @override
+  String get smokingRecordSaved => '吸烟记录已保存';
+
+  @override
+  String saveFailed(String error) {
+    return '保存失败: $error';
+  }
+
+  @override
+  String get alreadySmokedToday => '我已经吸烟了';
+
+  @override
+  String get alreadySmoked => 'I already smoked';
+
+  @override
+  String get unlockedAchievements => '已解锁成就';
+
+  @override
+  String get resetAchievementsDebug => '重置成就（调试用）';
+
+  @override
+  String get selectLanguage => '选择语言';
+
+  @override
+  String get chinese => '中文';
+
+  @override
+  String get simplifiedChinese => '简体中文';
+
+  @override
+  String get languageSwitchedToChinese => '语言已切换为中文';
+
+  @override
+  String get languageSwitchedToSimplifiedChinese => '语言已切换为简体中文';
+
+  @override
+  String get resetData => '重置数据';
+
+  @override
+  String get resetDataDialog => '确定要重置所有戒烟进度数据吗？这将清除您的所有成就和历史记录。此操作无法撤销。';
+
+  @override
+  String get resetDataFeatureComingSoon => '数据重置功能即将推出';
+
+  @override
+  String get reset => '重置';
+
+  @override
+  String get logout => '退出登录';
+
+  @override
+  String get logoutDialog => '确定要退出登录吗？';
+
+  @override
+  String get notLoggedInUser => '未登录用户';
+
+  @override
+  String get editPersonalInfo => '点击编辑个人信息';
+
+  @override
+  String get editPersonalInfoComingSoon => '编辑个人信息功能即将推出';
+
+  @override
+  String get officialWebsite => '官方网站';
+
+  @override
+  String get sendFeedback => '发送反馈';
+
+  @override
+  String get rateApp => '给应用评分';
+
+  @override
+  String get quitJourneyApp => '焕新之旅 - Quit Journey';
+
+  @override
+  String appVersion(String version, String buildNumber) {
+    return '版本 $version ($buildNumber)';
+  }
+
+  @override
+  String get appDescription => '焕新之旅是一款专注于帮助用户戒烟的应用，通过提供进度追踪、健康效益展示、烟瘾管理等功能，全方位支持您的戒烟之旅。告别烟瘾，焕新生活，从每一次呼吸开始。';
+
+  @override
+  String get appIntroduction => '应用简介';
+
+  @override
+  String copyrightInfo(String year) {
+    return '© $year 焕新之旅开发团队';
+  }
+
+  @override
+  String get allRightsReserved => '保留所有权利';
+
+  @override
+  String cannotOpenLink(String url) {
+    return '无法打开链接: $url';
+  }
+
+  @override
+  String get termsAndPrivacyAgreement => 'By continuing, you agree to our Terms of Service and Privacy Policy.';
+
+  @override
+  String get forgotPasswordNotImplemented => 'Forgot Password clicked (not implemented)';
+
+  @override
+  String get cannotOpenEmailClient => '无法打开邮件客户端';
+
+  @override
+  String get contactSupport => '联系客服';
+
+  @override
+  String get helpCenterComingSoon => '帮助中心功能即将推出';
+
+  @override
+  String get visitOnlineHelpCenter => '访问在线帮助中心';
+
+  @override
+  String get quitDateUpdated => '戒烟日期已更新';
+
+  @override
+  String updateFailed(String error) {
+    return '更新失败: $error';
+  }
+
+  @override
+  String get selectQuitDate => '选择戒烟开始日期';
+
+  @override
+  String get selectQuitTime => '选择戒烟开始时间';
+
+  @override
+  String get quitDateChangeDescription => '您可以在这里更改戒烟开始日期和时间。请注意，这将重置您的戒烟进度。';
+
+  @override
+  String get quitDate => '戒烟日期';
+
+  @override
+  String get quitTime => '戒烟时间';
+
+  @override
+  String get notSelected => '未选择';
+
+  @override
+  String get saveChanges => '保存更改';
+
+  @override
+  String get thankYouPrivacyPolicy => '感谢您阅读我们的隐私政策';
+
+  @override
+  String get iHaveReadAndUnderstood => '我已阅读并理解';
+
+  @override
+  String get updateSmokingDataDescription => '请更新您的吸烟数据，这将帮助我们更准确地计算您的进度和节省。';
+
+  @override
+  String get dailySmokingAmount => '每日吸烟量 (支)';
+
+  @override
+  String get pleaseEnterDailySmokingAmount => '请输入每日吸烟量';
+
+  @override
+  String get pleaseEnterPositiveNumber => '请输入大于0的数字';
+
+  @override
+  String get cigarettePricePerPack => '每包香烟价格 (元)';
+
+  @override
+  String get pleaseEnterCigarettePrice => '请输入香烟价格';
+
+  @override
+  String get cigarettesPerPack => '每包香烟数量 (支)';
+
+  @override
+  String get pleaseEnterCigarettesPerPack => '请输入每包香烟数量';
+
+  @override
+  String get smokingDataUpdated => '吸烟数据已更新';
+
+  @override
+  String get achieved => '已达成';
+
+  @override
+  String timeToAchieve(String time) {
+    return '距离达成: $time';
+  }
+
+  @override
+  String get detailedDescription => '详细说明';
+
+  @override
+  String get scientificExplanation => '科学解释';
+
+  @override
+  String get smokingEffectsExplanation => '当你停止吸烟后，你的身体立即开始恢复。吸烟会限制血管，让心脏更努力地工作。戒烟后，血压和心率开始恢复正常，身体开始清除有害物质，血液循环改善，各种身体机能逐步恢复到更健康的状态。';
+
+  @override
+  String get otherHealthBenefits => '其他健康效益';
+
+  @override
+  String afterTime(String time) {
+    return '$time后';
+  }
+
+  @override
+  String get statisticsCenter => '统计中心';
+
+  @override
+  String get featureInDevelopment => '功能开发中...';
+
+  @override
+  String get checkInStatistics => '打卡统计';
+
+  @override
+  String loadingStatisticsError(String error) {
+    return '加载统计信息时出错: $error';
+  }
+
+  @override
+  String get loadingCheckInRecordsError => '加载打卡记录时出错';
+
+  @override
+  String get today => '今天';
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
@@ -1123,6 +1530,93 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   String get achievement100DaysStory => '100天不吸烟是一项令人难以置信的成就。你的身体已经显著恢复，无烟的生活方式正在成为你的第二天性。';
 
   @override
+  String get achievement1DayName => '第1天';
+
+  @override
+  String get achievement1DayDesc => '您已成功完成第一天不吸烟！';
+
+  @override
+  String get achievement1DayStory => '第一天总是最困难的。您已经迈出了通向健康生活的最重要一步。';
+
+  @override
+  String get achievement1WeekName => '第1周';
+
+  @override
+  String get achievement1WeekDesc => '您已成功完成第一周不吸烟！';
+
+  @override
+  String get achievement1WeekStory => '一周不吸烟！您的身体已经开始愈合和恢复。';
+
+  @override
+  String get achievement1MonthName => '第1个月';
+
+  @override
+  String get achievement1MonthDesc => '您已成功完成第一个月不吸烟！';
+
+  @override
+  String get achievement1MonthStory => '一个月是一个重要的里程碑。您的肺功能正在显著改善。';
+
+  @override
+  String get achievement1YearName => '第1年';
+
+  @override
+  String get achievement1YearDesc => '您已成功完成第一年不吸烟！';
+
+  @override
+  String get achievement1YearStory => '一年不吸烟！您患心脏病和中风的风险已大幅降低。';
+
+  @override
+  String get achievementSave100Name => '节省¥100';
+
+  @override
+  String get achievementSave100Desc => '通过不吸烟，您已节省了¥100！';
+
+  @override
+  String get achievementSave100Story => '看看您节省了多少钱！想想您可以用这些额外的钱做什么。';
+
+  @override
+  String get achievementSave1000Name => '节省¥1000';
+
+  @override
+  String get achievementSave1000Desc => '通过不吸烟，您已节省了¥1000！';
+
+  @override
+  String get achievementSave1000Story => '节省了一千元！这可以是一次不错的旅行或一次重要的购买。';
+
+  @override
+  String get achievementSave10000Name => '节省¥10000';
+
+  @override
+  String get achievementSave10000Desc => '通过不吸烟，您已节省了¥10000！';
+
+  @override
+  String get achievementSave10000Story => '一万元！这是改变生活的钱，您可以投资于自己的未来。';
+
+  @override
+  String get noAchievementsAvailable => '暂无可用成就';
+
+  @override
+  String get achievementStoryTitle => '故事';
+
+  @override
+  String get achievementMoneySavedName => '存钱达人';
+
+  @override
+  String get achievementMoneySavedDesc => '通过不购买香烟，你已经节省了钱！';
+
+  @override
+  String get achievementMoneySavedStory => '每一支你没有购买的香烟都是为未来节省的钱。';
+
+  @override
+  String get achievementResistCravingName => '烟瘾征服者';
+
+  @override
+  String get achievementResistCravingDesc => '成功利用应对策略抵抗了强烈的烟瘾！';
+
+  @override
+  String get achievementResistCravingStory => '你已经证明了可以用正确的策略克服烟瘾。';
+
+  @override
   String get appSettingsTitle => '应用设置';
 
   @override
@@ -1204,12 +1698,6 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   String get healthMilestoneNotificationsSubtitle => '当您达到健康改善里程碑时获得通知';
 
   @override
-  String get dailyCheckInNotificationsTitle => '每日打卡提醒';
-
-  @override
-  String get dailyCheckInNotificationsSubtitle => '获取每日打卡提醒';
-
-  @override
   String get encouragementNotificationsTitle => '鼓励消息';
 
   @override
@@ -1217,9 +1705,6 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 
   @override
   String get notificationTimeSettingsTitle => '提醒时间设置';
-
-  @override
-  String get checkInReminderTimeTitle => '打卡提醒时间';
 
   @override
   String get doNotDisturbTitle => '勿扰模式';
@@ -1238,4 +1723,333 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 
   @override
   String get cancel => '取消';
+
+  @override
+  String get calendarLegend => '图例：';
+
+  @override
+  String get calendarCheckedIn => '已打卡';
+
+  @override
+  String get calendarCigarettes1to5 => '1-5支';
+
+  @override
+  String get calendarCigarettes6to10 => '6-10支';
+
+  @override
+  String get calendarCigarettes10plus => '10支以上';
+
+  @override
+  String get calendarCigarettesUnit => '支';
+
+  @override
+  String get progressSavedMoney => '已节省';
+
+  @override
+  String get progressCigarettesNotSmoked => '少吸支数';
+
+  @override
+  String get progressLifeExtended => '延长寿命(天)';
+
+  @override
+  String get dailyCheckInStatus => '每日戒烟状态';
+
+  @override
+  String get checkingTodayStatus => '正在检查今日状态...';
+
+  @override
+  String get autoCheckInSuccess => '✅ 今日自动打卡成功（无吸烟记录）';
+
+  @override
+  String get alreadyAutoCheckedIn => '已自动打卡';
+
+  @override
+  String get manualCheckInSuccess => '✅ 今日手动打卡成功';
+
+  @override
+  String get cannotCheckInSmoking => '❌ 今日有吸烟记录，无法打卡';
+
+  @override
+  String get todayAlreadySmoked => '今日已吸烟';
+
+  @override
+  String get statusCheckFailed => '状态检查失败';
+
+  @override
+  String get recheckStatus => '重新检查';
+
+  @override
+  String get autoCheckInRule => '💡 自动打卡规则：如果当天没有吸烟记录，系统会自动为您打卡';
+
+  @override
+  String get monthlyCalendar => '月度日历';
+
+  @override
+  String clickedDay(String day) {
+    return '点击了 $day 日';
+  }
+
+  @override
+  String loadingCalendarError(String error) {
+    return '加载日历数据时出错: $error';
+  }
+
+  @override
+  String get achievements => '成就';
+
+  @override
+  String get resetAchievements => '重置成就';
+
+  @override
+  String get resetAchievementsDialog => '这将清除所有已解锁的成就数据。此操作不可撤销，确定要继续吗？';
+
+  @override
+  String get achievementsReset => '成就数据已重置';
+
+  @override
+  String get confirm => '确定';
+
+  @override
+  String get days => '天';
+
+  @override
+  String get recordSmokingTitle => '记录吸烟情况';
+
+  @override
+  String get recordSmokingDescription => '诚实记录有助于更好地了解你的戒烟进程';
+
+  @override
+  String get howManyCigarettes => '这次吸了多少支香烟？';
+
+  @override
+  String get cigarettesUnit => ' 支';
+
+  @override
+  String get additionalThoughts => '记录当时的感受、环境或想法...';
+
+  @override
+  String get relapseLearning => '记住：每一次复吸都是学习的机会，不要放弃！';
+
+  @override
+  String get smokingRecordSaved => '吸烟记录已保存';
+
+  @override
+  String saveFailed(String error) {
+    return '保存失败: $error';
+  }
+
+  @override
+  String get alreadySmokedToday => '我已经吸烟了';
+
+  @override
+  String get alreadySmoked => '我已经吸烟了';
+
+  @override
+  String get unlockedAchievements => '已解锁成就';
+
+  @override
+  String get resetAchievementsDebug => '重置成就（调试用）';
+
+  @override
+  String get selectLanguage => '选择语言';
+
+  @override
+  String get chinese => '中文';
+
+  @override
+  String get simplifiedChinese => '简体中文';
+
+  @override
+  String get languageSwitchedToChinese => '语言已切换为中文';
+
+  @override
+  String get languageSwitchedToSimplifiedChinese => '语言已切换为简体中文';
+
+  @override
+  String get resetData => '重置数据';
+
+  @override
+  String get resetDataDialog => '确定要重置所有戒烟进度数据吗？这将清除您的所有成就和历史记录。此操作无法撤销。';
+
+  @override
+  String get resetDataFeatureComingSoon => '数据重置功能即将推出';
+
+  @override
+  String get reset => '重置';
+
+  @override
+  String get logout => '退出登录';
+
+  @override
+  String get logoutDialog => '确定要退出登录吗？';
+
+  @override
+  String get notLoggedInUser => '未登录用户';
+
+  @override
+  String get editPersonalInfo => '点击编辑个人信息';
+
+  @override
+  String get editPersonalInfoComingSoon => '编辑个人信息功能即将推出';
+
+  @override
+  String get officialWebsite => '官方网站';
+
+  @override
+  String get sendFeedback => '发送反馈';
+
+  @override
+  String get rateApp => '给应用评分';
+
+  @override
+  String get quitJourneyApp => '焕新之旅 - Quit Journey';
+
+  @override
+  String appVersion(String version, String buildNumber) {
+    return '版本 $version ($buildNumber)';
+  }
+
+  @override
+  String get appDescription => '焕新之旅是一款专注于帮助用户戒烟的应用，通过提供进度追踪、健康效益展示、烟瘾管理等功能，全方位支持您的戒烟之旅。告别烟瘾，焕新生活，从每一次呼吸开始。';
+
+  @override
+  String get appIntroduction => '应用简介';
+
+  @override
+  String copyrightInfo(String year) {
+    return '© $year 焕新之旅开发团队';
+  }
+
+  @override
+  String get allRightsReserved => '保留所有权利';
+
+  @override
+  String cannotOpenLink(String url) {
+    return '无法打开链接: $url';
+  }
+
+  @override
+  String get termsAndPrivacyAgreement => '继续使用即表示您同意我们的服务条款和隐私政策。';
+
+  @override
+  String get forgotPasswordNotImplemented => '忘记密码功能尚未实现';
+
+  @override
+  String get cannotOpenEmailClient => '无法打开邮件客户端';
+
+  @override
+  String get contactSupport => '联系客服';
+
+  @override
+  String get helpCenterComingSoon => '帮助中心功能即将推出';
+
+  @override
+  String get visitOnlineHelpCenter => '访问在线帮助中心';
+
+  @override
+  String get quitDateUpdated => '戒烟日期已更新';
+
+  @override
+  String updateFailed(String error) {
+    return '更新失败: $error';
+  }
+
+  @override
+  String get selectQuitDate => '选择戒烟开始日期';
+
+  @override
+  String get selectQuitTime => '选择戒烟开始时间';
+
+  @override
+  String get quitDateChangeDescription => '您可以在这里更改戒烟开始日期和时间。请注意，这将重置您的戒烟进度。';
+
+  @override
+  String get quitDate => '戒烟日期';
+
+  @override
+  String get quitTime => '戒烟时间';
+
+  @override
+  String get notSelected => '未选择';
+
+  @override
+  String get saveChanges => '保存更改';
+
+  @override
+  String get thankYouPrivacyPolicy => '感谢您阅读我们的隐私政策';
+
+  @override
+  String get iHaveReadAndUnderstood => '我已阅读并理解';
+
+  @override
+  String get updateSmokingDataDescription => '请更新您的吸烟数据，这将帮助我们更准确地计算您的进度和节省。';
+
+  @override
+  String get dailySmokingAmount => '每日吸烟量 (支)';
+
+  @override
+  String get pleaseEnterDailySmokingAmount => '请输入每日吸烟量';
+
+  @override
+  String get pleaseEnterPositiveNumber => '请输入大于0的数字';
+
+  @override
+  String get cigarettePricePerPack => '每包香烟价格 (元)';
+
+  @override
+  String get pleaseEnterCigarettePrice => '请输入香烟价格';
+
+  @override
+  String get cigarettesPerPack => '每包香烟数量 (支)';
+
+  @override
+  String get pleaseEnterCigarettesPerPack => '请输入每包香烟数量';
+
+  @override
+  String get smokingDataUpdated => '吸烟数据已更新';
+
+  @override
+  String get achieved => '已达成';
+
+  @override
+  String timeToAchieve(String time) {
+    return '距离达成: $time';
+  }
+
+  @override
+  String get detailedDescription => '详细说明';
+
+  @override
+  String get scientificExplanation => '科学解释';
+
+  @override
+  String get smokingEffectsExplanation => '当你停止吸烟后，你的身体立即开始恢复。吸烟会限制血管，让心脏更努力地工作。戒烟后，血压和心率开始恢复正常，身体开始清除有害物质，血液循环改善，各种身体机能逐步恢复到更健康的状态。';
+
+  @override
+  String get otherHealthBenefits => '其他健康效益';
+
+  @override
+  String afterTime(String time) {
+    return '$time后';
+  }
+
+  @override
+  String get statisticsCenter => '统计中心';
+
+  @override
+  String get featureInDevelopment => '功能开发中...';
+
+  @override
+  String get checkInStatistics => '打卡统计';
+
+  @override
+  String loadingStatisticsError(String error) {
+    return '加载统计信息时出错: $error';
+  }
+
+  @override
+  String get loadingCheckInRecordsError => '加载打卡记录时出错';
+
+  @override
+  String get today => '今天';
 }

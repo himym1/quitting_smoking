@@ -130,7 +130,7 @@ class _QuitDatePageState extends ConsumerState<QuitDatePage> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     // 格式化日期和时间显示

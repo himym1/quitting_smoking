@@ -84,9 +84,9 @@ class LoginPage extends ConsumerWidget {
                     onPressed: () {
                       // TODO: Implement forgot password functionality
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text(
-                            'Forgot Password clicked (not implemented)',
+                            l10n.forgotPasswordNotImplemented,
                           ),
                         ),
                       );
@@ -133,7 +133,7 @@ class LoginPage extends ConsumerWidget {
                 const SizedBox(height: 40),
                 // Optional: Terms of Service and Privacy Policy
                 Text(
-                  "By continuing, you agree to our Terms of Service and Privacy Policy.", // Placeholder - l10n needed
+                  l10n.termsAndPrivacyAgreement,
                   style: Theme.of(context).textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),

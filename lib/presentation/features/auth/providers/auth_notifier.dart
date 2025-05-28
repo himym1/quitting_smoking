@@ -5,6 +5,7 @@ import 'package:quitting_smoking/domain/entities/user_profile.dart';
 import 'package:quitting_smoking/domain/repositories/user_profile_repository.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 import 'package:quitting_smoking/data/repositories_impl/user_profile_repository_impl.dart'; // Assuming this is the concrete implementation
+import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
 
 // Placeholder for UserProfileRepository provider - Now using the concrete implementation's provider
 // final userProfileRepositoryProvider = Provider<UserProfileRepository>((ref) {
@@ -184,7 +185,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     print('User logged out, state reset to unauthenticated.');
   }
 
-  void completeOnboarding(UserProfile updatedProfile) {
+  void completeOnboarding(UserProfile updatedProfile) async {
     state = AuthState.authenticated(updatedProfile);
     // Optionally, you might want to re-save the profile here if AuthNotifier
     // is the single source of truth for profile persistence after onboarding,
@@ -193,6 +194,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
     print(
       'Onboarding completed, AuthState updated with profile: ${updatedProfile.userId}',
     );
+
+    // 引导完成后重新计算成就
+    await _recalculateAchievements(updatedProfile);
   }
 
   // 更新吸烟数据
@@ -248,10 +252,47 @@ class AuthNotifier extends StateNotifier<AuthState> {
       // 更新状态
       state = AuthState.authenticated(updatedProfile);
       print('User quit date updated: ${quitDateTime.toString()}');
+
+      // 重新计算成就 - 基于新的戒烟时间
+      await _recalculateAchievements(updatedProfile);
     } catch (e) {
       print('Error updating quit date: $e');
       // 可以在此处添加错误处理逻辑
       throw e; // 重新抛出异常，以便调用者可以捕获
+    }
+  }
+
+  // 重新计算成就的私有方法
+  Future<void> _recalculateAchievements(UserProfile userProfile) async {
+    try {
+      if (userProfile.quitDateTime == null) return;
+
+      // 计算戒烟天数
+      final now = DateTime.now();
+      final quitDuration = now.difference(userProfile.quitDateTime!);
+      final consecutiveDays = quitDuration.inDays;
+
+      // 计算节省的金钱
+      final dailyCigarettes = userProfile.dailyCigarettes ?? 0;
+      final packPrice = userProfile.packPrice ?? 0.0;
+      final cigarettesPerPack = 20; // 假设每包20支
+      final dailyCost = (dailyCigarettes / cigarettesPerPack) * packPrice;
+      final moneySaved = dailyCost * consecutiveDays;
+
+      // 获取成就控制器并检查新成就
+      final achievementController = _ref.read(
+        achievementControllerProvider.notifier,
+      );
+      await achievementController.checkForNewAchievements(
+        consecutiveDays: consecutiveDays,
+        moneySaved: moneySaved,
+      );
+
+      print(
+        '成就重新计算完成: 戒烟${consecutiveDays}天, 节省¥${moneySaved.toStringAsFixed(2)}',
+      );
+    } catch (e) {
+      print('重新计算成就时出错: $e');
     }
   }
 

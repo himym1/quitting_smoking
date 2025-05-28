@@ -5,3 +5,7 @@ output-class: AppLocalizations # 生成的 Dart 类名
 nullable-getter: false # 根据项目偏好设置，false 表示生成的 getter 不会是可空的
 synthetic-package: false # Disable deprecated synthetic package output
 untranslated-messages-file: untranslated_messages.json # Generate file with untranslated messages
+# 支持的区域设置
+preferred-supported-locales: 
+  - en
+  - zh_CN

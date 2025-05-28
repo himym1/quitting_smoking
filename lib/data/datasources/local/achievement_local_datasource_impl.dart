@@ -77,6 +77,19 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
     }
   }
 
+  /// 清除所有解锁的成就数据（用于调试和重置）
+  Future<bool> clearAllUnlockedAchievements() async {
+    try {
+      final box = await _getUnlockedAchievementsBox();
+      await box.clear();
+      print('All unlocked achievements cleared');
+      return true;
+    } catch (e) {
+      print('Error clearing unlocked achievements: $e');
+      return false;
+    }
+  }
+
   Future<Box<UnlockedAchievement>> _getUnlockedAchievementsBox() async {
     if (!_hive.isBoxOpen(HiveConstants.unlockedAchievementsBoxName)) {
       return await _hive.openBox<UnlockedAchievement>(

@@ -5,6 +5,7 @@ import 'package:quitting_smoking/presentation/common_widgets/bottom_sheet_wrappe
 import 'package:quitting_smoking/presentation/common_widgets/lottie_animation.dart';
 import 'package:quitting_smoking/presentation/common_widgets/primary_button.dart';
 import 'package:quitting_smoking/l10n/app_localizations.dart';
+import 'package:quitting_smoking/core/utils/localization_extensions.dart';
 
 /// A modal bottom sheet that displays when a user unlocks an achievement.
 class AchievementUnlockedModal extends ConsumerWidget {
@@ -28,12 +29,8 @@ class AchievementUnlockedModal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-
-    // 获取成就徽章图片
-    final badgeImage = _getAchievementBadgeImage(achievement.id);
-    final achievementColor = _getAchievementColor(achievement.id);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -58,22 +55,72 @@ class AchievementUnlockedModal extends ConsumerWidget {
         ),
         const SizedBox(height: 24),
 
-        // 使用来自Figma的成就章图片
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: SizedBox(
-            width: 150,
-            height: 150,
-            child: Image.asset(badgeImage, fit: BoxFit.cover),
+        // 使用纯文字的成就卡片设计，参考Figma
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              // 左侧图标
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  _getAchievementIcon(achievement.id),
+                  color: theme.colorScheme.onPrimaryContainer,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(width: 16),
+
+              // 右侧文字内容
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 成就标题
+                    Text(
+                      _getAchievementTitle(l10n, achievement),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+
+                    // 成就描述
+                    Text(
+                      _getAchievementDescription(l10n, achievement),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer.withOpacity(
+                          0.8,
+                        ),
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 24),
 
         // Achievement Name
         Text(
-          l10n.getString(achievement.nameKey) ?? achievement.name,
+          _getAchievementTitle(l10n, achievement),
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
+            color: theme.colorScheme.onSurface,
           ),
           textAlign: TextAlign.center,
         ),
@@ -83,8 +130,7 @@ class AchievementUnlockedModal extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
-            l10n.getString(achievement.descriptionKey) ??
-                achievement.description,
+            _getAchievementDescription(l10n, achievement),
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.8),
             ),
@@ -99,36 +145,28 @@ class AchievementUnlockedModal extends ConsumerWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
+              color: theme.colorScheme.surfaceVariant,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: theme.colorScheme.outline.withOpacity(0.2),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
             ),
             child: Column(
               children: [
                 Text(
-                  '故事',
+                  l10n.achievementStoryTitle,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: achievementColor,
+                    color: theme.colorScheme.primary,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  l10n.getString(achievement.storyKey!) ??
-                      achievement.storyKey!,
+                  _getAchievementStory(l10n, achievement),
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontStyle: FontStyle.italic,
-                    color: theme.colorScheme.onSurface.withOpacity(0.8),
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -149,76 +187,72 @@ class AchievementUnlockedModal extends ConsumerWidget {
     );
   }
 
-  // 获取成就章图片路径
-  String _getAchievementBadgeImage(String achievementId) {
-    // 根据成就ID映射到对应的成就章图片
-    final badgeImages = [
-      'assets/images/achievements/achievement_first_day.png', // 第一天
-      'assets/images/achievements/achievement_one_week.png', // 一周
-      'assets/images/achievements/achievement_one_month.png', // 一个月
-      'assets/images/achievements/achievement_three_months.png', // 三个月
-      'assets/images/achievements/achievement_six_months.png', // 六个月
-      'assets/images/achievements/achievement_one_year.png', // 一年
-      'assets/images/achievements/achievement_two_years.png', // 两年
-      'assets/images/achievements/achievement_five_years.png', // 五年
-      'assets/images/achievements/achievement_ten_years.png', // 十年
-      'assets/images/achievements/achievement_lifetime.png', // 终身成就
-    ];
-
-    // 使用成就ID的哈希值来选择成就章图片
-    final hashCode = achievementId.hashCode.abs();
-    return badgeImages[hashCode % badgeImages.length];
-  }
-
-  // Helper method to get different colors for achievements
-  Color _getAchievementColor(String achievementId) {
-    // Map achievement IDs to different colors based on the Figma design
-    final colors = [
-      const Color(0xFFFF9B73), // First Day
-      const Color(0xFF72CCFF), // One Week
-      const Color(0xFFA78BFA), // One Month
-      const Color(0xFF22D3EE), // Three Months
-      const Color(0xFF4ADE80), // Six Months
-      const Color(0xFFFBBF24), // One Year
-      const Color(0xFFFF7EB6), // Two Years
-      const Color(0xFF60A5FA), // Five Years
-      const Color(0xFFAE7BE3), // Ten Years
-      const Color(0xFFFFD700), // Lifetime
-    ];
-
-    // Use the hash of the achievement ID to select a color
-    final hashCode = achievementId.hashCode.abs();
-    return colors[hashCode % colors.length];
-  }
-}
-
-/// Extension to get a localized string by key or return null if not found
-extension AppLocalizationsExt on AppLocalizations {
-  String? getString(String key) {
-    try {
-      // This is a simplified approach. In a real app, you would have a more robust
-      // way to access localized strings by key, such as a map or reflection.
-      return switch (key) {
-        // Achievement names
-        'achievement_7_days_name' => achievement7DaysName,
-        'achievement_30_days_name' => achievement30DaysName,
-        'achievement_100_days_name' => achievement100DaysName,
-
-        // Achievement descriptions
-        'achievement_7_days_desc' => achievement7DaysDesc,
-        'achievement_30_days_desc' => achievement30DaysDesc,
-        'achievement_100_days_desc' => achievement100DaysDesc,
-
-        // Achievement stories
-        'achievement_7_days_story' => achievement7DaysStory,
-        'achievement_30_days_story' => achievement30DaysStory,
-        'achievement_100_days_story' => achievement100DaysStory,
-
-        // Add more mappings as needed
-        _ => null,
-      };
-    } catch (e) {
-      return null;
+  /// 根据成就ID获取对应的图标
+  IconData _getAchievementIcon(String achievementId) {
+    // 根据成就类型返回不同图标
+    if (achievementId.contains('day') || achievementId.contains('1_day')) {
+      return Icons.today;
+    } else if (achievementId.contains('week') ||
+        achievementId.contains('7_days')) {
+      return Icons.date_range;
+    } else if (achievementId.contains('month') ||
+        achievementId.contains('30_days')) {
+      return Icons.calendar_month;
+    } else if (achievementId.contains('year') ||
+        achievementId.contains('365_days')) {
+      return Icons.celebration;
+    } else if (achievementId.contains('save') ||
+        achievementId.contains('money')) {
+      return Icons.savings;
+    } else {
+      return Icons.emoji_events;
     }
+  }
+
+  /// 根据成就获取本地化标题
+  String _getAchievementTitle(
+    AppLocalizations l10n,
+    AchievementDefinition achievement,
+  ) {
+    // 首先尝试使用本地化键
+    final localizedName = l10n.getString(achievement.nameKey);
+    if (localizedName != null) {
+      return localizedName;
+    }
+
+    // 如果没有本地化键，使用成就名称
+    return achievement.name;
+  }
+
+  /// 根据成就获取本地化描述
+  String _getAchievementDescription(
+    AppLocalizations l10n,
+    AchievementDefinition achievement,
+  ) {
+    // 首先尝试使用本地化键
+    final localizedDesc = l10n.getString(achievement.descriptionKey);
+    if (localizedDesc != null) {
+      return localizedDesc;
+    }
+
+    // 如果没有本地化键，使用成就描述
+    return achievement.description;
+  }
+
+  /// 根据成就获取本地化故事
+  String _getAchievementStory(
+    AppLocalizations l10n,
+    AchievementDefinition achievement,
+  ) {
+    // 首先尝试使用本地化键
+    if (achievement.storyKey != null) {
+      final localizedStory = l10n.getString(achievement.storyKey!);
+      if (localizedStory != null) {
+        return localizedStory;
+      }
+    }
+
+    // 如果没有本地化键，返回默认文本
+    return achievement.storyKey ?? '';
   }
 }

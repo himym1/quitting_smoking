@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
 import 'package:quitting_smoking/l10n/app_localizations.dart';
-import 'package:quitting_smoking/presentation/common_widgets/section_title.dart';
+
 import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
 import 'package:quitting_smoking/presentation/features/achievements/widgets/achievement_unlocked_modal.dart';
+import 'package:quitting_smoking/core/utils/localization_extensions.dart';
 
 /// A page that displays the user's achievements.
 class AchievementsPage extends ConsumerWidget {
@@ -13,7 +14,7 @@ class AchievementsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     final achievementState = ref.watch(achievementControllerProvider);
     final achievements = achievementState.allAchievements;
@@ -25,233 +26,333 @@ class AchievementsPage extends ConsumerWidget {
         achievement.achievementId: true,
     };
 
-    // Filter achievements
-    final unlockedAchievementsList =
-        achievements.where((a) => unlockedMap[a.id] == true).toList();
-
-    final lockedAchievementsList =
-        achievements.where((a) => unlockedMap[a.id] != true).toList();
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的成就'),
-        backgroundColor: Colors.transparent,
+        title: const Text('成就'),
+        backgroundColor: theme.colorScheme.surface,
+        foregroundColor: theme.colorScheme.onSurface,
         elevation: 0,
-        centerTitle: true,
+        actions: [
+          // 调试按钮 - 清除所有成就
+          if (achievementState.unlockedAchievements.isNotEmpty)
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              tooltip: '重置成就（调试用）',
+              onPressed: () => _showResetDialog(context, ref),
+            ),
+        ],
       ),
-      backgroundColor: Color(0xFFF8F0FE), // 淡紫色背景
-      body: SafeArea(
-        child:
-            achievementState.isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : achievements.isEmpty
-                ? Center(
-                  child: Text('暂无可用成就', style: theme.textTheme.bodyLarge),
-                )
-                : ListView(
-                  padding: const EdgeInsets.all(16),
+      body:
+          achievementState.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : achievementState.error != null
+              ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Unlocked Achievements Section
-                    if (unlockedAchievementsList.isNotEmpty) ...[
-                      SectionTitle(
-                        title: '已解锁成就',
-                        subtitle:
-                            '已解锁${unlockedAchievements.length}个成就，共${achievements.length}个',
-                        titleStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF424242),
-                        ),
-                        subtitleStyle: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF757575),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      AchievementGrid(
-                        achievements: unlockedAchievementsList,
-                        isUnlocked: true,
-                      ),
-                      const SizedBox(height: 24),
-                    ],
-
-                    // Locked Achievements Section
-                    if (lockedAchievementsList.isNotEmpty) ...[
-                      SectionTitle(
-                        title: '未解锁成就',
-                        subtitle: '继续努力解锁更多成就',
-                        titleStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF424242),
-                        ),
-                        subtitleStyle: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF757575),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      AchievementGrid(
-                        achievements: lockedAchievementsList,
-                        isUnlocked: false,
-                      ),
-                    ],
+                    Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: theme.colorScheme.error,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      achievementState.error!,
+                      style: theme.textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                    ),
                   ],
                 ),
-      ),
+              )
+              : achievements.isEmpty
+              ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.emoji_events_outlined,
+                      size: 64,
+                      color: theme.colorScheme.onSurface.withOpacity(0.5),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      l10n.noAchievementsAvailable,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+              : SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 成就统计
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest
+                            .withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            '${unlockedAchievements.length} / ${achievements.length}',
+                            style: theme.textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: theme.colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '已解锁成就',
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.7,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // 成就列表
+                    ...achievements.map((achievement) {
+                      final isUnlocked = unlockedMap.containsKey(
+                        achievement.id,
+                      );
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: _buildAchievementCard(
+                          context,
+                          theme,
+                          l10n,
+                          achievement,
+                          isUnlocked,
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
     );
   }
-}
 
-/// A grid of achievement items.
-class AchievementGrid extends ConsumerWidget {
-  final List<AchievementDefinition> achievements;
-  final bool isUnlocked;
-
-  const AchievementGrid({
-    super.key,
-    required this.achievements,
-    required this.isUnlocked,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        childAspectRatio: 0.75,
-      ),
-      itemCount: achievements.length,
-      itemBuilder: (context, index) {
-        final achievement = achievements[index];
-        return AchievementItem(
-          achievement: achievement,
-          isUnlocked: isUnlocked,
-        );
-      },
-    );
-  }
-}
-
-/// An individual achievement item.
-class AchievementItem extends ConsumerWidget {
-  final AchievementDefinition achievement;
-  final bool isUnlocked;
-
-  const AchievementItem({
-    super.key,
-    required this.achievement,
-    required this.isUnlocked,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
-
-    return GestureDetector(
-      onTap:
-          isUnlocked
-              ? () => _showAchievementDetails(context, achievement)
-              : null,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Achievement Badge - 使用Figma中的成就章图片
-          Expanded(
-            child:
-                isUnlocked
-                    ? _buildUnlockedAchievementBadge(achievement)
-                    : _buildLockedAchievementBadge(achievement),
-          ),
-          const SizedBox(height: 12),
-          // Achievement title
-          Text(
-            isUnlocked
-                ? l10n.getString(achievement.nameKey) ?? achievement.name
-                : '???',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color:
-                  isUnlocked
-                      ? theme.colorScheme.onSurface
-                      : theme.colorScheme.onSurface.withOpacity(0.6),
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
+  Widget _buildAchievementCard(
+    BuildContext context,
+    ThemeData theme,
+    AppLocalizations l10n,
+    AchievementDefinition achievement,
+    bool isUnlocked,
+  ) {
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color:
+              isUnlocked
+                  ? theme.colorScheme.primary.withOpacity(0.3)
+                  : theme.colorScheme.outline.withOpacity(0.2),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-    );
-  }
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            // 成就图标
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color:
+                    isUnlocked
+                        ? theme.colorScheme.primary.withOpacity(0.1)
+                        : theme.colorScheme.surfaceContainerHighest.withOpacity(
+                          0.5,
+                        ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                _getAchievementIcon(achievement.id),
+                size: 28,
+                color:
+                    isUnlocked
+                        ? theme.colorScheme.primary
+                        : theme.colorScheme.onSurface.withOpacity(0.5),
+              ),
+            ),
+            const SizedBox(width: 16),
 
-  // 构建已解锁的成就章
-  Widget _buildUnlockedAchievementBadge(AchievementDefinition achievement) {
-    // 根据成就ID获取对应的成就章图片
-    final badgeImage = _getAchievementBadgeImage(achievement.id);
+            // 成就信息
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // 成就标题
+                  Text(
+                    _getAchievementTitle(l10n, achievement),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          isUnlocked
+                              ? theme.colorScheme.onSurface
+                              : theme.colorScheme.onSurface.withOpacity(0.7),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Image.asset(badgeImage, fit: BoxFit.cover),
-    );
-  }
+                  // 成就描述
+                  Text(
+                    _getAchievementDescription(l10n, achievement),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color:
+                          isUnlocked
+                              ? theme.colorScheme.onSurface.withOpacity(0.8)
+                              : theme.colorScheme.onSurface.withOpacity(0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-  // 构建锁定的成就章
-  Widget _buildLockedAchievementBadge(AchievementDefinition achievement) {
-    // 显示成就图片但添加灰色蒙版效果
-    final badgeImage = _getAchievementBadgeImage(achievement.id);
-
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: ColorFiltered(
-            colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
-            child: Image.asset(badgeImage, fit: BoxFit.cover),
-          ),
+            // 解锁状态指示器
+            if (isUnlocked)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.check_circle,
+                  size: 20,
+                  color: theme.colorScheme.primary,
+                ),
+              )
+            else
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest.withOpacity(
+                    0.5,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.lock_outline,
+                  size: 20,
+                  color: theme.colorScheme.onSurface.withOpacity(0.5),
+                ),
+              ),
+          ],
         ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.black.withOpacity(0.3),
-          ),
-          child: Center(child: Icon(Icons.lock, color: Colors.white, size: 48)),
-        ),
-      ],
+      ),
     );
   }
 
-  // 获取成就章图片路径
-  String _getAchievementBadgeImage(String achievementId) {
-    // 根据成就ID映射到对应的成就章图片
-    final badgeImages = [
-      'assets/images/achievements/achievement_first_day.png', // 第一天
-      'assets/images/achievements/achievement_one_week.png', // 一周
-      'assets/images/achievements/achievement_one_month.png', // 一个月
-      'assets/images/achievements/achievement_three_months.png', // 三个月
-      'assets/images/achievements/achievement_six_months.png', // 六个月
-      'assets/images/achievements/achievement_one_year.png', // 一年
-      'assets/images/achievements/achievement_two_years.png', // 两年
-      'assets/images/achievements/achievement_five_years.png', // 五年
-      'assets/images/achievements/achievement_ten_years.png', // 十年
-      'assets/images/achievements/achievement_lifetime.png', // 终身成就
-    ];
-
-    // 使用成就ID的哈希值来选择成就章图片
-    final hashCode = achievementId.hashCode.abs();
-    return badgeImages[hashCode % badgeImages.length];
+  IconData _getAchievementIcon(String achievementId) {
+    // 根据成就类型返回不同图标
+    if (achievementId.contains('day') || achievementId.contains('1_day')) {
+      return Icons.today;
+    } else if (achievementId.contains('week') ||
+        achievementId.contains('7_days')) {
+      return Icons.date_range;
+    } else if (achievementId.contains('month') ||
+        achievementId.contains('30_days')) {
+      return Icons.calendar_month;
+    } else if (achievementId.contains('year') ||
+        achievementId.contains('365_days')) {
+      return Icons.celebration;
+    } else if (achievementId.contains('save') ||
+        achievementId.contains('money')) {
+      return Icons.savings;
+    } else {
+      return Icons.emoji_events;
+    }
   }
 
-  void _showAchievementDetails(
-    BuildContext context,
+  /// 根据成就获取本地化标题
+  String _getAchievementTitle(
+    AppLocalizations l10n,
     AchievementDefinition achievement,
   ) {
-    AchievementUnlockedModal.show(context: context, achievement: achievement);
+    // 首先尝试使用本地化键
+    final localizedName = l10n.getString(achievement.nameKey);
+    if (localizedName != null) {
+      return localizedName;
+    }
+
+    // 如果没有本地化键，使用成就名称
+    return achievement.name;
+  }
+
+  /// 根据成就获取本地化描述
+  String _getAchievementDescription(
+    AppLocalizations l10n,
+    AchievementDefinition achievement,
+  ) {
+    // 首先尝试使用本地化键
+    final localizedDesc = l10n.getString(achievement.descriptionKey);
+    if (localizedDesc != null) {
+      return localizedDesc;
+    }
+
+    // 如果没有本地化键，使用成就描述
+    return achievement.description;
+  }
+
+  /// 显示重置确认对话框
+  void _showResetDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('重置成就'),
+            content: const Text('这将清除所有已解锁的成就数据。此操作不可撤销，确定要继续吗？'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('取消'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  await _resetAllAchievements(ref);
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('成就数据已重置')));
+                  }
+                },
+                child: const Text('确定'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  /// 重置所有成就数据
+  Future<void> _resetAllAchievements(WidgetRef ref) async {
+    try {
+      final controller = ref.read(achievementControllerProvider.notifier);
+      await controller.clearAllAchievements();
+    } catch (e) {
+      print('Error resetting achievements: $e');
+    }
   }
 }
 

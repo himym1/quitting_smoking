@@ -8,7 +8,7 @@ class NotificationSettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     // 获取通知设置
@@ -61,22 +61,6 @@ class NotificationSettingsPage extends ConsumerWidget {
 
           const Divider(),
 
-          // 每日打卡提醒
-          SwitchListTile(
-            title: Text(localizations.dailyCheckInNotificationsTitle),
-            subtitle: Text(localizations.dailyCheckInNotificationsSubtitle),
-            value: notificationSettings.dailyCheckInNotifications,
-            onChanged: (value) {
-              // 更新通知设置
-              ref
-                  .read(notificationSettingsProvider.notifier)
-                  .setDailyCheckInNotifications(value);
-              _showSettingsSavedSnackBar(context);
-            },
-          ),
-
-          const Divider(),
-
           // 鼓励消息
           SwitchListTile(
             title: Text(localizations.encouragementNotificationsTitle),
@@ -104,31 +88,7 @@ class NotificationSettingsPage extends ConsumerWidget {
             ),
           ),
 
-          // 打卡提醒时间设置
-          ListTile(
-            title: Text(localizations.checkInReminderTimeTitle),
-            subtitle: Text(
-              _formatTimeOfDay(notificationSettings.dailyCheckInTime),
-            ),
-            trailing: const Icon(Icons.access_time),
-            onTap: () async {
-              final TimeOfDay? selectedTime = await showTimePicker(
-                context: context,
-                initialTime: notificationSettings.dailyCheckInTime,
-              );
-
-              if (selectedTime != null) {
-                ref
-                    .read(notificationSettingsProvider.notifier)
-                    .setDailyCheckInTime(selectedTime);
-                _showSettingsSavedSnackBar(context);
-              }
-            },
-          ),
-
-          const Divider(),
-
-          // 免打扰时段开始时间
+          // 免打扰时段设置
           ListTile(
             title: Text(localizations.doNotDisturbTitle),
             subtitle: Text(
@@ -161,7 +121,7 @@ class NotificationSettingsPage extends ConsumerWidget {
   void _showSettingsSavedSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(AppLocalizations.of(context)!.settingsSaved),
+        content: Text(AppLocalizations.of(context).settingsSaved),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 1),
       ),
@@ -178,14 +138,12 @@ class NotificationSettingsPage extends ConsumerWidget {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: Text(
-              AppLocalizations.of(context)!.doNotDisturbSettingsTitle,
-            ),
+            title: Text(AppLocalizations.of(context).doNotDisturbSettingsTitle),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
-                  title: Text(AppLocalizations.of(context)!.startTime),
+                  title: Text(AppLocalizations.of(context).startTime),
                   subtitle: Text(
                     _formatTimeOfDay(currentSettings.doNotDisturbStart),
                   ),
@@ -206,7 +164,7 @@ class NotificationSettingsPage extends ConsumerWidget {
                   },
                 ),
                 ListTile(
-                  title: Text(AppLocalizations.of(context)!.endTime),
+                  title: Text(AppLocalizations.of(context).endTime),
                   subtitle: Text(
                     _formatTimeOfDay(currentSettings.doNotDisturbEnd),
                   ),
@@ -231,7 +189,7 @@ class NotificationSettingsPage extends ConsumerWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text(AppLocalizations.of(context)!.cancel),
+                child: Text(AppLocalizations.of(context).cancel),
               ),
             ],
           ),

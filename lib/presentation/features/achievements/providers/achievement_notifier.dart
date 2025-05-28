@@ -94,24 +94,48 @@ class AchievementNotifier extends StateNotifier<AchievementsState> {
     required double moneySaved,
     bool? cravingResisted,
   }) async {
+    // Validate input parameters
+    if (consecutiveDays < 0) {
+      print('Warning: consecutiveDays is negative: $consecutiveDays');
+      return;
+    }
+
+    if (moneySaved < 0) {
+      print('Warning: moneySaved is negative: $moneySaved');
+      return;
+    }
+
     if (state.isLoading || state.allAchievements.isEmpty) {
       await loadAchievements();
     }
 
     try {
       final achievementsToCheck = state.allAchievements;
+      final alreadyUnlockedIds =
+          state.unlockedAchievements.map((ua) => ua.achievementId).toSet();
 
       for (final achievement in achievementsToCheck) {
+        // Skip if already unlocked
+        if (alreadyUnlockedIds.contains(achievement.id)) {
+          continue;
+        }
+
         final condition = achievement.unlockCondition;
 
         if (condition['type'] == 'consecutive_no_smoke_days') {
           final requiredDays = condition['value'] as int;
-          if (consecutiveDays >= requiredDays) {
+
+          // Only unlock if we've reached at least the required days
+          // But add a reasonable upper limit to prevent abuse
+          if (consecutiveDays >= requiredDays && consecutiveDays <= 10000) {
             await unlockAchievement(achievement.id);
           }
         } else if (condition['type'] == 'money_saved') {
           final requiredAmount = condition['value'] as int;
-          if (moneySaved >= requiredAmount) {
+
+          // Only unlock when we first reach the required amount
+          // Add reasonable upper limit
+          if (moneySaved >= requiredAmount && moneySaved <= 1000000) {
             await unlockAchievement(achievement.id);
           }
         } else if (condition['type'] == 'craving_resisted' &&

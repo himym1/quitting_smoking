@@ -8,7 +8,6 @@ import 'package:timezone/timezone.dart' as tz;
 enum NotificationType {
   achievement, // 成就解锁
   healthMilestone, // 健康里程碑
-  dailyCheckIn, // 每日打卡提醒
   encouragement, // 鼓励消息
 }
 
@@ -157,68 +156,6 @@ class NotificationService {
     await _flutterLocalNotificationsPlugin.cancelAll();
   }
 
-  /// 安排每日打卡提醒通知
-  Future<void> scheduleDailyCheckInReminder({
-    required TimeOfDay time,
-    required bool inDoNotDisturbMode,
-    required TimeOfDay doNotDisturbStart,
-    required TimeOfDay doNotDisturbEnd,
-  }) async {
-    // 如果禁用了打卡提醒或处于免打扰时段，则不安排通知
-    if (inDoNotDisturbMode &&
-        _isInDoNotDisturbPeriod(time, doNotDisturbStart, doNotDisturbEnd)) {
-      return;
-    }
-
-    // 创建通知详情
-    AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
-      _notificationChannelId,
-      _notificationChannelName,
-      channelDescription: _notificationChannelDescription,
-      importance: Importance.high,
-      priority: Priority.high,
-    );
-
-    DarwinNotificationDetails iOSDetails = const DarwinNotificationDetails();
-
-    NotificationDetails notificationDetails = NotificationDetails(
-      android: androidDetails,
-      iOS: iOSDetails,
-    );
-
-    // 获取当前日期时间
-    DateTime now = DateTime.now();
-
-    // 创建今天的目标时间
-    DateTime scheduledDate = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      time.hour,
-      time.minute,
-    );
-
-    // 如果目标时间已经过了，安排明天的
-    if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-    }
-
-    // 转换为时区感知的时间
-    final scheduledDateTz = tz.TZDateTime.from(scheduledDate, tz.local);
-
-    // 安排每日通知
-    await _flutterLocalNotificationsPlugin.zonedSchedule(
-      NotificationType.dailyCheckIn.index,
-      '每日打卡提醒',
-      '今天还没有打卡，来记录一下您的戒烟进度吧！',
-      scheduledDateTz,
-      notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time, // 每天同一时间
-      payload: 'dailyCheckIn',
-    );
-  }
-
   /// 显示成就解锁通知
   Future<void> showAchievementNotification({
     required String achievementName,
@@ -252,26 +189,5 @@ class NotificationService {
       body: message,
       payload: 'encouragement',
     );
-  }
-
-  /// 判断指定时间是否在免打扰时段内
-  bool _isInDoNotDisturbPeriod(
-    TimeOfDay time,
-    TimeOfDay doNotDisturbStart,
-    TimeOfDay doNotDisturbEnd,
-  ) {
-    // 将TimeOfDay转换为分钟数以便比较
-    int timeInMinutes = time.hour * 60 + time.minute;
-    int startInMinutes = doNotDisturbStart.hour * 60 + doNotDisturbStart.minute;
-    int endInMinutes = doNotDisturbEnd.hour * 60 + doNotDisturbEnd.minute;
-
-    // 如果开始时间小于结束时间，直接比较
-    if (startInMinutes < endInMinutes) {
-      return timeInMinutes >= startInMinutes && timeInMinutes <= endInMinutes;
-    }
-    // 如果开始时间大于结束时间（跨日），例如22:00-07:00
-    else {
-      return timeInMinutes >= startInMinutes || timeInMinutes <= endInMinutes;
-    }
   }
 }

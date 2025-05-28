@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
-import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 
 import '../../../../l10n/app_localizations.dart';
 
@@ -49,7 +48,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   }
 
   String? _validatePassword(String? value) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     if (value == null || value.isEmpty) {
       return l10n.fieldRequiredError;
     }
@@ -58,7 +57,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final authState = ref.watch(authNotifierProvider);
 
     return Form(

@@ -13,10 +13,10 @@ class HealthBenefitsDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
+    final localizations = AppLocalizations.of(context);
+    final _ = Theme.of(context);
     final healthBenefits = ref.watch(healthBenefitsNotifierProvider);
-    final healthBenefitsNotifier = ref.read(
+    final _ = ref.read(
       healthBenefitsNotifierProvider.notifier,
     );
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:quitting_smoking/core/constants/hive_constants.dart';
-import 'package:quitting_smoking/l10n/app_localizations.dart';
 
 /// 支持的语言
 class AppLanguage {
@@ -50,7 +49,7 @@ class AppLanguages {
   static AppLanguage fromCode(String code) {
     return all.firstWhere(
       (lang) => lang.code == code,
-      orElse: () => english, // 默认英语
+      orElse: () => zhCN, // 默认中文
     );
   }
 }
@@ -74,7 +73,8 @@ class LocaleNotifier extends StateNotifier<LocaleState> {
 
   LocaleNotifier({required HiveInterface hive})
     : _hive = hive,
-      super(const LocaleState(language: AppLanguages.english)) {
+      super(const LocaleState(language: AppLanguages.zhCN)) {
+    // 默认中文
     _loadLocale();
   }
 
@@ -88,13 +88,12 @@ class LocaleNotifier extends StateNotifier<LocaleState> {
         final language = AppLanguages.fromCode(savedLanguageCode);
         state = LocaleState(language: language);
       } else {
-        // 如果没有存储的语言设置，使用设备语言
-        // 这里需要保持默认英语，实际使用时可以检测用户设备语言
-        state = const LocaleState(language: AppLanguages.english);
+        // 如果没有存储的语言设置，使用默认中文
+        state = const LocaleState(language: AppLanguages.zhCN);
       }
     } catch (e) {
-      // 出错时使用默认语言
-      state = const LocaleState(language: AppLanguages.english);
+      // 出错时使用默认中文
+      state = const LocaleState(language: AppLanguages.zhCN);
     }
   }
 

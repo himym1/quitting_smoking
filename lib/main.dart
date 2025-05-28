@@ -15,8 +15,8 @@ import 'package:quitting_smoking/data/datasources/local/health_benefit_local_dat
 import 'package:quitting_smoking/data/datasources/local/health_benefit_local_datasource_impl.dart';
 import 'package:quitting_smoking/domain/repositories/health_benefit_repository.dart';
 import 'package:quitting_smoking/data/repositories_impl/health_benefit_repository_impl.dart';
-import 'package:flutter/widgets.dart' show Locale, WidgetsBinding;
 import 'package:quitting_smoking/core/services/notification_service.dart';
+import 'package:quitting_smoking/core/providers/locale_provider.dart';
 
 // Provider for DailyCheckInLocalDataSource
 final dailyCheckInLocalDataSourceProvider =
@@ -44,16 +44,10 @@ final healthBenefitRepositoryProvider = Provider<HealthBenefitRepository>((
   return HealthBenefitRepositoryImpl(localDataSource: localDataSource);
 });
 
-// Provider for current locale
-final localeProvider = Provider<Locale>((ref) {
-  // Default to English
-  return const Locale('en');
-});
-
 // Provider for AchievementLocalDataSource
 final achievementLocalDataSourceProvider = Provider<AchievementLocalDataSource>(
   (ref) {
-    final locale = ref.watch(localeProvider);
+    final locale = ref.watch(currentLocaleProvider);
     return AchievementLocalDataSourceImpl(Hive, locale);
   },
 );

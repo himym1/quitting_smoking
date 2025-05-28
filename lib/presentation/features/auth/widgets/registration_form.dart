@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
-import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 
 import '../../../../l10n/app_localizations.dart';
 
@@ -17,7 +16,6 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  bool _termsAccepted = false; // MVP: Optional
 
   @override
   void dispose() {

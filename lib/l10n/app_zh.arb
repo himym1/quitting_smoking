@@ -2,12 +2,12 @@
   "@@locale": "zh",
   "appTitle": "焕新之旅",
   "helloWorld": "你好，世界！",
-  "onboardingTitle": "欢迎使用焕新之旅",
+  "onboardingTitle": "欢迎来到焕新之旅",
   "homeTab": "首页",
   "achievementsTab": "成就",
   "settingsTab": "设置",
-  "appSlogan": "戒除成瘾，焕发生活，从每一次呼吸开始。",
-  "loadingYourFuture": "正在加载无烟的未来...",
+  "appSlogan": "告别烟瘾，焕新生活，从每一次呼吸开始。",
+  "loadingYourFuture": "正在加载您的无烟未来...",
   "loginPageTitle": "登录",
   "welcomeBack": "欢迎回来！",
   "loginToContinue": "登录以继续您的焕新之旅。",
@@ -149,7 +149,87 @@
   "errorUnknown": "发生未知错误。",
 
   "homeEmergencyButton": "我想吸烟",
+
+  "achievementUnlockedTitle": "成就解锁！",
+  "continueButtonLabel": "继续",
   
+  "achievement7DaysName": "第一周无烟",
+  "achievement7DaysDesc": "连续7天不吸烟",
+  "achievement7DaysStory": "第一周通常是戒烟最困难的时期。你已经证明了对自己和健康的承诺。这是一个重要的里程碑！",
+  
+  "achievement30DaysName": "一个月里程碑",
+  "achievement30DaysDesc": "连续30天不吸烟",
+  "achievement30DaysStory": "一个月不吸烟！你的肺功能正在改善，血液循环更好，你正在形成强大的新习惯。继续加油！",
+  
+  "achievement100DaysName": "百日俱乐部",
+  "achievement100DaysDesc": "连续100天不吸烟",
+  "achievement100DaysStory": "100天不吸烟是一项令人难以置信的成就。你的身体已经显著恢复，无烟的生活方式正在成为你的第二天性。",
+  
+  "achievement1DayName": "第1天",
+  "achievement1DayDesc": "您已成功完成第一天不吸烟！",
+  "achievement1DayStory": "第一天总是最困难的。您已经迈出了通向健康生活的最重要一步。",
+  
+  "achievement1WeekName": "第1周",
+  "achievement1WeekDesc": "您已成功完成第一周不吸烟！",
+  "achievement1WeekStory": "一周不吸烟！您的身体已经开始愈合和恢复。",
+  
+  "achievement1MonthName": "第1个月",
+  "achievement1MonthDesc": "您已成功完成第一个月不吸烟！",
+  "achievement1MonthStory": "一个月是一个重要的里程碑。您的肺功能正在显著改善。",
+  
+  "achievement1YearName": "第1年",
+  "achievement1YearDesc": "您已成功完成第一年不吸烟！",
+  "achievement1YearStory": "一年不吸烟！您患心脏病和中风的风险已大幅降低。",
+  
+  "achievementSave100Name": "节省¥100",
+  "achievementSave100Desc": "通过不吸烟，您已节省了¥100！",
+  "achievementSave100Story": "看看您节省了多少钱！想想您可以用这些额外的钱做什么。",
+  
+  "achievementSave1000Name": "节省¥1000",
+  "achievementSave1000Desc": "通过不吸烟，您已节省了¥1000！",
+  "achievementSave1000Story": "节省了一千元！这可以是一次不错的旅行或一次重要的购买。",
+  
+  "achievementSave10000Name": "节省¥10000",
+  "achievementSave10000Desc": "通过不吸烟，您已节省了¥10000！",
+  "achievementSave10000Story": "一万元！这是改变生活的钱，您可以投资于自己的未来。",
+  
+  "noAchievementsAvailable": "暂无可用成就",
+  "achievementStoryTitle": "故事",
+  
+  "achievementMoneySavedName": "存钱达人",
+  "achievementMoneySavedDesc": "通过不购买香烟，你已经节省了钱！",
+  "achievementMoneySavedStory": "每一支你没有购买的香烟都是为未来节省的钱。",
+  
+  "achievementResistCravingName": "烟瘾征服者",
+  "achievementResistCravingDesc": "成功利用应对策略抵抗了强烈的烟瘾！",
+  "achievementResistCravingStory": "你已经证明了可以用正确的策略克服烟瘾。",
+
+  "appSettingsTitle": "应用设置",
+  "notificationsSettingTitle": "通知设置",
+  "notificationsSettingSubtitle": "管理戒烟提醒和成就通知",
+  "languageSettingTitle": "语言设置",
+  "languageSettingSubtitle": "更改应用语言",
+  "themeSettingTitle": "主题设置",
+  "themeSettingSubtitle": "切换浅色/深色主题",
+  
+  "healthDataSettingsTitle": "健康数据设置",
+  "smokingDataSettingTitle": "吸烟数据",
+  "smokingDataSettingSubtitle": "更新每日香烟量和香烟价格",
+  "quitDateSettingTitle": "戒烟日期",
+  "quitDateSettingSubtitle": "更改您的戒烟开始日期",
+  "resetDataSettingTitle": "重置数据",
+  "resetDataSettingSubtitle": "重置所有戒烟进度数据",
+  
+  "aboutAndSupportTitle": "关于与支持",
+  "aboutAppSettingTitle": "关于应用",
+  "aboutAppSettingSubtitle": "查看应用信息和法律声明",
+  "helpAndSupportSettingTitle": "帮助与支持",
+  "helpAndSupportSettingSubtitle": "获取帮助和联系客服",
+  "privacyPolicySettingTitle": "隐私政策",
+  "privacyPolicySettingSubtitle": "查看我们的隐私政策",
+  
+  "logoutButtonText": "退出登录",
+
   "cravingCopingStrategiesTitle": "烟瘾管理",
   "cravingCopingStrategiesSubtitle": "选择一种策略帮助您度过这一刻:",
   
@@ -178,6 +258,13 @@
   "breathingPhaseHold": "屏息",
   "breathingPhaseExhale": "呼气",
   "breathingExerciseTimeRemaining": "剩余 {seconds} 秒",
+  "@breathingExerciseTimeRemaining": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
   "breathingExerciseCompletedTitle": "练习完成！",
   "breathingExerciseCompleted": "做得好！",
   "breathingExerciseCompletedDesc": "您已成功完成呼吸练习。现在感觉如何？",
@@ -203,65 +290,210 @@
   "dialogCloseButton": "关闭",
   "cancelButtonLabel": "取消",
   "saveButtonLabel": "保存",
-
-  "achievementUnlockedTitle": "成就解锁！",
-  "continueButtonLabel": "继续",
   
-  "achievement7DaysName": "第一周无烟",
-  "achievement7DaysDesc": "连续7天不吸烟",
-  "achievement7DaysStory": "第一周通常是戒烟最困难的时期。你已经证明了对自己和健康的承诺。这是一个重要的里程碑！",
-  
-  "achievement30DaysName": "一个月里程碑",
-  "achievement30DaysDesc": "连续30天不吸烟",
-  "achievement30DaysStory": "一个月不吸烟！你的肺功能正在改善，血液循环更好，你正在形成强大的新习惯。继续加油！",
-  
-  "achievement100DaysName": "百日俱乐部",
-  "achievement100DaysDesc": "连续100天不吸烟",
-  "achievement100DaysStory": "100天不吸烟是一项令人难以置信的成就。你的身体已经显著恢复，无烟的生活方式正在成为你的第二天性。",
-  
-  "settingsPageTitle": "设置",
-  "appSettingsTitle": "应用设置",
-  "notificationsSettingTitle": "通知设置",
-  "notificationsSettingSubtitle": "管理戒烟提醒和成就通知",
-  "languageSettingTitle": "语言设置",
-  "languageSettingSubtitle": "更改应用语言",
-  "themeSettingTitle": "主题设置",
-  "themeSettingSubtitle": "切换浅色/深色主题",
-  
-  "healthDataSettingsTitle": "健康数据设置",
-  "smokingDataSettingTitle": "吸烟数据",
-  "smokingDataSettingSubtitle": "更新每日香烟量和香烟价格",
-  "quitDateSettingTitle": "戒烟日期",
-  "quitDateSettingSubtitle": "更改您的戒烟开始日期",
-  "resetDataSettingTitle": "重置数据",
-  "resetDataSettingSubtitle": "重置所有戒烟进度数据",
-  
-  "aboutAndSupportTitle": "关于和支持",
-  "aboutAppSettingTitle": "关于应用",
-  "aboutAppSettingSubtitle": "版本信息和开发者",
-  "helpAndSupportSettingTitle": "帮助和支持",
-  "helpAndSupportSettingSubtitle": "获取帮助或报告问题",
-  "privacyPolicySettingTitle": "隐私政策",
-  "privacyPolicySettingSubtitle": "了解我们如何保护您的数据",
-  
-  "logoutButtonText": "退出登录",
-  "achievementsPageTitle": "我的成就",
-
   "notificationTypesTitle": "通知类型",
-  "achievementNotificationsTitle": "成就提醒",
-  "achievementNotificationsSubtitle": "当你解锁新成就时收到通知",
-  "healthMilestoneNotificationsTitle": "健康里程碑提醒",
-  "healthMilestoneNotificationsSubtitle": "当达到健康改善里程碑时收到通知",
-  "dailyCheckInNotificationsTitle": "每日打卡提醒",
-  "dailyCheckInNotificationsSubtitle": "每天定时收到打卡提醒",
+  "achievementNotificationsTitle": "成就通知",
+  "achievementNotificationsSubtitle": "当您解锁新成就时获得通知",
+  "healthMilestoneNotificationsTitle": "健康里程碑通知",
+  "healthMilestoneNotificationsSubtitle": "当您达到健康改善里程碑时获得通知",
   "encouragementNotificationsTitle": "鼓励消息",
-  "encouragementNotificationsSubtitle": "定期收到鼓励信息",
+  "encouragementNotificationsSubtitle": "接收定期鼓励消息",
   "notificationTimeSettingsTitle": "提醒时间设置",
-  "checkInReminderTimeTitle": "打卡提醒时间",
-  "doNotDisturbTitle": "免打扰时段",
-  "doNotDisturbSettingsTitle": "免打扰时段设置",
+  "doNotDisturbTitle": "勿扰模式",
+  "doNotDisturbSettingsTitle": "勿扰时段设置",
   "startTime": "开始时间",
   "endTime": "结束时间",
   "settingsSaved": "设置已保存",
-  "cancel": "取消"
+  "cancel": "取消",
+
+  "calendarLegend": "图例：",
+  "calendarCheckedIn": "已打卡",
+  "calendarCigarettes1to5": "1-5支",
+  "calendarCigarettes6to10": "6-10支",
+  "calendarCigarettes10plus": "10支以上",
+  "calendarCigarettesUnit": "支",
+
+  "progressSavedMoney": "已节省",
+  "progressCigarettesNotSmoked": "少吸支数",
+  "progressLifeExtended": "延长寿命(天)",
+
+  "dailyCheckInStatus": "每日戒烟状态",
+  "checkingTodayStatus": "正在检查今日状态...",
+  "autoCheckInSuccess": "✅ 今日自动打卡成功（无吸烟记录）",
+  "alreadyAutoCheckedIn": "已自动打卡",
+  "manualCheckInSuccess": "✅ 今日手动打卡成功",
+  "cannotCheckInSmoking": "❌ 今日有吸烟记录，无法打卡",
+  "todayAlreadySmoked": "今日已吸烟",
+  "statusCheckFailed": "状态检查失败",
+  "recheckStatus": "重新检查",
+  "autoCheckInRule": "💡 自动打卡规则：如果当天没有吸烟记录，系统会自动为您打卡",
+
+  "monthlyCalendar": "月度日历",
+  "clickedDay": "点击了 {day} 日",
+  "@clickedDay": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingCalendarError": "加载日历数据时出错: {error}",
+  "@loadingCalendarError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "achievements": "成就",
+  "resetAchievements": "重置成就",
+  "resetAchievementsDialog": "这将清除所有已解锁的成就数据。此操作不可撤销，确定要继续吗？",
+  "achievementsReset": "成就数据已重置",
+  "confirm": "确定",
+
+  "days": "天",
+
+  "recordSmokingTitle": "记录吸烟情况",
+  "recordSmokingDescription": "诚实记录有助于更好地了解你的戒烟进程",
+  "howManyCigarettes": "这次吸了多少支香烟？",
+  "cigarettesUnit": " 支",
+  "additionalThoughts": "记录当时的感受、环境或想法...",
+  "relapseLearning": "记住：每一次复吸都是学习的机会，不要放弃！",
+  "smokingRecordSaved": "吸烟记录已保存",
+  "saveFailed": "保存失败: {error}",
+  "@saveFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "alreadySmokedToday": "我已经吸烟了",
+
+  "unlockedAchievements": "已解锁成就",
+  "resetAchievementsDebug": "重置成就（调试用）",
+
+  "selectLanguage": "选择语言",
+  "chinese": "中文",
+  "simplifiedChinese": "简体中文",
+  "languageSwitchedToChinese": "语言已切换为中文",
+  "languageSwitchedToSimplifiedChinese": "语言已切换为简体中文",
+  "resetData": "重置数据",
+  "resetDataDialog": "确定要重置所有戒烟进度数据吗？这将清除您的所有成就和历史记录。此操作无法撤销。",
+  "resetDataFeatureComingSoon": "数据重置功能即将推出",
+  "reset": "重置",
+  "logout": "退出登录",
+  "logoutDialog": "确定要退出登录吗？",
+
+  "notLoggedInUser": "未登录用户",
+  "editPersonalInfo": "点击编辑个人信息",
+  "editPersonalInfoComingSoon": "编辑个人信息功能即将推出",
+
+  "officialWebsite": "官方网站",
+  "sendFeedback": "发送反馈",
+  "rateApp": "给应用评分",
+  "quitJourneyApp": "焕新之旅 - Quit Journey",
+  "appVersion": "版本 {version} ({buildNumber})",
+  "@appVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "appDescription": "焕新之旅是一款专注于帮助用户戒烟的应用，通过提供进度追踪、健康效益展示、烟瘾管理等功能，全方位支持您的戒烟之旅。告别烟瘾，焕新生活，从每一次呼吸开始。",
+  "appIntroduction": "应用简介",
+  "copyrightInfo": "© {year} 焕新之旅开发团队",
+  "@copyrightInfo": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "allRightsReserved": "保留所有权利",
+  "cannotOpenLink": "无法打开链接: {url}",
+  "@cannotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+
+  "cannotOpenEmailClient": "无法打开邮件客户端",
+  "contactSupport": "联系客服",
+  "helpCenterComingSoon": "帮助中心功能即将推出",
+  "visitOnlineHelpCenter": "访问在线帮助中心",
+
+  "quitDateUpdated": "戒烟日期已更新",
+  "updateFailed": "更新失败: {error}",
+  "@updateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "selectQuitDate": "选择戒烟开始日期",
+  "selectQuitTime": "选择戒烟开始时间",
+  "quitDateChangeDescription": "您可以在这里更改戒烟开始日期和时间。请注意，这将重置您的戒烟进度。",
+  "quitDate": "戒烟日期",
+  "quitTime": "戒烟时间",
+  "notSelected": "未选择",
+  "saveChanges": "保存更改",
+
+  "thankYouPrivacyPolicy": "感谢您阅读我们的隐私政策",
+  "iHaveReadAndUnderstood": "我已阅读并理解",
+
+  "updateSmokingDataDescription": "请更新您的吸烟数据，这将帮助我们更准确地计算您的进度和节省。",
+  "dailySmokingAmount": "每日吸烟量 (支)",
+  "pleaseEnterDailySmokingAmount": "请输入每日吸烟量",
+  "pleaseEnterPositiveNumber": "请输入大于0的数字",
+  "cigarettePricePerPack": "每包香烟价格 (元)",
+  "pleaseEnterCigarettePrice": "请输入香烟价格",
+  "cigarettesPerPack": "每包香烟数量 (支)",
+  "pleaseEnterCigarettesPerPack": "请输入每包香烟数量",
+  "smokingDataUpdated": "吸烟数据已更新",
+
+  "achieved": "已达成",
+  "timeToAchieve": "距离达成: {time}",
+  "@timeToAchieve": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "detailedDescription": "详细说明",
+  "scientificExplanation": "科学解释",
+  "smokingEffectsExplanation": "当你停止吸烟后，你的身体立即开始恢复。吸烟会限制血管，让心脏更努力地工作。戒烟后，血压和心率开始恢复正常，身体开始清除有害物质，血液循环改善，各种身体机能逐步恢复到更健康的状态。",
+  "otherHealthBenefits": "其他健康效益",
+  "afterTime": "{time}后",
+  "@afterTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+
+  "statisticsCenter": "统计中心",
+  "featureInDevelopment": "功能开发中...",
+  "checkInStatistics": "打卡统计",
+  "loadingStatisticsError": "加载统计信息时出错: {error}",
+  "@loadingStatisticsError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingCheckInRecordsError": "加载打卡记录时出错",
+  "today": "今天"
 }

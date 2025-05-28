@@ -3,66 +3,66 @@
     "id": "ach_1_day",
     "name": "首日里程碑",
     "description": "成功完成戒烟的第一天！",
-    "nameKey": "achievement_1_day_name",
-    "descriptionKey": "achievement_1_day_desc",
+    "nameKey": "achievement1DayName",
+    "descriptionKey": "achievement1DayDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_1_day_unlocked.png",
     "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 1},
-    "storyKey": "achievement_1_day_story"
+    "storyKey": "achievement1DayStory"
   },
   {
     "id": "ach_7_days",
     "name": "一周冠军",
     "description": "整整一周无烟生活！你的身体已经开始康复。",
-    "nameKey": "achievement_7_days_name",
-    "descriptionKey": "achievement_7_days_desc",
+    "nameKey": "achievement7DaysName",
+    "descriptionKey": "achievement7DaysDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_7_days_unlocked.png",
     "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 7},
-    "storyKey": "achievement_7_days_story"
+    "storyKey": "achievement7DaysStory"
   },
   {
     "id": "ach_30_days",
     "name": "三十天坚持",
     "description": "整整一个月没有吸烟。你的肺部在感谢你！",
-    "nameKey": "achievement_30_days_name",
-    "descriptionKey": "achievement_30_days_desc",
+    "nameKey": "achievement30DaysName",
+    "descriptionKey": "achievement30DaysDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_30_days_unlocked.png",
     "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 30},
-    "storyKey": "achievement_30_days_story"
+    "storyKey": "achievement30DaysStory"
   },
   {
     "id": "ach_100_days",
     "name": "百日庆典",
     "description": "100天无烟生活！你展示了惊人的意志力。",
-    "nameKey": "achievement_100_days_name",
-    "descriptionKey": "achievement_100_days_desc",
+    "nameKey": "achievement100DaysName",
+    "descriptionKey": "achievement100DaysDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_100_days_unlocked.png",
     "unlockCondition": {"type": "consecutive_no_smoke_days", "value": 100},
-    "storyKey": "achievement_100_days_story"
+    "storyKey": "achievement100DaysStory"
   },
   {
     "id": "ach_money_saved",
     "name": "存钱达人",
     "description": "通过不购买香烟，你已经节省了100元！",
-    "nameKey": "achievement_money_saved_name",
-    "descriptionKey": "achievement_money_saved_desc",
+    "nameKey": "achievementMoneySavedName",
+    "descriptionKey": "achievementMoneySavedDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_money_saved_unlocked.png",
     "unlockCondition": {"type": "money_saved", "value": 100},
-    "storyKey": "achievement_money_saved_story"
+    "storyKey": "achievementMoneySavedStory"
   },
   {
     "id": "ach_resist_craving",
     "name": "烟瘾征服者",
     "description": "成功利用应对策略抵抗了强烈的烟瘾！",
-    "nameKey": "achievement_resist_craving_name",
-    "descriptionKey": "achievement_resist_craving_desc",
+    "nameKey": "achievementResistCravingName",
+    "descriptionKey": "achievementResistCravingDesc",
     "iconLockedAssetPath": "assets/images/achievements/ach_locked.png",
     "iconUnlockedAssetPath": "assets/images/achievements/ach_resist_craving_unlocked.png",
     "unlockCondition": {"type": "craving_resisted", "value": 1},
-    "storyKey": "achievement_resist_craving_story"
+    "storyKey": "achievementResistCravingStory"
   }
 ] 

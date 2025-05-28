@@ -21,4 +21,9 @@ abstract class AchievementLocalDataSource {
   ///
   /// Returns `true` if achievement is unlocked
   Future<bool> isAchievementUnlocked(String achievementId);
+
+  /// Clears all unlocked achievements from local storage
+  ///
+  /// Returns `true` if cleared successfully
+  Future<bool> clearAllUnlockedAchievements();
 }

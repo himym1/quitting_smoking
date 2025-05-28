@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quitting_smoking/l10n/app_localizations.dart';
-import 'package:quitting_smoking/presentation/features/home/pages/breathing_exercise_guide_page.dart';
 import 'package:quitting_smoking/presentation/features/home/pages/craving_log_modal.dart';
+import 'package:quitting_smoking/presentation/features/home/pages/smoking_record_modal.dart';
 
 class CravingCopingStrategiesPage extends StatelessWidget {
   const CravingCopingStrategiesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -76,20 +76,48 @@ class CravingCopingStrategiesPage extends StatelessWidget {
 
             const SizedBox(height: 40),
 
-            // 记录本次烟瘾按钮
+            // 记录选项按钮
             Center(
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.edit_note),
-                label: Text(localizations.cravingLogButtonText),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
+              child: Column(
+                children: [
+                  // 记录本次烟瘾按钮
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.edit_note),
+                    label: Text(localizations.cravingLogButtonText),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: () {
+                      _showCravingLogModal(context);
+                    },
                   ),
-                ),
-                onPressed: () {
-                  _showCravingLogModal(context);
-                },
+
+                  const SizedBox(height: 12),
+
+                  // 复吸记录按钮
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.smoking_rooms, color: Colors.red),
+                    label: Text(
+                      localizations.alreadySmoked,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      side: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    onPressed: () {
+                      _showSmokingRecordModal(context);
+                    },
+                  ),
+                ],
               ),
             ),
           ],
@@ -145,7 +173,7 @@ class CravingCopingStrategiesPage extends StatelessWidget {
   }
 
   void _showDistractionTipsDialog(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
 
     showDialog(
       context: context,
@@ -241,7 +269,7 @@ class CravingCopingStrategiesPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(AppLocalizations.of(context)!.dialogCloseButton),
+                child: Text(AppLocalizations.of(context).dialogCloseButton),
               ),
             ],
           ),
@@ -253,6 +281,14 @@ class CravingCopingStrategiesPage extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (context) => const CravingLogModal(),
+    );
+  }
+
+  void _showSmokingRecordModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const SmokingRecordModal(),
     );
   }
 }

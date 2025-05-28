@@ -52,12 +52,15 @@ enum AppRoute {
     // Shell routes
     if (this == AppRoute.home) return '/home';
     // 将二级页面路由修改为顶级路由
-    if (this == AppRoute.healthBenefitsDetail)
+    if (this == AppRoute.healthBenefitsDetail) {
       return '/health-benefits-detail/:id';
-    if (this == AppRoute.cravingCopingStrategies)
+    }
+    if (this == AppRoute.cravingCopingStrategies) {
       return '/craving-coping-strategies';
-    if (this == AppRoute.breathingExerciseGuide)
+    }
+    if (this == AppRoute.breathingExerciseGuide) {
       return '/breathing-exercise-guide';
+    }
     if (this == AppRoute.achievements) return '/achievements';
     if (this == AppRoute.settings) return '/settings';
 
@@ -69,7 +72,7 @@ enum AppRoute {
     if (this == AppRoute.helpSupport) return '/settings/help-support';
     if (this == AppRoute.privacyPolicy) return '/settings/privacy-policy';
 
-    return '/${name}'; // Fallback, should not happen with explicit paths
+    return '/$name'; // Fallback, should not happen with explicit paths
   }
 }
 

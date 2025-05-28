@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/data/repositories/achievement_repository.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
 import 'package:quitting_smoking/domain/entities/unlocked_achievement.dart';
+import 'package:quitting_smoking/domain/repositories/achievement_repository.dart';
 
 /// State for the achievements feature
 class AchievementState {
@@ -39,10 +40,35 @@ class AchievementController extends StateNotifier<AchievementState> {
   AchievementController(this._repository)
     : super(
         AchievementState(
-          allAchievements: _repository.getAchievementDefinitions(),
-          unlockedAchievements: _repository.getUnlockedAchievements(),
+          allAchievements: [],
+          unlockedAchievements: [],
+          isLoading: true,
         ),
+      ) {
+    // Load achievements asynchronously
+    _loadAchievements();
+  }
+
+  /// Load achievements from repository
+  Future<void> _loadAchievements() async {
+    try {
+      state = state.copyWith(isLoading: true, error: null);
+
+      final achievements = await _repository.getAchievementDefinitions();
+      final unlockedAchievements = await _repository.getUnlockedAchievements();
+
+      state = state.copyWith(
+        allAchievements: achievements,
+        unlockedAchievements: unlockedAchievements,
+        isLoading: false,
       );
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        error: 'Failed to load achievements: ${e.toString()}',
+      );
+    }
+  }
 
   /// Get all achievement definitions
   List<AchievementDefinition> getAllAchievements() {
@@ -69,6 +95,12 @@ class AchievementController extends StateNotifier<AchievementState> {
       final unlockedAchievement = await _repository.unlockAchievement(
         achievementId,
       );
+
+      if (unlockedAchievement == null) {
+        state = state.copyWith(isLoading: false);
+        return null;
+      }
+
       final updatedUnlocked = [...state.unlockedAchievements];
 
       // Replace if exists, add if not
@@ -87,7 +119,7 @@ class AchievementController extends StateNotifier<AchievementState> {
         isLoading: false,
       );
 
-      return _repository.getAchievementById(achievementId);
+      return await _repository.getAchievementDefinitionById(achievementId);
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
@@ -98,44 +130,118 @@ class AchievementController extends StateNotifier<AchievementState> {
   }
 
   /// Get an achievement definition by ID
-  AchievementDefinition? getAchievementById(String achievementId) {
+  Future<AchievementDefinition?> getAchievementById(
+    String achievementId,
+  ) async {
     try {
-      return _repository.getAchievementById(achievementId);
+      return await _repository.getAchievementDefinitionById(achievementId);
     } catch (e) {
       return null;
     }
   }
 
-  /// Check for new achievements that should be unlocked based on a specific event
+  /// Clear all unlocked achievements (for debugging/reset purposes)
+  Future<bool> clearAllAchievements() async {
+    try {
+      state = state.copyWith(isLoading: true, error: null);
+
+      final success = await _repository.clearAllUnlockedAchievements();
+
+      if (success) {
+        // Reload the state after clearing
+        await _loadAchievements();
+        return true;
+      } else {
+        state = state.copyWith(
+          isLoading: false,
+          error: 'Failed to clear achievements',
+        );
+        return false;
+      }
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        error: 'Error clearing achievements: ${e.toString()}',
+      );
+      return false;
+    }
+  }
+
+  /// Check for new achievements that should be unlocked based on consecutive days
+  /// This method ensures only one achievement is unlocked at a time
   Future<AchievementDefinition?> checkForNewAchievements({
     required int consecutiveDays,
+    required double moneySaved,
+    bool? cravingResisted,
   }) async {
-    // Logic to determine which achievements to unlock based on days
-    // This is a simple implementation, could be more complex in a real app
-
-    // First check 100 days, then 30 days, then 7 days
-    final List<String> achievementIds = [];
-
-    if (consecutiveDays >= 100) {
-      achievementIds.add('achievement_100_days');
+    // Validate input parameters
+    if (consecutiveDays < 0) {
+      print('Warning: consecutiveDays is negative: $consecutiveDays');
+      return null;
     }
 
-    if (consecutiveDays >= 30) {
-      achievementIds.add('achievement_30_days');
+    if (moneySaved < 0) {
+      print('Warning: moneySaved is negative: $moneySaved');
+      return null;
     }
 
-    if (consecutiveDays >= 7) {
-      achievementIds.add('achievement_7_days');
-    }
+    try {
+      final achievements = state.allAchievements;
+      final alreadyUnlockedIds =
+          state.unlockedAchievements.map((ua) => ua.achievementId).toSet();
 
-    // Unlock the highest achievement that isn't already unlocked
-    for (final id in achievementIds) {
-      if (!isAchievementUnlocked(id)) {
-        return await unlockAchievement(id);
+      // Sort achievements by their unlock condition value (ascending)
+      // This ensures we unlock achievements in the correct order
+      final sortedAchievements =
+          achievements.where((achievement) {
+              return !alreadyUnlockedIds.contains(achievement.id);
+            }).toList()
+            ..sort((a, b) {
+              final aValue = a.unlockCondition['value'] as int? ?? 0;
+              final bValue = b.unlockCondition['value'] as int? ?? 0;
+              return aValue.compareTo(bValue);
+            });
+
+      for (final achievement in sortedAchievements) {
+        final condition = achievement.unlockCondition;
+
+        if (condition['type'] == 'consecutive_no_smoke_days') {
+          final requiredDays = condition['value'] as int;
+
+          // Only unlock if we have exactly reached this milestone
+          // or if this is the highest milestone we've reached
+          if (consecutiveDays >= requiredDays) {
+            // Check if there's a higher milestone that we should unlock instead
+            final higherMilestone = sortedAchievements.firstWhere(
+              (a) =>
+                  a.unlockCondition['type'] == 'consecutive_no_smoke_days' &&
+                  (a.unlockCondition['value'] as int) > requiredDays &&
+                  consecutiveDays >= (a.unlockCondition['value'] as int),
+              orElse: () => achievement,
+            );
+
+            // Only unlock this achievement if it's the highest milestone reached
+            if (higherMilestone.id == achievement.id) {
+              return await unlockAchievement(achievement.id);
+            }
+          }
+        } else if (condition['type'] == 'money_saved') {
+          final requiredAmount = condition['value'] as num;
+          if (moneySaved >= requiredAmount) {
+            return await unlockAchievement(achievement.id);
+          }
+        } else if (condition['type'] == 'craving_resisted') {
+          if (cravingResisted == true) {
+            return await unlockAchievement(achievement.id);
+          }
+        }
       }
-    }
 
-    return null;
+      return null;
+    } catch (e) {
+      print('Error checking for new achievements: $e');
+      return null;
+    }
   }
 }
 

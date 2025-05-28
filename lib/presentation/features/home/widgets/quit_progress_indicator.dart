@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quitting_smoking/l10n/app_localizations.dart';
 
 class QuitProgressIndicator extends StatelessWidget {
   final Duration quitDuration;

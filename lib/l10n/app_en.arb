@@ -226,6 +226,45 @@
   "achievement100DaysDesc": "Smoke-free for 100 days",
   "achievement100DaysStory": "100 days without smoking is an incredible achievement. Your body has significantly recovered, and the smoke-free lifestyle is becoming your second nature.",
   
+  "achievement1DayName": "Day 1",
+  "achievement1DayDesc": "You've successfully completed your first day without smoking!",
+  "achievement1DayStory": "The first day is always the hardest. You've taken the most important step towards a healthier life.",
+  
+  "achievement1WeekName": "Week 1",
+  "achievement1WeekDesc": "You've successfully completed your first week without smoking!",
+  "achievement1WeekStory": "One week smoke-free! Your body is already starting to heal and recover.",
+  
+  "achievement1MonthName": "Month 1",
+  "achievement1MonthDesc": "You've successfully completed your first month without smoking!",
+  "achievement1MonthStory": "One month is a major milestone. Your lung function is improving significantly.",
+  
+  "achievement1YearName": "Year 1",
+  "achievement1YearDesc": "You've successfully completed your first year without smoking!",
+  "achievement1YearStory": "One year smoke-free! You've dramatically reduced your risk of heart disease and stroke.",
+  
+  "achievementSave100Name": "Save $100",
+  "achievementSave100Desc": "You've saved $100 by not smoking!",
+  "achievementSave100Story": "Look at all the money you've saved! Think about what you can do with this extra cash.",
+  
+  "achievementSave1000Name": "Save $1000",
+  "achievementSave1000Desc": "You've saved $1000 by not smoking!",
+  "achievementSave1000Story": "A thousand dollars saved! This could be a nice vacation or a significant purchase.",
+  
+  "achievementSave10000Name": "Save $10,000",
+  "achievementSave10000Desc": "You've saved $10,000 by not smoking!",
+  "achievementSave10000Story": "Ten thousand dollars! This is life-changing money that you can invest in your future.",
+  
+  "noAchievementsAvailable": "No achievements available yet",
+  "achievementStoryTitle": "Story",
+  
+  "achievementMoneySavedName": "Money Saver",
+  "achievementMoneySavedDesc": "You've saved money by not buying cigarettes!",
+  "achievementMoneySavedStory": "Every cigarette you don't buy is money saved for your future.",
+  
+  "achievementResistCravingName": "Craving Conqueror",
+  "achievementResistCravingDesc": "Successfully resisted a strong craving using coping strategies!",
+  "achievementResistCravingStory": "You've proven that you can overcome cravings with the right strategies.",
+  
   "settingsPageTitle": "Settings",
   "appSettingsTitle": "App Settings",
   "notificationsSettingTitle": "Notifications",
@@ -259,16 +298,208 @@
   "achievementNotificationsSubtitle": "Get notified when you unlock new achievements",
   "healthMilestoneNotificationsTitle": "Health Milestone Notifications",
   "healthMilestoneNotificationsSubtitle": "Get notified when you reach health improvement milestones",
-  "dailyCheckInNotificationsTitle": "Daily Check-in Reminders",
-  "dailyCheckInNotificationsSubtitle": "Get daily reminders to check in",
   "encouragementNotificationsTitle": "Encouragement Messages",
   "encouragementNotificationsSubtitle": "Receive periodic encouragement messages",
   "notificationTimeSettingsTitle": "Reminder Time Settings",
-  "checkInReminderTimeTitle": "Check-in Reminder Time",
   "doNotDisturbTitle": "Do Not Disturb Period",
   "doNotDisturbSettingsTitle": "Do Not Disturb Settings",
   "startTime": "Start Time",
   "endTime": "End Time",
   "settingsSaved": "Settings saved",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+
+  "calendarLegend": "Legend:",
+  "calendarCheckedIn": "Checked In",
+  "calendarCigarettes1to5": "1-5 cigarettes",
+  "calendarCigarettes6to10": "6-10 cigarettes",
+  "calendarCigarettes10plus": "10+ cigarettes",
+  "calendarCigarettesUnit": " cigarettes",
+
+  "progressSavedMoney": "Saved",
+  "progressCigarettesNotSmoked": "Cigarettes Not Smoked",
+  "progressLifeExtended": "Life Extended (days)",
+
+  "dailyCheckInStatus": "Daily Quit Status",
+  "checkingTodayStatus": "Checking today's status...",
+  "autoCheckInSuccess": "✅ Auto check-in successful today (no smoking records)",
+  "alreadyAutoCheckedIn": "Already auto checked in",
+  "manualCheckInSuccess": "✅ Manual check-in successful today",
+  "cannotCheckInSmoking": "❌ Cannot check in today due to smoking records",
+  "todayAlreadySmoked": "Smoked Today",
+  "statusCheckFailed": "Status check failed",
+  "recheckStatus": "Recheck",
+  "autoCheckInRule": "💡 Auto check-in rule: If there are no smoking records for the day, the system will automatically check you in",
+
+  "monthlyCalendar": "Monthly Calendar",
+  "clickedDay": "Clicked day {day}",
+  "@clickedDay": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingCalendarError": "Error loading calendar data: {error}",
+  "@loadingCalendarError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "achievements": "Achievements",
+  "resetAchievements": "Reset Achievements",
+  "resetAchievementsDialog": "This will clear all unlocked achievement data. This operation cannot be undone. Are you sure you want to continue?",
+  "achievementsReset": "Achievement data has been reset",
+  "confirm": "Confirm",
+
+  "days": "days",
+
+  "recordSmokingTitle": "Record Smoking",
+  "recordSmokingDescription": "Honest recording helps better understand your quit journey",
+  "howManyCigarettes": "How many cigarettes did you smoke this time?",
+  "cigarettesUnit": " cigarettes",
+  "additionalThoughts": "Record your feelings, environment or thoughts at the time...",
+  "relapseLearning": "Remember: Every relapse is a learning opportunity, don't give up!",
+  "smokingRecordSaved": "Smoking record saved",
+  "saveFailed": "Save failed: {error}",
+  "@saveFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "alreadySmokedToday": "I have already smoked",
+  "alreadySmoked": "I already smoked",
+
+  "unlockedAchievements": "Unlocked Achievements",
+  "resetAchievementsDebug": "Reset Achievements (Debug)",
+
+  "selectLanguage": "Select Language",
+  "chinese": "Chinese",
+  "simplifiedChinese": "Simplified Chinese",
+  "languageSwitchedToChinese": "Language switched to Chinese",
+  "languageSwitchedToSimplifiedChinese": "Language switched to Simplified Chinese",
+  "resetData": "Reset Data",
+  "resetDataDialog": "Are you sure you want to reset all quit progress data? This will clear all your achievements and history. This operation cannot be undone.",
+  "resetDataFeatureComingSoon": "Data reset feature coming soon",
+  "reset": "Reset",
+  "logout": "Logout",
+  "logoutDialog": "Are you sure you want to logout?",
+
+  "notLoggedInUser": "Not logged in",
+  "editPersonalInfo": "Click to edit personal information",
+  "editPersonalInfoComingSoon": "Edit personal information feature coming soon",
+
+  "officialWebsite": "Official Website",
+  "sendFeedback": "Send Feedback",
+  "rateApp": "Rate App",
+  "quitJourneyApp": "Quit Journey - Quit Smoking App",
+  "appVersion": "Version {version} ({buildNumber})",
+  "@appVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "appDescription": "Quit Journey is an app focused on helping users quit smoking by providing progress tracking, health benefits display, craving management and other features to comprehensively support your quit journey. Say goodbye to smoking addiction, refresh your life, starting with every breath.",
+  "appIntroduction": "App Introduction",
+  "copyrightInfo": "© {year} Quit Journey Development Team",
+  "@copyrightInfo": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "allRightsReserved": "All rights reserved",
+  "cannotOpenLink": "Cannot open link: {url}",
+  "@cannotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "termsAndPrivacyAgreement": "By continuing, you agree to our Terms of Service and Privacy Policy.",
+  "forgotPasswordNotImplemented": "Forgot Password clicked (not implemented)",
+
+  "cannotOpenEmailClient": "Cannot open email client",
+  "contactSupport": "Contact Support",
+  "helpCenterComingSoon": "Help center feature coming soon",
+  "visitOnlineHelpCenter": "Visit Online Help Center",
+
+  "quitDateUpdated": "Quit date updated",
+  "updateFailed": "Update failed: {error}",
+  "@updateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "selectQuitDate": "Select quit start date",
+  "selectQuitTime": "Select quit start time",
+  "pleaseSelectDateTime": "Please select date and time",
+  "quitDateChangeDescription": "You can change your quit start date and time here. Please note that this will reset your quit progress.",
+  "quitDate": "Quit Date",
+  "quitTime": "Quit Time",
+  "notSelected": "Not selected",
+  "saveChanges": "Save Changes",
+
+  "thankYouPrivacyPolicy": "Thank you for reading our privacy policy",
+  "iHaveReadAndUnderstood": "I have read and understood",
+
+  "updateSmokingDataDescription": "Please update your smoking data to help us calculate your progress and savings more accurately.",
+  "dailySmokingAmount": "Daily smoking amount (cigarettes)",
+  "pleaseEnterDailySmokingAmount": "Please enter daily smoking amount",
+  "pleaseEnterPositiveNumber": "Please enter a number greater than 0",
+  "cigarettePricePerPack": "Cigarette price per pack (yuan)",
+  "pleaseEnterCigarettePrice": "Please enter cigarette price",
+  "cigarettesPerPack": "Cigarettes per pack",
+  "pleaseEnterCigarettesPerPack": "Please enter cigarettes per pack",
+  "smokingDataUpdated": "Smoking data updated",
+
+  "achieved": "Achieved",
+  "timeToAchieve": "Time to achieve: {time}",
+  "@timeToAchieve": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "detailedDescription": "Detailed Description",
+  "scientificExplanation": "Scientific Explanation",
+  "smokingEffectsExplanation": "When you stop smoking, your body immediately begins to recover. Smoking restricts blood vessels and makes the heart work harder. After quitting, blood pressure and heart rate begin to return to normal, the body begins to clear harmful substances, blood circulation improves, and various body functions gradually return to a healthier state.",
+  "otherHealthBenefits": "Other Health Benefits",
+  "afterTime": "After {time}",
+  "@afterTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+
+  "statisticsCenter": "Statistics Center",
+  "featureInDevelopment": "Feature in development...",
+  "checkInStatistics": "Check-in Statistics",
+  "loadingStatisticsError": "Error loading statistics: {error}",
+  "@loadingStatisticsError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingCheckInRecordsError": "Error loading check-in records",
+  "today": "Today"
 }

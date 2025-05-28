@@ -11,6 +11,7 @@ import '../../../domain/entities/user_profile.dart';
 import '../../../domain/entities/daily_check_in.dart';
 import '../../../domain/entities/craving_log_entry.dart';
 import '../../../domain/entities/unlocked_achievement.dart';
+import '../../../domain/entities/smoking_record.dart';
 
 // Import Hive constants
 import '../../../core/constants/hive_constants.dart';
@@ -37,6 +38,9 @@ class HiveService {
     if (!Hive.isAdapterRegistered(UnlockedAchievementAdapter().typeId)) {
       Hive.registerAdapter(UnlockedAchievementAdapter());
     }
+    if (!Hive.isAdapterRegistered(SmokingRecordAdapter().typeId)) {
+      Hive.registerAdapter(SmokingRecordAdapter());
+    }
 
     // 打开 Boxes
     await Hive.openBox<UserProfile>(HiveConstants.userProfileBox);
@@ -45,6 +49,7 @@ class HiveService {
     await Hive.openBox<UnlockedAchievement>(
       HiveConstants.unlockedAchievementsBoxName,
     );
+    await Hive.openBox<SmokingRecord>(HiveConstants.smokingRecordsBoxName);
     await Hive.openBox(HiveConstants.appSettingsBoxName); // 通用 Box
   }
 
@@ -57,6 +62,7 @@ class HiveService {
     await Hive.box<UnlockedAchievement>(
       HiveConstants.unlockedAchievementsBoxName,
     ).close();
+    await Hive.box<SmokingRecord>(HiveConstants.smokingRecordsBoxName).close();
     await Hive.box(HiveConstants.appSettingsBoxName).close();
 
     // 关闭 Hive本身

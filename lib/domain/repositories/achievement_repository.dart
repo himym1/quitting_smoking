@@ -22,4 +22,9 @@ abstract class AchievementRepository {
   Future<AchievementDefinition?> getAchievementDefinitionById(
     String achievementId,
   );
+
+  /// Clear all unlocked achievements (for debugging/reset purposes)
+  ///
+  /// Returns true if successful
+  Future<bool> clearAllUnlockedAchievements();
 }

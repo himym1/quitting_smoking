@@ -30,8 +30,7 @@ class ThemeState {
       case AppThemeMode.dark:
         return ThemeMode.dark;
       case AppThemeMode.system:
-      default:
-        return ThemeMode.system;
+      return ThemeMode.system;
     }
   }
 }

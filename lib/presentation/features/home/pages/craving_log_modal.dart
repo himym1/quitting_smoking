@@ -55,7 +55,7 @@ class _CravingLogModalState extends State<CravingLogModal> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final mediaQuery = MediaQuery.of(context);
 

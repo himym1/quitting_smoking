@@ -53,7 +53,7 @@ class _HelpSupportPageState extends ConsumerState<HelpSupportPage> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     return Scaffold(

@@ -58,4 +58,9 @@ class AchievementRepositoryImpl implements AchievementRepository {
       return null;
     }
   }
+
+  @override
+  Future<bool> clearAllUnlockedAchievements() async {
+    return await _localDataSource.clearAllUnlockedAchievements();
+  }
 }

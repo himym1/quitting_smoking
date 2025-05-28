@@ -17,9 +17,7 @@ class OnboardingStepQuitDate extends ConsumerWidget {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: currentQuitDateTime ?? now,
-      firstDate: now.subtract(
-        const Duration(days: 30),
-      ), // Allow past date for flexibility if needed, or just 'now'
+      firstDate: DateTime(now.year, now.month, now.day), // 只允许从今天开始
       lastDate: now.add(
         const Duration(days: 365 * 5),
       ), // Allow up to 5 years in future

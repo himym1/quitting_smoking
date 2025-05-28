@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quitting_smoking/domain/entities/health_benefit_milestone.dart';
-import 'package:quitting_smoking/l10n/app_localizations.dart';
 
 class HealthMilestoneCountdown extends StatelessWidget {
   final HealthBenefitMilestone milestone;

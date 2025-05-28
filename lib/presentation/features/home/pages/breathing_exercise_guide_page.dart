@@ -65,11 +65,11 @@ class _BreathingExerciseGuidePageState extends State<BreathingExerciseGuidePage>
       final value = _animationController.value;
       setState(() {
         if (value < 0.3) {
-          _breathPhase = AppLocalizations.of(context)!.breathingPhaseInhale;
+          _breathPhase = AppLocalizations.of(context).breathingPhaseInhale;
         } else if (value < 0.6) {
-          _breathPhase = AppLocalizations.of(context)!.breathingPhaseHold;
+          _breathPhase = AppLocalizations.of(context).breathingPhaseHold;
         } else {
-          _breathPhase = AppLocalizations.of(context)!.breathingPhaseExhale;
+          _breathPhase = AppLocalizations.of(context).breathingPhaseExhale;
         }
       });
     });
@@ -114,10 +114,10 @@ class _BreathingExerciseGuidePageState extends State<BreathingExerciseGuidePage>
           builder:
               (context) => AlertDialog(
                 title: Text(
-                  AppLocalizations.of(context)!.breathingExerciseCompletedTitle,
+                  AppLocalizations.of(context).breathingExerciseCompletedTitle,
                 ),
                 content: Text(
-                  AppLocalizations.of(context)!.breathingExerciseCompletedDesc,
+                  AppLocalizations.of(context).breathingExerciseCompletedDesc,
                 ),
                 actions: [
                   TextButton(
@@ -128,7 +128,7 @@ class _BreathingExerciseGuidePageState extends State<BreathingExerciseGuidePage>
                       context.go('/craving-coping-strategies');
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.backToStrategiesButton,
+                      AppLocalizations.of(context).backToStrategiesButton,
                     ),
                   ),
                 ],
@@ -140,7 +140,7 @@ class _BreathingExerciseGuidePageState extends State<BreathingExerciseGuidePage>
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(

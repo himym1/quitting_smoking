@@ -16,7 +16,7 @@ class HealthMilestoneCountdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 计算达到里程碑所需的总时长（单位：秒）
-    final milestoneDurationInSeconds = milestone.timeRequired.inSeconds;
+    final milestoneDurationInSeconds = milestone.timeThresholdInMinutes * 60;
 
     // 计算已经经过的时长（单位：秒）
     final elapsedSeconds = quitDuration.inSeconds;

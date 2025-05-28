@@ -92,8 +92,8 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('zh'),
-    Locale('zh', 'CN')
+    Locale('zh', 'CN'),
+    Locale('zh')
   ];
 
   /// No description provided for @appTitle.
@@ -435,7 +435,7 @@ abstract class AppLocalizations {
   /// No description provided for @pleaseSelectDateTime.
   ///
   /// In en, this message translates to:
-  /// **'Please select a date and time.'**
+  /// **'Please select date and time'**
   String get pleaseSelectDateTime;
 
   /// No description provided for @invalidNumberError.
@@ -1068,6 +1068,180 @@ abstract class AppLocalizations {
   /// **'100 days without smoking is an incredible achievement. Your body has significantly recovered, and the smoke-free lifestyle is becoming your second nature.'**
   String get achievement100DaysStory;
 
+  /// No description provided for @achievement1DayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Day 1'**
+  String get achievement1DayName;
+
+  /// No description provided for @achievement1DayDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve successfully completed your first day without smoking!'**
+  String get achievement1DayDesc;
+
+  /// No description provided for @achievement1DayStory.
+  ///
+  /// In en, this message translates to:
+  /// **'The first day is always the hardest. You\'ve taken the most important step towards a healthier life.'**
+  String get achievement1DayStory;
+
+  /// No description provided for @achievement1WeekName.
+  ///
+  /// In en, this message translates to:
+  /// **'Week 1'**
+  String get achievement1WeekName;
+
+  /// No description provided for @achievement1WeekDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve successfully completed your first week without smoking!'**
+  String get achievement1WeekDesc;
+
+  /// No description provided for @achievement1WeekStory.
+  ///
+  /// In en, this message translates to:
+  /// **'One week smoke-free! Your body is already starting to heal and recover.'**
+  String get achievement1WeekStory;
+
+  /// No description provided for @achievement1MonthName.
+  ///
+  /// In en, this message translates to:
+  /// **'Month 1'**
+  String get achievement1MonthName;
+
+  /// No description provided for @achievement1MonthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve successfully completed your first month without smoking!'**
+  String get achievement1MonthDesc;
+
+  /// No description provided for @achievement1MonthStory.
+  ///
+  /// In en, this message translates to:
+  /// **'One month is a major milestone. Your lung function is improving significantly.'**
+  String get achievement1MonthStory;
+
+  /// No description provided for @achievement1YearName.
+  ///
+  /// In en, this message translates to:
+  /// **'Year 1'**
+  String get achievement1YearName;
+
+  /// No description provided for @achievement1YearDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve successfully completed your first year without smoking!'**
+  String get achievement1YearDesc;
+
+  /// No description provided for @achievement1YearStory.
+  ///
+  /// In en, this message translates to:
+  /// **'One year smoke-free! You\'ve dramatically reduced your risk of heart disease and stroke.'**
+  String get achievement1YearStory;
+
+  /// No description provided for @achievementSave100Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Save \$100'**
+  String get achievementSave100Name;
+
+  /// No description provided for @achievementSave100Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve saved \$100 by not smoking!'**
+  String get achievementSave100Desc;
+
+  /// No description provided for @achievementSave100Story.
+  ///
+  /// In en, this message translates to:
+  /// **'Look at all the money you\'ve saved! Think about what you can do with this extra cash.'**
+  String get achievementSave100Story;
+
+  /// No description provided for @achievementSave1000Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Save \$1000'**
+  String get achievementSave1000Name;
+
+  /// No description provided for @achievementSave1000Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve saved \$1000 by not smoking!'**
+  String get achievementSave1000Desc;
+
+  /// No description provided for @achievementSave1000Story.
+  ///
+  /// In en, this message translates to:
+  /// **'A thousand dollars saved! This could be a nice vacation or a significant purchase.'**
+  String get achievementSave1000Story;
+
+  /// No description provided for @achievementSave10000Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Save \$10,000'**
+  String get achievementSave10000Name;
+
+  /// No description provided for @achievementSave10000Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve saved \$10,000 by not smoking!'**
+  String get achievementSave10000Desc;
+
+  /// No description provided for @achievementSave10000Story.
+  ///
+  /// In en, this message translates to:
+  /// **'Ten thousand dollars! This is life-changing money that you can invest in your future.'**
+  String get achievementSave10000Story;
+
+  /// No description provided for @noAchievementsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No achievements available yet'**
+  String get noAchievementsAvailable;
+
+  /// No description provided for @achievementStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get achievementStoryTitle;
+
+  /// No description provided for @achievementMoneySavedName.
+  ///
+  /// In en, this message translates to:
+  /// **'Money Saver'**
+  String get achievementMoneySavedName;
+
+  /// No description provided for @achievementMoneySavedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve saved money by not buying cigarettes!'**
+  String get achievementMoneySavedDesc;
+
+  /// No description provided for @achievementMoneySavedStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Every cigarette you don\'t buy is money saved for your future.'**
+  String get achievementMoneySavedStory;
+
+  /// No description provided for @achievementResistCravingName.
+  ///
+  /// In en, this message translates to:
+  /// **'Craving Conqueror'**
+  String get achievementResistCravingName;
+
+  /// No description provided for @achievementResistCravingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully resisted a strong craving using coping strategies!'**
+  String get achievementResistCravingDesc;
+
+  /// No description provided for @achievementResistCravingStory.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve proven that you can overcome cravings with the right strategies.'**
+  String get achievementResistCravingStory;
+
   /// No description provided for @appSettingsTitle.
   ///
   /// In en, this message translates to:
@@ -1230,18 +1404,6 @@ abstract class AppLocalizations {
   /// **'Get notified when you reach health improvement milestones'**
   String get healthMilestoneNotificationsSubtitle;
 
-  /// No description provided for @dailyCheckInNotificationsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Daily Check-in Reminders'**
-  String get dailyCheckInNotificationsTitle;
-
-  /// No description provided for @dailyCheckInNotificationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Get daily reminders to check in'**
-  String get dailyCheckInNotificationsSubtitle;
-
   /// No description provided for @encouragementNotificationsTitle.
   ///
   /// In en, this message translates to:
@@ -1259,12 +1421,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reminder Time Settings'**
   String get notificationTimeSettingsTitle;
-
-  /// No description provided for @checkInReminderTimeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Check-in Reminder Time'**
-  String get checkInReminderTimeTitle;
 
   /// No description provided for @doNotDisturbTitle.
   ///
@@ -1301,6 +1457,624 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @calendarLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend:'**
+  String get calendarLegend;
+
+  /// No description provided for @calendarCheckedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked In'**
+  String get calendarCheckedIn;
+
+  /// No description provided for @calendarCigarettes1to5.
+  ///
+  /// In en, this message translates to:
+  /// **'1-5 cigarettes'**
+  String get calendarCigarettes1to5;
+
+  /// No description provided for @calendarCigarettes6to10.
+  ///
+  /// In en, this message translates to:
+  /// **'6-10 cigarettes'**
+  String get calendarCigarettes6to10;
+
+  /// No description provided for @calendarCigarettes10plus.
+  ///
+  /// In en, this message translates to:
+  /// **'10+ cigarettes'**
+  String get calendarCigarettes10plus;
+
+  /// No description provided for @calendarCigarettesUnit.
+  ///
+  /// In en, this message translates to:
+  /// **' cigarettes'**
+  String get calendarCigarettesUnit;
+
+  /// No description provided for @progressSavedMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get progressSavedMoney;
+
+  /// No description provided for @progressCigarettesNotSmoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Cigarettes Not Smoked'**
+  String get progressCigarettesNotSmoked;
+
+  /// No description provided for @progressLifeExtended.
+  ///
+  /// In en, this message translates to:
+  /// **'Life Extended (days)'**
+  String get progressLifeExtended;
+
+  /// No description provided for @dailyCheckInStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Quit Status'**
+  String get dailyCheckInStatus;
+
+  /// No description provided for @checkingTodayStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking today\'s status...'**
+  String get checkingTodayStatus;
+
+  /// No description provided for @autoCheckInSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Auto check-in successful today (no smoking records)'**
+  String get autoCheckInSuccess;
+
+  /// No description provided for @alreadyAutoCheckedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already auto checked in'**
+  String get alreadyAutoCheckedIn;
+
+  /// No description provided for @manualCheckInSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'✅ Manual check-in successful today'**
+  String get manualCheckInSuccess;
+
+  /// No description provided for @cannotCheckInSmoking.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Cannot check in today due to smoking records'**
+  String get cannotCheckInSmoking;
+
+  /// No description provided for @todayAlreadySmoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoked Today'**
+  String get todayAlreadySmoked;
+
+  /// No description provided for @statusCheckFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Status check failed'**
+  String get statusCheckFailed;
+
+  /// No description provided for @recheckStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Recheck'**
+  String get recheckStatus;
+
+  /// No description provided for @autoCheckInRule.
+  ///
+  /// In en, this message translates to:
+  /// **'💡 Auto check-in rule: If there are no smoking records for the day, the system will automatically check you in'**
+  String get autoCheckInRule;
+
+  /// No description provided for @monthlyCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Calendar'**
+  String get monthlyCalendar;
+
+  /// No description provided for @clickedDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Clicked day {day}'**
+  String clickedDay(String day);
+
+  /// No description provided for @loadingCalendarError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading calendar data: {error}'**
+  String loadingCalendarError(String error);
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// No description provided for @resetAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Achievements'**
+  String get resetAchievements;
+
+  /// No description provided for @resetAchievementsDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'This will clear all unlocked achievement data. This operation cannot be undone. Are you sure you want to continue?'**
+  String get resetAchievementsDialog;
+
+  /// No description provided for @achievementsReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement data has been reset'**
+  String get achievementsReset;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get days;
+
+  /// No description provided for @recordSmokingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Record Smoking'**
+  String get recordSmokingTitle;
+
+  /// No description provided for @recordSmokingDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Honest recording helps better understand your quit journey'**
+  String get recordSmokingDescription;
+
+  /// No description provided for @howManyCigarettes.
+  ///
+  /// In en, this message translates to:
+  /// **'How many cigarettes did you smoke this time?'**
+  String get howManyCigarettes;
+
+  /// No description provided for @cigarettesUnit.
+  ///
+  /// In en, this message translates to:
+  /// **' cigarettes'**
+  String get cigarettesUnit;
+
+  /// No description provided for @additionalThoughts.
+  ///
+  /// In en, this message translates to:
+  /// **'Record your feelings, environment or thoughts at the time...'**
+  String get additionalThoughts;
+
+  /// No description provided for @relapseLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember: Every relapse is a learning opportunity, don\'t give up!'**
+  String get relapseLearning;
+
+  /// No description provided for @smokingRecordSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoking record saved'**
+  String get smokingRecordSaved;
+
+  /// No description provided for @saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Save failed: {error}'**
+  String saveFailed(String error);
+
+  /// No description provided for @alreadySmokedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'I have already smoked'**
+  String get alreadySmokedToday;
+
+  /// No description provided for @alreadySmoked.
+  ///
+  /// In en, this message translates to:
+  /// **'I already smoked'**
+  String get alreadySmoked;
+
+  /// No description provided for @unlockedAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked Achievements'**
+  String get unlockedAchievements;
+
+  /// No description provided for @resetAchievementsDebug.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Achievements (Debug)'**
+  String get resetAchievementsDebug;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get selectLanguage;
+
+  /// No description provided for @chinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get chinese;
+
+  /// No description provided for @simplifiedChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplified Chinese'**
+  String get simplifiedChinese;
+
+  /// No description provided for @languageSwitchedToChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Language switched to Chinese'**
+  String get languageSwitchedToChinese;
+
+  /// No description provided for @languageSwitchedToSimplifiedChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Language switched to Simplified Chinese'**
+  String get languageSwitchedToSimplifiedChinese;
+
+  /// No description provided for @resetData.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Data'**
+  String get resetData;
+
+  /// No description provided for @resetDataDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset all quit progress data? This will clear all your achievements and history. This operation cannot be undone.'**
+  String get resetDataDialog;
+
+  /// No description provided for @resetDataFeatureComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Data reset feature coming soon'**
+  String get resetDataFeatureComingSoon;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @logoutDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutDialog;
+
+  /// No description provided for @notLoggedInUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Not logged in'**
+  String get notLoggedInUser;
+
+  /// No description provided for @editPersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to edit personal information'**
+  String get editPersonalInfo;
+
+  /// No description provided for @editPersonalInfoComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit personal information feature coming soon'**
+  String get editPersonalInfoComingSoon;
+
+  /// No description provided for @officialWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Official Website'**
+  String get officialWebsite;
+
+  /// No description provided for @sendFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
+
+  /// No description provided for @rateApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate App'**
+  String get rateApp;
+
+  /// No description provided for @quitJourneyApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Journey - Quit Smoking App'**
+  String get quitJourneyApp;
+
+  /// No description provided for @appVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} ({buildNumber})'**
+  String appVersion(String version, String buildNumber);
+
+  /// No description provided for @appDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Journey is an app focused on helping users quit smoking by providing progress tracking, health benefits display, craving management and other features to comprehensively support your quit journey. Say goodbye to smoking addiction, refresh your life, starting with every breath.'**
+  String get appDescription;
+
+  /// No description provided for @appIntroduction.
+  ///
+  /// In en, this message translates to:
+  /// **'App Introduction'**
+  String get appIntroduction;
+
+  /// No description provided for @copyrightInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'© {year} Quit Journey Development Team'**
+  String copyrightInfo(String year);
+
+  /// No description provided for @allRightsReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'All rights reserved'**
+  String get allRightsReserved;
+
+  /// No description provided for @cannotOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open link: {url}'**
+  String cannotOpenLink(String url);
+
+  /// No description provided for @termsAndPrivacyAgreement.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to our Terms of Service and Privacy Policy.'**
+  String get termsAndPrivacyAgreement;
+
+  /// No description provided for @forgotPasswordNotImplemented.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password clicked (not implemented)'**
+  String get forgotPasswordNotImplemented;
+
+  /// No description provided for @cannotOpenEmailClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open email client'**
+  String get cannotOpenEmailClient;
+
+  /// No description provided for @contactSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Support'**
+  String get contactSupport;
+
+  /// No description provided for @helpCenterComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Help center feature coming soon'**
+  String get helpCenterComingSoon;
+
+  /// No description provided for @visitOnlineHelpCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit Online Help Center'**
+  String get visitOnlineHelpCenter;
+
+  /// No description provided for @quitDateUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit date updated'**
+  String get quitDateUpdated;
+
+  /// No description provided for @updateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update failed: {error}'**
+  String updateFailed(String error);
+
+  /// No description provided for @selectQuitDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select quit start date'**
+  String get selectQuitDate;
+
+  /// No description provided for @selectQuitTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Select quit start time'**
+  String get selectQuitTime;
+
+  /// No description provided for @quitDateChangeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change your quit start date and time here. Please note that this will reset your quit progress.'**
+  String get quitDateChangeDescription;
+
+  /// No description provided for @quitDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Date'**
+  String get quitDate;
+
+  /// No description provided for @quitTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Time'**
+  String get quitTime;
+
+  /// No description provided for @notSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get notSelected;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @thankYouPrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for reading our privacy policy'**
+  String get thankYouPrivacyPolicy;
+
+  /// No description provided for @iHaveReadAndUnderstood.
+  ///
+  /// In en, this message translates to:
+  /// **'I have read and understood'**
+  String get iHaveReadAndUnderstood;
+
+  /// No description provided for @updateSmokingDataDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please update your smoking data to help us calculate your progress and savings more accurately.'**
+  String get updateSmokingDataDescription;
+
+  /// No description provided for @dailySmokingAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily smoking amount (cigarettes)'**
+  String get dailySmokingAmount;
+
+  /// No description provided for @pleaseEnterDailySmokingAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter daily smoking amount'**
+  String get pleaseEnterDailySmokingAmount;
+
+  /// No description provided for @pleaseEnterPositiveNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a number greater than 0'**
+  String get pleaseEnterPositiveNumber;
+
+  /// No description provided for @cigarettePricePerPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Cigarette price per pack (yuan)'**
+  String get cigarettePricePerPack;
+
+  /// No description provided for @pleaseEnterCigarettePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter cigarette price'**
+  String get pleaseEnterCigarettePrice;
+
+  /// No description provided for @cigarettesPerPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Cigarettes per pack'**
+  String get cigarettesPerPack;
+
+  /// No description provided for @pleaseEnterCigarettesPerPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter cigarettes per pack'**
+  String get pleaseEnterCigarettesPerPack;
+
+  /// No description provided for @smokingDataUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoking data updated'**
+  String get smokingDataUpdated;
+
+  /// No description provided for @achieved.
+  ///
+  /// In en, this message translates to:
+  /// **'Achieved'**
+  String get achieved;
+
+  /// No description provided for @timeToAchieve.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to achieve: {time}'**
+  String timeToAchieve(String time);
+
+  /// No description provided for @detailedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed Description'**
+  String get detailedDescription;
+
+  /// No description provided for @scientificExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Scientific Explanation'**
+  String get scientificExplanation;
+
+  /// No description provided for @smokingEffectsExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'When you stop smoking, your body immediately begins to recover. Smoking restricts blood vessels and makes the heart work harder. After quitting, blood pressure and heart rate begin to return to normal, the body begins to clear harmful substances, blood circulation improves, and various body functions gradually return to a healthier state.'**
+  String get smokingEffectsExplanation;
+
+  /// No description provided for @otherHealthBenefits.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Health Benefits'**
+  String get otherHealthBenefits;
+
+  /// No description provided for @afterTime.
+  ///
+  /// In en, this message translates to:
+  /// **'After {time}'**
+  String afterTime(String time);
+
+  /// No description provided for @statisticsCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics Center'**
+  String get statisticsCenter;
+
+  /// No description provided for @featureInDevelopment.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature in development...'**
+  String get featureInDevelopment;
+
+  /// No description provided for @checkInStatistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in Statistics'**
+  String get checkInStatistics;
+
+  /// No description provided for @loadingStatisticsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading statistics: {error}'**
+  String loadingStatisticsError(String error);
+
+  /// No description provided for @loadingCheckInRecordsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading check-in records'**
+  String get loadingCheckInRecordsError;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

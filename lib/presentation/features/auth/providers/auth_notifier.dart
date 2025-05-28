@@ -6,6 +6,7 @@ import 'package:quitting_smoking/domain/repositories/user_profile_repository.dar
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 import 'package:quitting_smoking/data/repositories_impl/user_profile_repository_impl.dart'; // Assuming this is the concrete implementation
 import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入日志服务
 
 // Placeholder for UserProfileRepository provider - Now using the concrete implementation's provider
 // final userProfileRepositoryProvider = Provider<UserProfileRepository>((ref) {
@@ -31,7 +32,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   // 检查并恢复认证状态
   Future<void> checkAuthStatus() async {
-    print('正在检查用户认证状态...');
+    logInfo('正在检查用户认证状态', tag: 'AuthNotifier');
     state = const AuthState.loading();
 
     try {
@@ -39,16 +40,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
       final userProfile = await _userProfileRepository.getUserProfile();
 
       if (userProfile != null) {
-        print('找到已保存的用户资料: ${userProfile.userId}');
+        logInfo('找到已保存的用户资料: ${userProfile.userId}', tag: 'AuthNotifier');
         // 用户已经登录，设置认证状态
         state = AuthState.authenticated(userProfile);
-        print('用户已认证，认证状态已恢复');
+        logInfo('用户已认证，认证状态已恢复', tag: 'AuthNotifier');
       } else {
-        print('未找到已保存的用户资料，用户未认证');
+        logInfo('未找到已保存的用户资料，用户未认证', tag: 'AuthNotifier');
         state = const AuthState.unauthenticated();
       }
     } catch (e) {
-      print('检查认证状态时出错: $e');
+      logError('检查认证状态时出错', tag: 'AuthNotifier', error: e);
       state = const AuthState.unauthenticated(message: 'authCheckError');
     }
   }
@@ -58,22 +59,25 @@ class AuthNotifier extends StateNotifier<AuthState> {
     super.state = value;
     // 当状态变化时，将新状态发送到流
     _streamController.add(value);
-    print('状态已更新并发送到流: $value');
+    logDebug('状态已更新并发送到流: $value', tag: 'AuthNotifier');
   }
 
   Future<void> login(String email, String password) async {
-    print('开始登录过程: email=$email');
+    logInfo('开始登录过程: email=$email', tag: 'AuthNotifier');
     state = const AuthState.loading();
     await Future.delayed(const Duration(seconds: 1));
 
     // 测试账号，在实际应用中应该调用API
     // 修改为接受任何邮箱格式，仅做简单密码验证
     if (password.length >= 3) {
-      print('登录凭证验证成功');
+      logInfo('登录凭证验证成功', tag: 'AuthNotifier');
       // Simulate fetching user profile after successful login
       // In a real app, you'd fetch this based on user ID from login response
       UserProfile? userProfile = await _userProfileRepository.getUserProfile();
-      print('获取用户资料结果: ${userProfile != null ? '存在' : '不存在'}');
+      logDebug(
+        '获取用户资料结果: ${userProfile != null ? '存在' : '不存在'}',
+        tag: 'AuthNotifier',
+      );
 
       if (userProfile == null) {
         // First time login or profile not created, create a mock one
@@ -87,21 +91,21 @@ class AuthNotifier extends StateNotifier<AuthState> {
           quitReason: "Mocked reason for login",
           onboardingCompleted: false, // 保持为false，以便新用户进入引导页
         );
-        print('创建新用户资料: $userProfile');
+        logDebug('创建新用户资料: $userProfile', tag: 'AuthNotifier');
         await _userProfileRepository.saveUserProfile(userProfile);
-        print('保存用户资料成功');
+        logInfo('保存用户资料成功', tag: 'AuthNotifier');
       } else if (!userProfile.onboardingCompleted) {
         // User exists but hasn't completed onboarding
-        print('用户 ${userProfile.userId} 存在，但未完成引导');
+        logInfo('用户 ${userProfile.userId} 存在，但未完成引导', tag: 'AuthNotifier');
         // 保留onboardingCompleted状态，以便新注册用户可以进入引导页
         // 不做任何修改，让路由系统将用户引导到正确的页面
       }
 
-      print('设置认证状态为authenticated');
+      logDebug('设置认证状态为authenticated', tag: 'AuthNotifier');
       state = AuthState.authenticated(userProfile);
-      print('认证状态更新完成: $state');
+      logInfo('认证状态更新完成: $state', tag: 'AuthNotifier');
     } else {
-      print('登录凭证验证失败');
+      logWarning('登录凭证验证失败', tag: 'AuthNotifier');
       state = const AuthState.unauthenticated(
         message: 'invalidCredentialsError',
       );
@@ -112,12 +116,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required String email,
     required String password,
   }) async {
-    print('开始注册过程: email=$email');
+    logInfo('开始注册过程: email=$email', tag: 'AuthNotifier');
     state = const AuthState.loading();
     await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
 
     if (email == 'existing@example.com') {
-      print('邮箱已存在，注册失败');
+      logWarning('邮箱已存在，注册失败', tag: 'AuthNotifier');
       state = const AuthState.unauthenticated(
         message: 'emailAlreadyInUseError', // Key for l10n
       );
@@ -126,7 +130,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
     // Simulate successful registration
     try {
-      print('注册验证成功，创建新用户资料');
+      logInfo('注册验证成功，创建新用户资料', tag: 'AuthNotifier');
       final newUserProfile = UserProfile(
         userId:
             'mockUserId-reg-${email.hashCode}-${DateTime.now().millisecondsSinceEpoch}',
@@ -140,18 +144,21 @@ class AuthNotifier extends StateNotifier<AuthState> {
         onboardingCompleted: false, // User needs to go through onboarding
       );
 
-      print('新用户资料: $newUserProfile');
-      print('引导完成状态: ${newUserProfile.onboardingCompleted}');
+      logDebug('新用户资料: $newUserProfile', tag: 'AuthNotifier');
+      logDebug(
+        '引导完成状态: ${newUserProfile.onboardingCompleted}',
+        tag: 'AuthNotifier',
+      );
 
       await _userProfileRepository.saveUserProfile(newUserProfile);
-      print('保存新用户资料成功');
+      logInfo('保存新用户资料成功', tag: 'AuthNotifier');
 
       // After registration, user is considered authenticated and onboarding is pending
-      print('设置认证状态为authenticated，引导完成状态为false');
+      logDebug('设置认证状态为authenticated，引导完成状态为false', tag: 'AuthNotifier');
       state = AuthState.authenticated(newUserProfile);
-      print('认证状态更新完成: $state');
+      logInfo('认证状态更新完成: $state', tag: 'AuthNotifier');
     } catch (e) {
-      print('注册失败: $e');
+      logError('注册失败', tag: 'AuthNotifier', error: e);
       state = const AuthState.unauthenticated(
         message: 'registrationFailedError', // Key for l10n
       );
@@ -169,20 +176,20 @@ class AuthNotifier extends StateNotifier<AuthState> {
           userProfile.userId ?? '',
         );
         if (success) {
-          print('用户资料已从存储中删除，用户完全登出');
+          logInfo('用户资料已从存储中删除，用户完全登出', tag: 'AuthNotifier');
         } else {
-          print('警告：删除用户资料失败，但状态仍将重置');
+          logWarning('删除用户资料失败，但状态仍将重置', tag: 'AuthNotifier');
         }
       } else {
-        print('找不到用户资料，但状态仍将重置');
+        logInfo('找不到用户资料，但状态仍将重置', tag: 'AuthNotifier');
       }
     } catch (e) {
-      print('登出过程中出错: $e');
+      logError('登出过程中出错', tag: 'AuthNotifier', error: e);
     }
 
     await Future.delayed(const Duration(milliseconds: 500));
     state = const AuthState.unauthenticated();
-    print('User logged out, state reset to unauthenticated.');
+    logInfo('用户已登出，状态重置为未认证', tag: 'AuthNotifier');
   }
 
   void completeOnboarding(UserProfile updatedProfile) async {
@@ -191,9 +198,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     // is the single source of truth for profile persistence after onboarding,
     // though OnboardingNotifier already saves it.
     // For now, just update the state.
-    print(
-      'Onboarding completed, AuthState updated with profile: ${updatedProfile.userId}',
-    );
+    logInfo('引导完成，认证状态已更新，用户ID: ${updatedProfile.userId}', tag: 'AuthNotifier');
 
     // 引导完成后重新计算成就
     await _recalculateAchievements(updatedProfile);
@@ -223,11 +228,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
       // 更新状态
       state = AuthState.authenticated(updatedProfile);
-      print(
-        'User smoking data updated: $dailyCigarettes cigarettes/day, ¥$packPrice/pack',
+      logInfo(
+        '用户吸烟数据已更新: $dailyCigarettes支/天, ¥$packPrice/包',
+        tag: 'AuthNotifier',
       );
     } catch (e) {
-      print('Error updating smoking data: $e');
+      logError('更新吸烟数据时出错', tag: 'AuthNotifier', error: e);
       // 可以在此处添加错误处理逻辑
     }
   }
@@ -251,12 +257,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
       // 更新状态
       state = AuthState.authenticated(updatedProfile);
-      print('User quit date updated: ${quitDateTime.toString()}');
+      logInfo('用户戒烟日期已更新: ${quitDateTime.toString()}', tag: 'AuthNotifier');
 
       // 重新计算成就 - 基于新的戒烟时间
       await _recalculateAchievements(updatedProfile);
     } catch (e) {
-      print('Error updating quit date: $e');
+      logError('更新戒烟日期时出错', tag: 'AuthNotifier', error: e);
       // 可以在此处添加错误处理逻辑
       throw e; // 重新抛出异常，以便调用者可以捕获
     }
@@ -288,11 +294,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
         moneySaved: moneySaved,
       );
 
-      print(
+      logInfo(
         '成就重新计算完成: 戒烟${consecutiveDays}天, 节省¥${moneySaved.toStringAsFixed(2)}',
+        tag: 'AuthNotifier',
       );
     } catch (e) {
-      print('重新计算成就时出错: $e');
+      logError('重新计算成就时出错', tag: 'AuthNotifier', error: e);
     }
   }
 
@@ -300,7 +307,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   void dispose() {
     // 关闭流控制器
     _streamController.close();
-    print('AuthNotifier 被释放，流控制器已关闭');
+    logDebug('AuthNotifier 被释放，流控制器已关闭', tag: 'AuthNotifier');
     super.dispose();
   }
 }

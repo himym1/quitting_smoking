@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:quitting_smoking/core/constants/hive_constants.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/data/datasources/local/achievement_local_datasource.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
 import 'package:quitting_smoking/domain/entities/unlocked_achievement.dart';
@@ -36,7 +37,7 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
           .map((dynamic json) => AchievementDefinition.fromJson(json))
           .toList();
     } catch (e) {
-      print('Error loading achievement definitions: $e');
+      logError('加载成就定义时出错', tag: 'AchievementLocalDataSource', error: e);
       return [];
     }
   }
@@ -47,7 +48,7 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
       final box = await _getUnlockedAchievementsBox();
       return box.values.toList();
     } catch (e) {
-      print('Error getting unlocked achievements: $e');
+      logError('获取已解锁成就时出错', tag: 'AchievementLocalDataSource', error: e);
       return [];
     }
   }
@@ -61,7 +62,7 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
       await box.put(unlockedAchievement.achievementId, unlockedAchievement);
       return true;
     } catch (e) {
-      print('Error saving unlocked achievement: $e');
+      logError('保存已解锁成就时出错', tag: 'AchievementLocalDataSource', error: e);
       return false;
     }
   }
@@ -72,7 +73,7 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
       final box = await _getUnlockedAchievementsBox();
       return box.containsKey(achievementId);
     } catch (e) {
-      print('Error checking if achievement is unlocked: $e');
+      logError('检查成就解锁状态时出错', tag: 'AchievementLocalDataSource', error: e);
       return false;
     }
   }
@@ -82,10 +83,10 @@ class AchievementLocalDataSourceImpl implements AchievementLocalDataSource {
     try {
       final box = await _getUnlockedAchievementsBox();
       await box.clear();
-      print('All unlocked achievements cleared');
+      logInfo('所有已解锁成就已清除', tag: 'AchievementLocalDataSource');
       return true;
     } catch (e) {
-      print('Error clearing unlocked achievements: $e');
+      logError('清除已解锁成就时出错', tag: 'AchievementLocalDataSource', error: e);
       return false;
     }
   }

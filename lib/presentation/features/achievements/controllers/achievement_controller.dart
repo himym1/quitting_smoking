@@ -1,8 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/data/repositories/achievement_repository.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
 import 'package:quitting_smoking/domain/entities/unlocked_achievement.dart';
 import 'package:quitting_smoking/domain/repositories/achievement_repository.dart';
+import 'package:quitting_smoking/data/datasources/local/achievement_local_datasource.dart';
+import 'package:quitting_smoking/data/datasources/local/achievement_local_datasource_impl.dart';
+import 'package:quitting_smoking/core/providers/locale_provider.dart';
 
 /// State for the achievements feature
 class AchievementState {
@@ -176,12 +180,15 @@ class AchievementController extends StateNotifier<AchievementState> {
   }) async {
     // Validate input parameters
     if (consecutiveDays < 0) {
-      print('Warning: consecutiveDays is negative: $consecutiveDays');
+      logWarning(
+        'consecutiveDays参数为负数: $consecutiveDays',
+        tag: 'AchievementController',
+      );
       return null;
     }
 
     if (moneySaved < 0) {
-      print('Warning: moneySaved is negative: $moneySaved');
+      logWarning('moneySaved参数为负数: $moneySaved', tag: 'AchievementController');
       return null;
     }
 
@@ -239,7 +246,7 @@ class AchievementController extends StateNotifier<AchievementState> {
 
       return null;
     } catch (e) {
-      print('Error checking for new achievements: $e');
+      logError('检查新成就时出错', tag: 'AchievementController', error: e);
       return null;
     }
   }

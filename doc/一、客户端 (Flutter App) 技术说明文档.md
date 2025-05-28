@@ -6,37 +6,47 @@
 
 ## 1. 项目概述
 
-本项目是“焕新之旅”戒烟辅助应用的移动客户端，使用 Flutter 框架开发，旨在为用户提供跨平台的、流畅的戒烟支持体验。主要功能包括戒烟计划设定、实时进度追踪、健康效益展示、烟瘾管理、每日打卡、成就激励等。
+本项目是"焕新之旅"戒烟辅助应用的移动客户端，使用 Flutter 框架开发，旨在为用户提供跨平台的、流畅的戒烟支持体验。主要功能包括戒烟计划设定、实时进度追踪、健康效益展示、烟瘾管理、每日打卡、成就激励等。
 
 ## 2. 技术选型
 
 -   **开发语言：** Dart
 -   **UI 框架：** Flutter SDK
-    -   **[ADDED] UI组件策略：** 优先使用Flutter内置Material/Cupertino组件。对于《UX设计文档》中频繁提及的“卡片式设计”，将封装通用的自定义`CardWidget`以保证风格统一。微动效和交互反馈主要依赖Flutter内置动画API (`AnimatedWidget`, `ImplicitlyAnimatedWidget`, `Transition`等)，复杂动画（如成就解锁、特定引导）可使用`lottie`。
+    -   **[ADDED] UI组件策略：** 优先使用Flutter内置Material/Cupertino组件。对于《UX设计文档》中频繁提及的"卡片式设计"，将封装通用的自定义`CardWidget`以保证风格统一。微动效和交互反馈主要依赖Flutter内置动画API (`AnimatedWidget`, `ImplicitlyAnimatedWidget`, `Transition`等)，复杂动画（如成就解锁、特定引导）可使用`lottie`。
 -   **状态管理：** Riverpod (首选，提供强大的依赖注入和状态管理能力)
 -   **路由管理：** GoRouter
--   **网络请求：** Dio (封装Service层进行API调用)
+-   **网络请求：** Dio (封装Service层进行API调用) - [暂未实现，MVP纯本地]
 -   **本地存储：**
     -   `shared_preferences`: 存储用户偏好设置（如主题、通知开关）、首次启动标记等简单键值对。
-    -   **[MODIFIED] `Hive`:** 作为主要的本地数据库，用于存储用户戒烟档案 (`UserProfile`)、戒烟日记 (`CravingLogEntry`)、烟瘾记录、成就数据 (`UnlockedAchievement`)、每日打卡记录 (`DailyCheckIn`)、健康效益数据等结构化或半结构化数据。因其纯Dart实现、性能优秀且易于使用。实体类将继承 `HiveObject` 以便高效存储。
-        -   **[ADDED] 主要 Hive Boxes 规划:**
+    -   **[IMPLEMENTED] `Hive`:** 作为主要的本地数据库，用于存储用户戒烟档案 (`UserProfile`)、戒烟日记 (`CravingLogEntry`)、烟瘾记录、成就数据 (`UnlockedAchievement`)、每日打卡记录 (`DailyCheckIn`)、健康效益数据等结构化或半结构化数据。因其纯Dart实现、性能优秀且易于使用。实体类将继承 `HiveObject` 以便高效存储。
+        -   **[IMPLEMENTED] 主要 Hive Boxes 规划:**
             -   `userProfileBox`: 存储 `UserProfile` 对象。
             -   `checkInsBox`: 存储 `DailyCheckIn` 记录。
             -   `cravingLogsBox`: 存储 `CravingLogEntry` 列表。
             -   `unlockedAchievementsBox`: 存储 `UnlockedAchievement` 列表。
-            -   `appSettingsBox` (或使用 `shared_preferences`): 存储应用级设置。
+            -   `settingsBox`: 存储应用级设置。
 -   **数据模型与序列化：**
     -   使用 `freezed` 生成不可变数据类 (Entities/Models) 和 `copyWith` 等辅助方法。
     -   使用 `json_serializable` 配合 `freezed` 自动生成 `fromJson/toJson` 方法。
 -   **依赖注入：**
-    -   **[MODIFIED] 主要利用 Riverpod 的 Provider 机制进行依赖注入，通常已能满足大部分需求。** (`get_it` + `injectable` 作为深入理解依赖注入模式的备选知识，但项目中优先统一使用Riverpod)。
--   **本地通知：** `flutter_local_notifications` 用于实现每日打卡提醒、成就达成提醒等。
--   **图标与资源：** SVG图标 (使用 `flutter_svg`), Lottie动画 (使用 `lottie`)。 **[ADDED] 注意资源文件的优化，如图片压缩、合理使用Lottie以控制包大小。**
+    -   **[IMPLEMENTED] 主要利用 Riverpod 的 Provider 机制进行依赖注入，通常已能满足大部分需求。**
+-   **本地通知：** `flutter_local_notifications` 用于实现成就达成提醒、健康里程碑通知等。
+-   **国际化：** `flutter_localizations` 支持中文和英文双语。
+-   **应用图标与启动屏幕：** 
+    -   `flutter_launcher_icons` 统一生成各平台应用图标
+    -   `flutter_native_splash` 配置原生启动屏幕
+-   **图标与资源：** SVG图标 (使用 `flutter_svg`), Lottie动画 (使用 `lottie`)。
+-   **其他工具库：**
+    -   `package_info_plus` 获取应用版本信息
+    -   `url_launcher` 打开外部链接和发送邮件
+    -   `intl` 日期格式化和国际化支持
+    -   `timezone` 和 `flutter_timezone` 时区处理
+    -   `dots_indicator` 引导页指示器
 -   **测试：**
     -   **单元测试:** `test` 包 (测试Domain层、部分Data层逻辑，如Notifiers/UseCases、数据计算逻辑)。
     -   **Widget测试:** `flutter_test` 包 (测试UI组件的渲染和交互，特别是自定义的`CardWidget`等)。
     -   **集成测试:** `integration_test` 包 (测试关键用户流程，如注册-登录-打卡-查看成就)。
--   **代码规范与静态分析：** `flutter_lints` 或自定义lint规则 (如 `very_good_analysis`)。
+-   **代码规范与静态分析：** `flutter_lints`。
 
 ## 3. 项目结构 (遵循Clean Architecture变种)
 
@@ -87,7 +97,7 @@ test/                     # 测试代码 (结构与lib/对应)
 -   通过全局AuthProvider (如 `authNotifierProvider` from Riverpod) 管理用户登录状态，控制页面访问权限。
 -   **[ADDED] 匿名用户数据迁移：**
     -   当匿名用户选择注册/登录时，App检查本地`Hive`是否存在匿名数据（如`UserProfile`、`DailyCheckIn`等）。
-    -   若存在，提示用户是否将本地数据同步至云端账户（API需支持此操作）。MVP简化策略：可提示用户选择“覆盖本地并使用云端数据”或“上传本地数据至云端”（若云端无数据）。
+    -   若存在，提示用户是否将本地数据同步至云端账户（API需支持此操作）。MVP简化策略：可提示用户选择"覆盖本地并使用云端数据"或"上传本地数据至云端"（若云端无数据）。
 
 #### 4.2 数据同步
 -   优先从本地数据库加载数据以提高启动速度和离线体验。
@@ -124,12 +134,12 @@ test/                     # 测试代码 (结构与lib/对应)
 #### 4.7 健康效益展示 (首页快览及详情页)
 -   **数据模型 (`HealthBenefitMilestone` entity):** 包含 `timeThreshold` (Duration), `title`, `description`, `iconName`。数据可预置在 `assets/data/health_benefits.json`，应用启动时加载并存入只读的 `Hive` Box 或由 `Provider` 管理。
 -   **逻辑实现:**
-    -   **首页快览：** `homeDashboardNotifierProvider` 根据当前戒烟时长筛选1-2个“当前/即将达成”的里程碑。
+    -   **首页快览：** `homeDashboardNotifierProvider` 根据当前戒烟时长筛选1-2个"当前/即将达成"的里程碑。
     -   **详情页：** 使用 `ListView.builder` 展示，通过比较戒烟时长与 `timeThreshold` 动态更新各里程碑的达成状态（UI上可表现为颜色变化、图标点亮）。时间轴效果可通过自定义Widget实现。
 -   **状态管理:** `healthBenefitsProvider` 负责加载和提供所有健康效益数据。
 
 #### 4.8 烟瘾管理与应对
--   **“我想吸烟”按钮:** UI使用醒目颜色，点击后 `GoRouter` 导航至烟瘾应对策略选择页/弹窗。
+-   **"我想吸烟"按钮:** UI使用醒目颜色，点击后 `GoRouter` 导航至烟瘾应对策略选择页/弹窗。
 -   **烟瘾应对策略选择页/弹窗:**
     -   **深呼吸练习引导：** 导航至新页面或显示模态。使用 `AnimationController` 和 `AnimatedBuilder` 实现圆形放大缩小等视觉引导。
     -   **其他策略：** 文本提示或简单交互。

@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:quitting_smoking/core/services/logger_service.dart';
 
 /// 通知类型
 enum NotificationType {
@@ -95,7 +96,7 @@ class NotificationService {
         return granted ?? false;
       } catch (e) {
         // 如果方法不可用，则假设权限已授予
-        print('Android通知权限请求失败: $e');
+        logError('Android通知权限请求失败', tag: 'NotificationService', error: e);
         return true;
       }
     }
@@ -107,7 +108,7 @@ class NotificationService {
   /// 处理通知点击事件
   void _onDidReceiveNotificationResponse(NotificationResponse response) {
     // TODO: 根据不同通知类型和payload，执行不同操作，如打开特定页面
-    print('点击了通知: ${response.payload}');
+    logInfo('点击了通知: ${response.payload}', tag: 'NotificationService');
   }
 
   /// 显示即时通知

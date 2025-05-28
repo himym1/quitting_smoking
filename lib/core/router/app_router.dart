@@ -1,59 +1,100 @@
-import 'dart:async'; // Added for StreamSubscription
+/**
+ * 焕新之旅 - 戒烟辅助应用
+ * 
+ * 应用程序路由配置 (AppRouter)
+ * 功能：
+ * 1. 定义所有页面路由路径
+ * 2. 配置导航结构和层级关系
+ * 3. 实现基于认证状态的路由重定向
+ * 4. 管理底部导航栏 (Shell Route)
+ * 5. 处理深层链接和参数传递
+ */
+
+import 'dart:async'; // StreamSubscription 异步流订阅
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quitting_smoking/presentation/features/achievements/pages/achievements_page.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入日志服务
+
+// ==================== 页面导入 ====================
+// 认证相关页面
 import 'package:quitting_smoking/presentation/features/auth/pages/login_page.dart';
 import 'package:quitting_smoking/presentation/features/auth/pages/onboarding_page.dart';
 import 'package:quitting_smoking/presentation/features/auth/pages/registration_page.dart';
 import 'package:quitting_smoking/presentation/features/auth/pages/splash_screen.dart';
+
+// 主功能页面
+import 'package:quitting_smoking/presentation/features/achievements/pages/achievements_page.dart';
 import 'package:quitting_smoking/presentation/features/home/pages/home_page.dart';
-import 'package:quitting_smoking/presentation/features/home/pages/health_benefits_detail_page.dart'; // Import the new page
-import 'package:quitting_smoking/presentation/features/home/pages/craving_coping_strategies_page.dart'; // 导入新页面
-import 'package:quitting_smoking/presentation/features/home/pages/breathing_exercise_guide_page.dart'; // Import the new page
+import 'package:quitting_smoking/presentation/features/home/pages/health_benefits_detail_page.dart';
+import 'package:quitting_smoking/presentation/features/home/pages/craving_coping_strategies_page.dart';
+import 'package:quitting_smoking/presentation/features/home/pages/breathing_exercise_guide_page.dart';
+
+// 设置相关页面
 import 'package:quitting_smoking/presentation/features/settings/pages/settings_page.dart';
-// 导入设置页面的二级页面
 import 'package:quitting_smoking/presentation/features/settings/pages/notification_settings/notification_settings_page.dart';
 import 'package:quitting_smoking/presentation/features/settings/pages/smoking_data/smoking_data_page.dart';
 import 'package:quitting_smoking/presentation/features/settings/pages/quit_date/quit_date_page.dart';
 import 'package:quitting_smoking/presentation/features/settings/pages/about/about_page.dart';
 import 'package:quitting_smoking/presentation/features/settings/pages/help_support/help_support_page.dart';
 import 'package:quitting_smoking/presentation/features/settings/pages/privacy_policy/privacy_policy_page.dart';
+
+// Shell 导航结构
 import 'package:quitting_smoking/presentation/shell/main_app_shell.dart';
+
+// 认证状态管理
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
-// AuthState is not directly used in this new version, but authNotifierProvider provides it.
-// import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 
+// ==================== 路由枚举定义 ====================
+
+/// 应用程序路由枚举
+/// 
+/// 定义应用中所有页面的路由名称
+/// 包括：认证流程、主要功能页面、设置页面等
 enum AppRoute {
-  splash,
-  login,
-  registration,
-  onboarding,
-  home,
-  healthBenefitsDetail, // Add new route
-  cravingCopingStrategies, // 添加新路由
-  breathingExerciseGuide, // 添加呼吸练习指导页面的路由
-  achievements,
-  settings,
-  // 设置页面的二级页面
-  notificationSettings,
-  smokingData,
-  quitDate,
-  aboutApp,
-  helpSupport,
-  privacyPolicy;
+  // 认证流程
+  splash,                    // 启动页
+  login,                     // 登录页
+  registration,              // 注册页
+  onboarding,               // 初始化引导页
+  
+  // 主要功能页面
+  home,                     // 首页/主看板
+  healthBenefitsDetail,     // 健康效益详情页
+  cravingCopingStrategies,  // 烟瘾应对策略页
+  breathingExerciseGuide,   // 呼吸练习指导页
+  achievements,             // 成就页面
+  
+  // 设置页面
+  settings,                 // 设置主页
+  
+  // 设置二级页面
+  notificationSettings,     // 通知设置
+  smokingData,             // 吸烟数据设置
+  quitDate,                // 戒烟日期设置
+  aboutApp,                // 关于应用
+  helpSupport,             // 帮助与支持
+  privacyPolicy;           // 隐私政策
 
+  /// 获取路由路径
+  /// 
+  /// 返回每个路由对应的URL路径
+  /// 支持参数传递和嵌套路由
   String get path {
-    if (this == AppRoute.splash) return '/'; // Splash is root
-    // Other routes are top-level after splash
+    // 认证流程路由
+    if (this == AppRoute.splash) return '/';               // 根路径为启动页
     if (this == AppRoute.login) return '/login';
     if (this == AppRoute.registration) return '/registration';
     if (this == AppRoute.onboarding) return '/onboarding';
-    // Shell routes
+    
+    // 主功能页面路由（Shell 内部）
     if (this == AppRoute.home) return '/home';
-    // 将二级页面路由修改为顶级路由
+    if (this == AppRoute.achievements) return '/achievements';
+    if (this == AppRoute.settings) return '/settings';
+    
+    // 二级页面路由（顶级导航）
     if (this == AppRoute.healthBenefitsDetail) {
-      return '/health-benefits-detail/:id';
+      return '/health-benefits-detail/:id';  // 支持ID参数
     }
     if (this == AppRoute.cravingCopingStrategies) {
       return '/craving-coping-strategies';
@@ -61,10 +102,8 @@ enum AppRoute {
     if (this == AppRoute.breathingExerciseGuide) {
       return '/breathing-exercise-guide';
     }
-    if (this == AppRoute.achievements) return '/achievements';
-    if (this == AppRoute.settings) return '/settings';
 
-    // 设置页面的二级页面路由
+    // 设置二级页面路由
     if (this == AppRoute.notificationSettings) return '/settings/notifications';
     if (this == AppRoute.smokingData) return '/settings/smoking-data';
     if (this == AppRoute.quitDate) return '/settings/quit-date';
@@ -72,46 +111,79 @@ enum AppRoute {
     if (this == AppRoute.helpSupport) return '/settings/help-support';
     if (this == AppRoute.privacyPolicy) return '/settings/privacy-policy';
 
-    return '/$name'; // Fallback, should not happen with explicit paths
+    return '/$name'; // 默认fallback，通常不会执行到
   }
 }
 
-// Add GlobalKeys for ShellRoute navigators
+// ==================== 导航器键配置 ====================
+
+/// 全局导航器键
+/// 用于管理不同层级的导航堆栈
+
+/// 根导航器 - 管理整个应用的导航
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(
   debugLabel: 'root',
 );
+
+/// Shell 导航器 - 首页Tab
 final GlobalKey<NavigatorState> _shellNavigatorHomeKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellHome');
+
+/// Shell 导航器 - 成就Tab
 final GlobalKey<NavigatorState> _shellNavigatorAchievementsKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellAchievements');
+
+/// Shell 导航器 - 设置Tab
 final GlobalKey<NavigatorState> _shellNavigatorSettingsKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellSettings');
 
+// ==================== 路由提供者 ====================
+
+/// GoRouter 实例提供者
+/// 
+/// 负责：
+/// 1. 监听认证状态变化
+/// 2. 实现基于认证的路由重定向
+/// 3. 配置所有路由规则
+/// 4. 管理导航堆栈
 final routerProvider = Provider<GoRouter>((ref) {
-  // Listen to AuthNotifier for redirect logic
-  // 使用ref.watch而不是ref.read来监听状态变化
+  /// 监听认证状态
+  /// 当用户登录/登出时自动更新路由
   final authState = ref.watch(authNotifierProvider);
-  print('路由提供者检测到认证状态变化: $authState');
+  logDebug('路由提供者检测到认证状态变化: $authState', tag: 'AppRouter');
 
   return GoRouter(
+    // 基础配置
     navigatorKey: _rootNavigatorKey,
-    initialLocation: AppRoute.splash.path,
-    debugLogDiagnostics: true, // Helpful for debugging
+    initialLocation: AppRoute.splash.path,    // 应用启动时的初始路由
+    debugLogDiagnostics: true,                // 开启调试日志
+    
+    /// 路由刷新监听器
+    /// 当认证状态变化时触发路由重新评估
     refreshListenable: _GoRouterRefreshStream(
-      // Keep refresh listenable for auth changes
       ref.read(authNotifierProvider.notifier).stream,
     ),
+    
+    /// 路由重定向逻辑
+    /// 
+    /// 根据用户认证状态和引导完成状态决定重定向目标：
+    /// - 未登录 → 登录页
+    /// - 已登录但未完成引导 → 引导页
+    /// - 已完成引导 → 主应用页面
     redirect: (BuildContext context, GoRouterState state) {
-      // 如果当前状态是加载中，不进行重定向
+      // 认证状态加载中，不进行重定向
       if (authState.maybeWhen(loading: () => true, orElse: () => false)) {
-        print('GoRouter redirect: 认证状态加载中，不进行重定向');
+        logDebug('认证状态加载中，不进行重定向', tag: 'AppRouter');
         return null;
       }
 
+      // 检查登录状态
       final bool loggedIn = authState.maybeWhen(
         authenticated: (_) => true,
         orElse: () => false,
       );
+      
+      // 检查引导完成状态
       final bool onboardingCompleted = authState.maybeWhen(
         authenticated: (userProfile) => userProfile.onboardingCompleted,
         orElse: () => false,
@@ -119,53 +191,57 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       final String currentLocation = state.matchedLocation;
 
-      // 添加调试日志
-      print(
-        'GoRouter redirect: currentLocation=$currentLocation, loggedIn=$loggedIn, onboardingCompleted=$onboardingCompleted, authState=$authState',
+      // 调试日志
+      logDebug(
+        '路由重定向检查: 当前位置=$currentLocation, 已登录=$loggedIn, 引导已完成=$onboardingCompleted',
+        tag: 'AppRouter',
       );
 
-      // 如果当前路径是/home且已登录，则允许导航
+      // 允许已登录用户访问主应用页面
       if ((currentLocation == AppRoute.home.path ||
               currentLocation == AppRoute.healthBenefitsDetail.path ||
               currentLocation == AppRoute.cravingCopingStrategies.path ||
               currentLocation == AppRoute.breathingExerciseGuide.path ||
               currentLocation.startsWith('/settings/')) &&
           loggedIn) {
-        print('GoRouter redirect: 已登录且当前路径是允许的路径，允许导航');
+        logDebug('已登录且当前路径是允许的路径，允许导航', tag: 'AppRouter');
         return null;
       }
 
-      // If not logged in and not on an auth path, redirect to login
+      // 未登录用户重定向逻辑
       if (!loggedIn) {
+        // 允许访问认证相关页面
         if (currentLocation != AppRoute.splash.path &&
             currentLocation != AppRoute.login.path &&
             currentLocation != AppRoute.registration.path) {
-          print('GoRouter redirect: 未登录，重定向到登录页');
+          logInfo('用户未登录，重定向到登录页', tag: 'AppRouter');
           return AppRoute.login.path;
         }
-        return null; // Allow navigation to splash, login, registration
+        return null; // 允许在启动页、登录页、注册页之间导航
       }
 
-      // If logged in but onboarding not complete, and not on onboarding path, redirect to onboarding
+      // 已登录但未完成引导的重定向逻辑
       if (loggedIn && !onboardingCompleted) {
         if (currentLocation != AppRoute.onboarding.path) {
-          print('GoRouter redirect: 已登录但未完成引导，重定向到引导页');
+          logInfo('用户已登录但未完成引导，重定向到引导页', tag: 'AppRouter');
           return AppRoute.onboarding.path;
         }
-        return null; // Allow navigation to onboarding
+        return null; // 允许访问引导页
       }
 
-      // If logged in and onboarding complete, but currently on an auth/onboarding path, redirect to home
+      // 已完成引导的用户重定向逻辑
       if (loggedIn && onboardingCompleted) {
+        // 如果还在认证页面，重定向到主页
         if (currentLocation == AppRoute.splash.path ||
             currentLocation == AppRoute.login.path ||
             currentLocation == AppRoute.registration.path ||
             currentLocation == AppRoute.onboarding.path) {
-          print('GoRouter redirect: 已登录且已完成引导，重定向到主页');
-          return AppRoute.home.path; // Default to home path within shell
+          logInfo('用户已登录且已完成引导，重定向到主页', tag: 'AppRouter');
+          return AppRoute.home.path;
         }
       }
-      return null; // No redirect needed
+      
+      return null; // 无需重定向
     },
     routes: <RouteBase>[
       GoRoute(
@@ -314,10 +390,10 @@ final routerProvider = Provider<GoRouter>((ref) {
 // This class is kept as it's useful for auth-driven navigation.
 class _GoRouterRefreshStream extends ChangeNotifier {
   _GoRouterRefreshStream(Stream<dynamic> stream) {
-    print('_GoRouterRefreshStream 初始化');
+    logDebug('GoRouterRefreshStream 初始化', tag: 'AppRouter');
     notifyListeners(); // 初始化时通知监听器
     _subscription = stream.asBroadcastStream().listen((dynamic data) {
-      print('_GoRouterRefreshStream 收到新的状态变化: $data');
+      logDebug('GoRouterRefreshStream 收到新的状态变化: $data', tag: 'AppRouter');
       notifyListeners();
     });
   }
@@ -326,7 +402,7 @@ class _GoRouterRefreshStream extends ChangeNotifier {
 
   @override
   void dispose() {
-    print('_GoRouterRefreshStream 被释放');
+    logDebug('GoRouterRefreshStream 被释放', tag: 'AppRouter');
     _subscription.cancel();
     super.dispose();
   }

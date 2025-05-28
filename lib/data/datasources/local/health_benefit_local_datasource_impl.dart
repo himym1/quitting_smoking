@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart'; // For Locale
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入日志服务
 import 'package:quitting_smoking/domain/entities/health_benefit_milestone.dart';
 import 'health_benefit_local_datasource.dart';
 
@@ -50,13 +51,15 @@ class HealthBenefitLocalDataSourceImpl implements HealthBenefitLocalDataSource {
           // If English fallback also fails, rethrow the original error or a custom one
           // For simplicity, rethrowing the original error related to the specific locale.
           // Consider logging this error.
-          print(
-            'Error loading health benefits (fallback to EN also failed): $fallbackError',
+          logError(
+            '加载健康效益数据失败，英文备用方案也失败了',
+            tag: 'HealthBenefitLocalDataSource',
+            error: fallbackError,
           );
           throw Exception('Failed to load health benefits data: $e');
         }
       }
-      print('Error loading health benefits: $e');
+      logError('加载健康效益数据时出错', tag: 'HealthBenefitLocalDataSource', error: e);
       throw Exception('Failed to load health benefits data: $e');
     }
   }

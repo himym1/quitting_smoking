@@ -6,8 +6,8 @@ import 'package:quitting_smoking/core/router/app_router.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 import 'package:quitting_smoking/presentation/features/auth/widgets/login_form.dart';
-
-import '../../../../l10n/app_localizations.dart';
+import 'package:quitting_smoking/l10n/app_localizations.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -17,25 +17,32 @@ class LoginPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
 
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
-      print('登录页监听到认证状态变化: $previous -> $next');
+      logDebug('登录页监听到认证状态变化: $previous -> $next', tag: 'LoginPage');
       next.whenOrNull(
         authenticated: (userProfile) {
-          print('登录成功，用户资料: $userProfile, 引导完成状态: ${userProfile.onboardingCompleted}');
+          logInfo(
+            '登录成功，用户资料: $userProfile, 引导完成状态: ${userProfile.onboardingCompleted}',
+            tag: 'LoginPage',
+          );
           // 使用更长的延迟，确保状态已完全更新
           Future.delayed(const Duration(milliseconds: 800), () {
             if (userProfile.onboardingCompleted) {
-              print('将导航到主页');
+              logDebug('将导航到主页', tag: 'LoginPage');
               // 使用更直接的导航方式
-              GoRouter.of(context).go('/home');
+              if (context.mounted) {
+                context.go(AppRoute.home.path);
+              }
             } else {
-              print('将导航到引导页');
-              GoRouter.of(context).go('/onboarding');
+              logDebug('将导航到引导页', tag: 'LoginPage');
+              if (context.mounted) {
+                context.go(AppRoute.onboarding.path);
+              }
             }
           });
         },
         unauthenticated: (message) {
+          logWarning('登录失败，错误信息: $message', tag: 'LoginPage');
           if (message != null && message.isNotEmpty) {
-            print('登录失败，错误信息: $message');
             String displayMessage;
             if (message == 'invalidCredentialsError') {
               displayMessage = l10n.invalidCredentialsError;
@@ -85,9 +92,7 @@ class LoginPage extends ConsumerWidget {
                       // TODO: Implement forgot password functionality
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                            l10n.forgotPasswordNotImplemented,
-                          ),
+                          content: Text(l10n.forgotPasswordNotImplemented),
                         ),
                       );
                     },

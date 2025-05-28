@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
 import 'package:quitting_smoking/domain/entities/unlocked_achievement.dart';
 import 'package:quitting_smoking/domain/repositories/achievement_repository.dart';
+import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
+import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
+import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 
 part 'achievement_notifier.freezed.dart';
 
@@ -96,12 +102,15 @@ class AchievementNotifier extends StateNotifier<AchievementsState> {
   }) async {
     // Validate input parameters
     if (consecutiveDays < 0) {
-      print('Warning: consecutiveDays is negative: $consecutiveDays');
+      logWarning(
+        'consecutiveDays参数为负数: $consecutiveDays',
+        tag: 'AchievementNotifier',
+      );
       return;
     }
 
     if (moneySaved < 0) {
-      print('Warning: moneySaved is negative: $moneySaved');
+      logWarning('moneySaved参数为负数: $moneySaved', tag: 'AchievementNotifier');
       return;
     }
 

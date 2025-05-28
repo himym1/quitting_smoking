@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:go_router/go_router.dart'; // Added for GoRouter.of(context)
 import 'package:quitting_smoking/core/router/app_router.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入日志服务
+import 'package:quitting_smoking/l10n/app_localizations.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/onboarding_notifier.dart';
 import 'package:quitting_smoking/presentation/features/auth/widgets/onboarding_step_quit_date.dart';
 import 'package:quitting_smoking/presentation/features/auth/widgets/onboarding_step_daily_cigarettes.dart';
@@ -11,8 +13,6 @@ import 'package:quitting_smoking/presentation/features/auth/widgets/onboarding_s
 import 'package:quitting_smoking/presentation/features/auth/widgets/onboarding_step_quit_reason.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
-
-import '../../../../l10n/app_localizations.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   static const String routeName = '/onboarding';
@@ -114,7 +114,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           }
         },
       ); // Missing closing parenthesis for whenOrNull
-    // Missing closing bracket for if (next != null)
+      // Missing closing bracket for if (next != null)
     });
 
     final List<Widget> onboardingSteps = [
@@ -182,8 +182,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                                     await notifier.completeOnboarding();
                                 if (success && mounted) {
                                   // Navigation is handled by listening to AuthNotifier
-                                  print(
-                                    "Onboarding complete, waiting for AuthNotifier to navigate.",
+                                  logInfo(
+                                    "引导完成，等待认证系统导航到主页",
+                                    tag: 'OnboardingPage',
                                   );
                                 } else if (!success && mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(

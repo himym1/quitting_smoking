@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:quitting_smoking/core/constants/hive_constants.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/core/services/notification_service.dart';
 
 /// 通知设置状态类
@@ -110,7 +111,7 @@ class NotificationSettingsNotifier extends StateNotifier<NotificationSettings> {
       // 根据当前设置预先安排通知
       _applyNotificationSettings();
     } catch (e) {
-      print('加载通知设置出错: $e');
+      logError('加载通知设置出错', tag: 'NotificationProvider', error: e);
       // 出错时保持默认设置
     }
   }
@@ -124,7 +125,7 @@ class NotificationSettingsNotifier extends StateNotifier<NotificationSettings> {
       // 应用新的通知设置
       _applyNotificationSettings();
     } catch (e) {
-      print('保存通知设置出错: $e');
+      logError('保存通知设置出错', tag: 'NotificationProvider', error: e);
     }
   }
 
@@ -143,7 +144,7 @@ class NotificationSettingsNotifier extends StateNotifier<NotificationSettings> {
       bool permissionGranted = await _notificationService.requestPermission();
 
       if (!permissionGranted) {
-        print('通知权限被拒绝');
+        logWarning('通知权限被拒绝', tag: 'NotificationProvider');
         return;
       }
 
@@ -155,7 +156,7 @@ class NotificationSettingsNotifier extends StateNotifier<NotificationSettings> {
 
       // 未来可以在这里添加更多的通知类型安排
     } catch (e) {
-      print('应用通知设置出错: $e');
+      logError('应用通知设置出错', tag: 'NotificationProvider', error: e);
     }
   }
 

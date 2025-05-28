@@ -1,6 +1,29 @@
+/**
+ * 焕新之旅 - 戒烟辅助应用
+ * 
+ * 首页/主看板 (HomePage)
+ * 功能：
+ * 1. 实时显示戒烟进度统计（时长、金钱、香烟数量）
+ * 2. 展示健康效益快览卡片
+ * 3. 显示用户戒烟宣言/理由
+ * 4. 提供每日打卡功能
+ * 5. 展示月度吸烟日历
+ * 6. 提供"我想吸烟"应急按钮
+ * 
+ * 页面结构：
+ * - AppBar: 应用标题
+ * - 滚动内容区域：
+ *   * 实时进度追踪卡片
+ *   * 健康效益预览卡片
+ *   * 戒烟宣言展示
+ *   * 每日打卡区域
+ *   * 月度吸烟记录日历
+ * - 悬浮按钮：应急求助按钮
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart'; // For number formatting
+import 'package:intl/intl.dart'; // 数字格式化
 import 'package:quitting_smoking/domain/entities/user_profile.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
 import 'package:quitting_smoking/presentation/features/home/providers/daily_check_in_notifier.dart';
@@ -10,39 +33,58 @@ import 'package:go_router/go_router.dart';
 import 'package:quitting_smoking/presentation/widgets/monthly_smoking_calendar.dart';
 import 'package:quitting_smoking/presentation/providers/smoking_record_provider.dart';
 import 'package:quitting_smoking/main.dart';
+import '../../../../l10n/app_localizations.dart'; // 国际化支持
 
-import '../../../../l10n/app_localizations.dart'; // For navigation
-
+/// 首页组件
+///
+/// 应用的主要功能页面，展示戒烟进度和相关功能入口
+/// 使用 ConsumerWidget 以便访问 Riverpod 状态管理
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 获取本地化文本
     final localizations = AppLocalizations.of(context);
+
+    // 监听首页统计数据状态
     final statsState = ref.watch(homeDashboardStatsProvider);
+
+    // 监听用户认证状态
     final authState = ref.watch(authNotifierProvider);
 
+    // 提取用户档案信息
     UserProfile? userProfile;
     authState.whenOrNull(authenticated: (up) => userProfile = up);
 
     return Scaffold(
+      /// 应用栏配置
+      /// 显示应用标题，禁用返回按钮（因为这是Tab页面）
       appBar: AppBar(
         title: Text(localizations.appTitle),
-        automaticallyImplyLeading: false, // No back arrow
-        elevation: 0,
+        automaticallyImplyLeading: false, // 不显示返回箭头
+        elevation: 0, // 无阴影，与内容融合
       ),
+
+      /// 主体内容区域
+      /// 使用 ListView 实现垂直滚动布局
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
         children: [
-          // 1. Real-time Progress Tracking Area
+          // ==================== 核心功能区域 ====================
+
+          /// 1. 实时进度追踪区域
+          /// 显示戒烟时长、节省金额、少吸烟支数等核心指标
           _buildProgressTrackingSection(context, localizations, statsState),
           const SizedBox(height: 16),
 
-          // 2. Health Benefits Overview Area
+          /// 2. 健康效益概览区域
+          /// 显示当前阶段的健康恢复里程碑
           _buildHealthBenefitsSection(context, localizations, ref),
           const SizedBox(height: 16),
 
-          // 3. My Quit Reason/Declaration Area
+          /// 3. 戒烟宣言/理由展示区域
+          /// 显示用户在初始设置中填写的戒烟动机
           _buildQuitReasonSection(
             context,
             localizations,
@@ -50,44 +92,62 @@ class HomePage extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
 
-          // 4. Daily Check-in Area
+          /// 4. 每日打卡区域
+          /// 提供每日坚持戒烟的确认功能
           _buildDailyCheckInSection(context, localizations, ref),
           const SizedBox(height: 16),
 
-          // 5. Monthly Smoking Calendar
+          /// 5. 月度吸烟日历
+          /// 可视化展示每月的吸烟记录情况
           _buildMonthlySmokingCalendar(context, ref, localizations),
-          const SizedBox(height: 32), // Extra space before the emergency button
+          const SizedBox(height: 32), // 为悬浮按钮留出额外空间
         ],
       ),
+
+      /// 悬浮操作按钮配置
+      /// 位置：屏幕底部居中悬浮
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+      /// "我想吸烟"应急按钮
+      /// 醒目的红色按钮，提供即时的烟瘾应对支持
       floatingActionButton: _buildEmergencyButton(context, localizations),
     );
   }
 
+  /// 构建实时进度追踪区域
+  ///
+  /// 显示戒烟核心统计数据：
+  /// - 戒烟时长（天/时/分/秒）
+  /// - 节省金额（格式化货币显示）
+  /// - 少吸烟支数
+  /// - 预估延长寿命
   Widget _buildProgressTrackingSection(
     BuildContext context,
     AppLocalizations localizations,
     HomeDashboardStatsState stats,
   ) {
-    final d = stats.quitDuration.inDays;
-    final h = stats.quitDuration.inHours % 24;
-    final m = stats.quitDuration.inMinutes % 60;
-    final s = stats.quitDuration.inSeconds % 60;
+    // 计算戒烟时长的各个单位
+    final d = stats.quitDuration.inDays; // 天数
+    final h = stats.quitDuration.inHours % 24; // 小时（除去完整天数）
+    final m = stats.quitDuration.inMinutes % 60; // 分钟（除去完整小时）
+    final s = stats.quitDuration.inSeconds % 60; // 秒数（除去完整分钟）
 
+    // 格式化节省金额为中文货币格式
     final moneySavedFormatted = NumberFormat.currency(
       locale: 'zh_CN',
       symbol: '¥',
-      decimalDigits: 0,
+      decimalDigits: 0, // 不显示小数位
     ).format(stats.moneySaved);
 
     return Card(
-      elevation: 3,
+      elevation: 3, // 卡片阴影
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(14.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 区域标题行
             Row(
               children: [
                 Icon(
@@ -105,6 +165,8 @@ class HomePage extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 12),
+
+            // 戒烟时长显示（居中大字体）
             Center(
               child: Text(
                 localizations.homeProgressTime(
@@ -121,10 +183,13 @@ class HomePage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 14),
-            // 将统计信息做成行式布局
+
+            // 统计数据行式布局
+            // 包含：节省金额、少吸烟支数、延长寿命
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // 节省金额列
                 Column(
                   children: [
                     Icon(Icons.savings, color: Colors.green[700], size: 22),
@@ -144,6 +209,8 @@ class HomePage extends ConsumerWidget {
                     ),
                   ],
                 ),
+
+                // 少吸烟支数列
                 Column(
                   children: [
                     Icon(Icons.smoke_free, color: Colors.blue[700], size: 22),
@@ -163,13 +230,15 @@ class HomePage extends ConsumerWidget {
                     ),
                   ],
                 ),
+
+                // 延长寿命列（基于简单估算：每支烟减少11分钟寿命）
                 Column(
                   children: [
                     Icon(Icons.favorite, color: Colors.red[700], size: 22),
                     const SizedBox(height: 4),
                     Text(
                       ((stats.cigarettesNotSmoked * 11) / (24 * 60))
-                          .toStringAsFixed(1),
+                          .toStringAsFixed(1), // 转换为天数，保留1位小数
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.red[700],
@@ -191,6 +260,10 @@ class HomePage extends ConsumerWidget {
     );
   }
 
+  /// 构建健康效益概览区域
+  ///
+  /// 显示当前戒烟阶段对应的健康恢复里程碑
+  /// 支持点击跳转到详情页查看完整时间轴
   Widget _buildHealthBenefitsSection(
     BuildContext context,
     AppLocalizations localizations,

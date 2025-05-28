@@ -6,6 +6,7 @@ import 'package:quitting_smoking/core/router/app_router.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 import 'package:quitting_smoking/presentation/features/auth/widgets/registration_form.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 
 import '../../../../l10n/app_localizations.dart';
 
@@ -17,21 +18,28 @@ class RegistrationPage extends ConsumerWidget {
     final localizations = AppLocalizations.of(context);
 
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
-      print('注册页监听到认证状态变化: $previous -> $next');
+      logDebug('注册页监听到认证状态变化: $previous -> $next', tag: 'RegistrationPage');
       next.maybeWhen(
         authenticated: (userProfile) {
-          print('注册成功，用户资料: $userProfile, 引导完成状态: ${userProfile.onboardingCompleted}');
+          logInfo(
+            '注册成功，用户资料: $userProfile, 引导完成状态: ${userProfile.onboardingCompleted}',
+            tag: 'RegistrationPage',
+          );
           // 添加延迟，确保状态已完全更新
           Future.delayed(const Duration(milliseconds: 800), () {
             // Navigate to onboarding or home based on onboardingCompleted status
             if (!userProfile.onboardingCompleted) {
-              print('将导航到引导页');
-              GoRouter.of(context).go('/onboarding');
+              logDebug('将导航到引导页', tag: 'RegistrationPage');
+              if (context.mounted) {
+                context.go(AppRoute.onboarding.path);
+              }
             } else {
               // This case might be less common directly after registration
               // but good to handle if registration implies auto-login and profile already existed.
-              print('将导航到主页');
-              GoRouter.of(context).go('/home');
+              logDebug('将导航到主页', tag: 'RegistrationPage');
+              if (context.mounted) {
+                context.go(AppRoute.home.path);
+              }
             }
           });
         },

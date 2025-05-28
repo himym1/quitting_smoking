@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/domain/entities/achievement_definition.dart';
+import 'package:quitting_smoking/domain/entities/unlocked_achievement.dart';
 import 'package:quitting_smoking/l10n/app_localizations.dart';
 
 import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
+import 'package:quitting_smoking/presentation/features/achievements/providers/achievement_notifier.dart';
 import 'package:quitting_smoking/presentation/features/achievements/widgets/achievement_unlocked_modal.dart';
+import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
+import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 import 'package:quitting_smoking/core/utils/localization_extensions.dart';
 
 /// A page that displays the user's achievements.
@@ -351,7 +357,7 @@ class AchievementsPage extends ConsumerWidget {
       final controller = ref.read(achievementControllerProvider.notifier);
       await controller.clearAllAchievements();
     } catch (e) {
-      print('Error resetting achievements: $e');
+      logError('重置成就时出错', tag: 'AchievementsPage', error: e);
     }
   }
 }

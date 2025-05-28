@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:quitting_smoking/core/constants/hive_constants.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/domain/entities/user_profile.dart';
 import 'user_local_datasource.dart';
 
@@ -30,7 +31,7 @@ class UserLocalDatasourceImpl implements UserLocalDatasource {
       await _userProfileBox.delete(HiveConstants.userProfileKey);
       return true;
     } catch (e) {
-      print('删除用户资料时出错: $e');
+      logError('删除用户资料时出错', tag: 'UserLocalDatasource', error: e);
       return false;
     }
   }

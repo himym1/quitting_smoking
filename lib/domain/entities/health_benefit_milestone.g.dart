@@ -10,8 +10,7 @@ _$HealthBenefitMilestoneImpl _$$HealthBenefitMilestoneImplFromJson(
         Map<String, dynamic> json) =>
     _$HealthBenefitMilestoneImpl(
       id: json['id'] as String,
-      timeThresholdInMinutes:
-          (json['timeThresholdInMinutes'] as num?)?.toInt() ?? 0,
+      timeThresholdInMinutes: (json['timeThresholdInMinutes'] as num).toInt(),
       titleKey: json['titleKey'] as String,
       descriptionKey: json['descriptionKey'] as String,
       iconName: json['iconName'] as String?,

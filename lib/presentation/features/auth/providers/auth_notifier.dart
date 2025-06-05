@@ -3,10 +3,14 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/domain/entities/user_profile.dart';
 import 'package:quitting_smoking/domain/repositories/user_profile_repository.dart';
+import 'package:quitting_smoking/domain/repositories/auth_repository.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
-import 'package:quitting_smoking/data/repositories_impl/user_profile_repository_impl.dart'; // Assuming this is the concrete implementation
+import 'package:quitting_smoking/data/repositories_impl/user_profile_repository_impl.dart';
 import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
-import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入日志服务
+import 'package:quitting_smoking/core/services/logger_service.dart';
+import 'package:quitting_smoking/core/errors/network_exceptions.dart';
+import 'package:quitting_smoking/presentation/providers/auth_provider.dart'
+    as new_auth;
 
 // Placeholder for UserProfileRepository provider - Now using the concrete implementation's provider
 // final userProfileRepositoryProvider = Provider<UserProfileRepository>((ref) {
@@ -16,16 +20,19 @@ import 'package:quitting_smoking/core/services/logger_service.dart'; // 引入�
 class AuthNotifier extends StateNotifier<AuthState> {
   final Ref _ref;
   late final UserProfileRepository _userProfileRepository;
+  late final AuthRepository _authRepository;
 
   // 添加一个状态流控制器
   final StreamController<AuthState> _streamController =
       StreamController<AuthState>.broadcast();
 
   // 暴露状态流给GoRouter使用
+  @override
   Stream<AuthState> get stream => _streamController.stream;
 
   AuthNotifier(this._ref) : super(const AuthState.initial()) {
     _userProfileRepository = _ref.read(userProfileRepositoryProvider);
+    _authRepository = _ref.read(new_auth.authRepositoryProvider);
     // 在构造函数中调用检查认证状态的方法
     checkAuthStatus();
   }
@@ -36,16 +43,37 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = const AuthState.loading();
 
     try {
-      // 从本地存储获取用户资料
-      final userProfile = await _userProfileRepository.getUserProfile();
+      // 首先检查是否有有效的认证令牌
+      final isLoggedIn = await _authRepository.isLoggedIn();
 
-      if (userProfile != null) {
-        logInfo('找到已保存的用户资料: ${userProfile.userId}', tag: 'AuthNotifier');
-        // 用户已经登录，设置认证状态
-        state = AuthState.authenticated(userProfile);
-        logInfo('用户已认证，认证状态已恢复', tag: 'AuthNotifier');
+      if (isLoggedIn) {
+        // 检查令牌是否即将过期，如果是则尝试刷新
+        final isExpiringSoon = await _authRepository.isTokenExpiringSoon();
+        if (isExpiringSoon) {
+          try {
+            await _authRepository.refreshToken();
+            logInfo('令牌已自动刷新', tag: 'AuthNotifier');
+          } catch (e) {
+            logWarning('令牌刷新失败，需要重新登录', tag: 'AuthNotifier');
+            state = const AuthState.unauthenticated();
+            return;
+          }
+        }
+
+        // 从本地存储获取用户资料
+        final userProfile = await _userProfileRepository.getUserProfile();
+
+        if (userProfile != null) {
+          logInfo('找到已保存的用户资料: ${userProfile.userId}', tag: 'AuthNotifier');
+          state = AuthState.authenticated(userProfile);
+          logInfo('用户已认证，认证状态已恢复', tag: 'AuthNotifier');
+        } else {
+          logWarning('有认证令牌但无用户资料，清除认证状态', tag: 'AuthNotifier');
+          await _authRepository.logout();
+          state = const AuthState.unauthenticated();
+        }
       } else {
-        logInfo('未找到已保存的用户资料，用户未认证', tag: 'AuthNotifier');
+        logInfo('未找到有效的认证令牌，用户未认证', tag: 'AuthNotifier');
         state = const AuthState.unauthenticated();
       }
     } catch (e) {
@@ -65,50 +93,34 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<void> login(String email, String password) async {
     logInfo('开始登录过程: email=$email', tag: 'AuthNotifier');
     state = const AuthState.loading();
-    await Future.delayed(const Duration(seconds: 1));
 
-    // 测试账号，在实际应用中应该调用API
-    // 修改为接受任何邮箱格式，仅做简单密码验证
-    if (password.length >= 3) {
-      logInfo('登录凭证验证成功', tag: 'AuthNotifier');
-      // Simulate fetching user profile after successful login
-      // In a real app, you'd fetch this based on user ID from login response
-      UserProfile? userProfile = await _userProfileRepository.getUserProfile();
-      logDebug(
-        '获取用户资料结果: ${userProfile != null ? '存在' : '不存在'}',
+    try {
+      // 使用真实的API进行登录
+      final authResult = await _authRepository.login(
+        email: email,
+        password: password,
+      );
+
+      logInfo(
+        'API登录成功，用户ID: ${authResult.userProfile.userId}',
         tag: 'AuthNotifier',
       );
 
-      if (userProfile == null) {
-        // First time login or profile not created, create a mock one
-        userProfile = UserProfile(
-          userId: 'mockUserId-login-${DateTime.now().millisecondsSinceEpoch}',
-          // email: email, // UserProfile does not have an email field
-          quitDateTime: DateTime.now(),
-          dailyCigarettes: 0,
-          packPrice: 0.0,
-          smokingYears: 0,
-          quitReason: "Mocked reason for login",
-          onboardingCompleted: false, // 保持为false，以便新用户进入引导页
-        );
-        logDebug('创建新用户资料: $userProfile', tag: 'AuthNotifier');
-        await _userProfileRepository.saveUserProfile(userProfile);
-        logInfo('保存用户资料成功', tag: 'AuthNotifier');
-      } else if (!userProfile.onboardingCompleted) {
-        // User exists but hasn't completed onboarding
-        logInfo('用户 ${userProfile.userId} 存在，但未完成引导', tag: 'AuthNotifier');
-        // 保留onboardingCompleted状态，以便新注册用户可以进入引导页
-        // 不做任何修改，让路由系统将用户引导到正确的页面
+      // 保存用户资料到本地（如果API返回的资料更完整）
+      await _userProfileRepository.saveUserProfile(authResult.userProfile);
+
+      // 设置认证状态
+      state = AuthState.authenticated(authResult.userProfile);
+      logInfo('认证状态更新完成', tag: 'AuthNotifier');
+    } catch (e) {
+      logError('登录失败', tag: 'AuthNotifier', error: e);
+
+      String errorMessage = 'loginFailedError';
+      if (e is NetworkException) {
+        errorMessage = _getNetworkErrorMessage(e);
       }
 
-      logDebug('设置认证状态为authenticated', tag: 'AuthNotifier');
-      state = AuthState.authenticated(userProfile);
-      logInfo('认证状态更新完成: $state', tag: 'AuthNotifier');
-    } else {
-      logWarning('登录凭证验证失败', tag: 'AuthNotifier');
-      state = const AuthState.unauthenticated(
-        message: 'invalidCredentialsError',
-      );
+      state = AuthState.unauthenticated(message: errorMessage);
     }
   }
 
@@ -118,78 +130,95 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }) async {
     logInfo('开始注册过程: email=$email', tag: 'AuthNotifier');
     state = const AuthState.loading();
-    await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
 
-    if (email == 'existing@example.com') {
-      logWarning('邮箱已存在，注册失败', tag: 'AuthNotifier');
-      state = const AuthState.unauthenticated(
-        message: 'emailAlreadyInUseError', // Key for l10n
-      );
-      return;
-    }
-
-    // Simulate successful registration
     try {
-      logInfo('注册验证成功，创建新用户资料', tag: 'AuthNotifier');
-      final newUserProfile = UserProfile(
-        userId:
-            'mockUserId-reg-${email.hashCode}-${DateTime.now().millisecondsSinceEpoch}',
-        // email: email, // UserProfile does not have an email field
-        // Set other fields to default/initial values as onboarding will handle them
-        quitDateTime: null, // Will be set during onboarding
-        dailyCigarettes: null,
-        packPrice: null,
-        smokingYears: null,
-        quitReason: null,
-        onboardingCompleted: false, // User needs to go through onboarding
+      // 使用真实的API进行注册
+      final authResult = await _authRepository.register(
+        email: email,
+        password: password,
+        agreeToTerms: true, // 假设用户已同意条款
       );
 
-      logDebug('新用户资料: $newUserProfile', tag: 'AuthNotifier');
-      logDebug(
-        '引导完成状态: ${newUserProfile.onboardingCompleted}',
+      logInfo(
+        'API注册成功，用户ID: ${authResult.userProfile.userId}',
         tag: 'AuthNotifier',
       );
 
-      await _userProfileRepository.saveUserProfile(newUserProfile);
-      logInfo('保存新用户资料成功', tag: 'AuthNotifier');
+      // 保存用户资料到本地
+      await _userProfileRepository.saveUserProfile(authResult.userProfile);
 
-      // After registration, user is considered authenticated and onboarding is pending
-      logDebug('设置认证状态为authenticated，引导完成状态为false', tag: 'AuthNotifier');
-      state = AuthState.authenticated(newUserProfile);
-      logInfo('认证状态更新完成: $state', tag: 'AuthNotifier');
+      // 设置认证状态
+      state = AuthState.authenticated(authResult.userProfile);
+      logInfo('认证状态更新完成', tag: 'AuthNotifier');
     } catch (e) {
       logError('注册失败', tag: 'AuthNotifier', error: e);
-      state = const AuthState.unauthenticated(
-        message: 'registrationFailedError', // Key for l10n
-      );
+
+      String errorMessage = 'registrationFailedError';
+      if (e is NetworkException) {
+        errorMessage = _getNetworkErrorMessage(e);
+      }
+
+      state = AuthState.unauthenticated(message: errorMessage);
     }
   }
 
   Future<void> logout() async {
     state = const AuthState.loading();
-    // 实际清除用户数据
+
     try {
+      // 使用真实的API进行登出
+      await _authRepository.logout();
+
+      // 清除本地用户资料（可选，根据业务需求）
       final userProfile = await _userProfileRepository.getUserProfile();
       if (userProfile != null) {
-        // 真正地删除用户资料，以便完全登出
-        final success = await _userProfileRepository.deleteUserProfile(
+        await _userProfileRepository.deleteUserProfile(
           userProfile.userId ?? '',
         );
-        if (success) {
-          logInfo('用户资料已从存储中删除，用户完全登出', tag: 'AuthNotifier');
-        } else {
-          logWarning('删除用户资料失败，但状态仍将重置', tag: 'AuthNotifier');
-        }
-      } else {
-        logInfo('找不到用户资料，但状态仍将重置', tag: 'AuthNotifier');
+        logInfo('本地用户资料已清除', tag: 'AuthNotifier');
       }
+
+      state = const AuthState.unauthenticated();
+      logInfo('用户已登出，状态重置为未认证', tag: 'AuthNotifier');
     } catch (e) {
       logError('登出过程中出错', tag: 'AuthNotifier', error: e);
+      // 即使API登出失败，也要清除本地状态
+      state = const AuthState.unauthenticated();
     }
+  }
 
-    await Future.delayed(const Duration(milliseconds: 500));
-    state = const AuthState.unauthenticated();
-    logInfo('用户已登出，状态重置为未认证', tag: 'AuthNotifier');
+  /// 获取网络错误的用户友好消息
+  String _getNetworkErrorMessage(NetworkException exception) {
+    return exception.when(
+      requestCancelled: () => 'requestCancelledError',
+      unauthorizedRequest: (_) => 'invalidCredentialsError',
+      badRequest: (_) => 'invalidInputError',
+      notFound: (_) => 'serviceNotFoundError',
+      methodNotAllowed: () => 'methodNotAllowedError',
+      notAcceptable: () => 'requestNotAcceptableError',
+      requestTimeout: () => 'requestTimeoutError',
+      sendTimeout: () => 'sendTimeoutError',
+      conflict: (_) => 'dataConflictError',
+      internalServerError: () => 'serverInternalError',
+      serviceUnavailable: () => 'serviceUnavailableError',
+      noInternetConnection: () => 'noInternetConnectionError',
+      formatException: () => 'dataFormatError',
+      unableToProcess: () => 'unableToProcessError',
+      defaultError: (_) => 'unknownError',
+      unexpectedError: () => 'unexpectedError',
+      // 业务特定异常
+      syncFailed: (_) => 'syncFailedError',
+      checkInFailed: (_) => 'checkInFailedError',
+      checkInAlreadyExists: (_) => 'checkInAlreadyExistsError',
+      checkInNotFound: (_) => 'checkInNotFoundError',
+      smokingRecordFailed: (_) => 'smokingRecordFailedError',
+      smokingRecordNotFound: (_) => 'smokingRecordNotFoundError',
+      invalidSmokingData: (_) => 'invalidSmokingDataError',
+      achievementFailed: (_) => 'achievementFailedError',
+      achievementAlreadyUnlocked: (_) => 'achievementAlreadyUnlockedError',
+      achievementNotFound: (_) => 'achievementNotFoundError',
+      achievementConditionNotMet: (_) => 'achievementConditionNotMetError',
+    );
   }
 
   void completeOnboarding(UserProfile updatedProfile) async {
@@ -264,7 +293,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (e) {
       logError('更新戒烟日期时出错', tag: 'AuthNotifier', error: e);
       // 可以在此处添加错误处理逻辑
-      throw e; // 重新抛出异常，以便调用者可以捕获
+      rethrow; // 重新抛出异常，以便调用者可以捕获
     }
   }
 

@@ -4,13 +4,18 @@ import 'package:quitting_smoking/data/datasources/local/smoking_record_local_dat
 import 'package:quitting_smoking/data/repositories_impl/smoking_record_repository_impl.dart';
 import 'package:quitting_smoking/domain/entities/smoking_record.dart';
 import 'package:quitting_smoking/domain/repositories/smoking_record_repository.dart';
+import 'package:quitting_smoking/core/providers/network_providers.dart';
 
 // Repository provider
 final smokingRecordRepositoryProvider = Provider<SmokingRecordRepository>((
   ref,
 ) {
+  final localDataSource = SmokingRecordLocalDataSourceImpl(Hive);
+  final remoteDataSource = ref.watch(smokingRecordRemoteDataSourceProvider);
+
   return SmokingRecordRepositoryImpl(
-    localDataSource: SmokingRecordLocalDataSourceImpl(Hive),
+    localDataSource: localDataSource,
+    remoteDataSource: remoteDataSource,
   );
 });
 

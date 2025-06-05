@@ -20,18 +20,38 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfile {
+  /// 用户ID (可选)
+  /// 用于未来的用户账户系统集成
   @HiveField(0)
   String? get userId => throw _privateConstructorUsedError;
+
+  /// 戒烟开始日期和时间
+  /// 用于计算戒烟时长、节省金额等核心指标
   @HiveField(1)
   DateTime? get quitDateTime => throw _privateConstructorUsedError;
+
+  /// 每日吸烟量 (支/天)
+  /// 用于计算少吸烟支数和健康效益
   @HiveField(2)
   int? get dailyCigarettes => throw _privateConstructorUsedError;
+
+  /// 每包香烟价格 (元)
+  /// 用于计算节省的金额
   @HiveField(3)
   double? get packPrice => throw _privateConstructorUsedError;
+
+  /// 吸烟年数 (可选)
+  /// 用于健康效益的个性化展示
   @HiveField(4)
   int? get smokingYears => throw _privateConstructorUsedError;
+
+  /// 戒烟理由/宣言
+  /// 用户的戒烟动机，在关键时刻提供激励
   @HiveField(5)
   String? get quitReason => throw _privateConstructorUsedError;
+
+  /// 是否完成了初始引导流程
+  /// 控制用户首次使用的引导体验
   @HiveField(6)
   bool get onboardingCompleted => throw _privateConstructorUsedError;
 
@@ -205,24 +225,44 @@ class _$UserProfileImpl extends _UserProfile {
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileImplFromJson(json);
 
+  /// 用户ID (可选)
+  /// 用于未来的用户账户系统集成
   @override
   @HiveField(0)
   final String? userId;
+
+  /// 戒烟开始日期和时间
+  /// 用于计算戒烟时长、节省金额等核心指标
   @override
   @HiveField(1)
   final DateTime? quitDateTime;
+
+  /// 每日吸烟量 (支/天)
+  /// 用于计算少吸烟支数和健康效益
   @override
   @HiveField(2)
   final int? dailyCigarettes;
+
+  /// 每包香烟价格 (元)
+  /// 用于计算节省的金额
   @override
   @HiveField(3)
   final double? packPrice;
+
+  /// 吸烟年数 (可选)
+  /// 用于健康效益的个性化展示
   @override
   @HiveField(4)
   final int? smokingYears;
+
+  /// 戒烟理由/宣言
+  /// 用户的戒烟动机，在关键时刻提供激励
   @override
   @HiveField(5)
   final String? quitReason;
+
+  /// 是否完成了初始引导流程
+  /// 控制用户首次使用的引导体验
   @override
   @JsonKey()
   @HiveField(6)
@@ -295,24 +335,44 @@ abstract class _UserProfile extends UserProfile {
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
       _$UserProfileImpl.fromJson;
 
+  /// 用户ID (可选)
+  /// 用于未来的用户账户系统集成
   @override
   @HiveField(0)
   String? get userId;
+
+  /// 戒烟开始日期和时间
+  /// 用于计算戒烟时长、节省金额等核心指标
   @override
   @HiveField(1)
   DateTime? get quitDateTime;
+
+  /// 每日吸烟量 (支/天)
+  /// 用于计算少吸烟支数和健康效益
   @override
   @HiveField(2)
   int? get dailyCigarettes;
+
+  /// 每包香烟价格 (元)
+  /// 用于计算节省的金额
   @override
   @HiveField(3)
   double? get packPrice;
+
+  /// 吸烟年数 (可选)
+  /// 用于健康效益的个性化展示
   @override
   @HiveField(4)
   int? get smokingYears;
+
+  /// 戒烟理由/宣言
+  /// 用户的戒烟动机，在关键时刻提供激励
   @override
   @HiveField(5)
   String? get quitReason;
+
+  /// 是否完成了初始引导流程
+  /// 控制用户首次使用的引导体验
   @override
   @HiveField(6)
   bool get onboardingCompleted;

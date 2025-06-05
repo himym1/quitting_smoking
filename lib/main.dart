@@ -29,6 +29,7 @@ import 'package:quitting_smoking/domain/repositories/health_benefit_repository.d
 import 'package:quitting_smoking/data/repositories_impl/health_benefit_repository_impl.dart';
 import 'package:quitting_smoking/core/services/notification_service.dart';
 import 'package:quitting_smoking/core/providers/locale_provider.dart';
+import 'package:quitting_smoking/core/providers/network_providers.dart';
 
 // ==================== 依赖注入 Provider 配置 ====================
 
@@ -43,7 +44,11 @@ final dailyCheckInLocalDataSourceProvider =
 /// 功能：封装每日打卡的业务逻辑，连接数据层和领域层
 final dailyCheckInRepositoryProvider = Provider<DailyCheckInRepository>((ref) {
   final localDataSource = ref.watch(dailyCheckInLocalDataSourceProvider);
-  return DailyCheckInRepositoryImpl(localDataSource: localDataSource);
+  final remoteDataSource = ref.watch(dailyCheckInRemoteDataSourceProvider);
+  return DailyCheckInRepositoryImpl(
+    localDataSource: localDataSource,
+    remoteDataSource: remoteDataSource,
+  );
 });
 
 /// 健康效益本地数据源 Provider
@@ -76,7 +81,11 @@ final achievementLocalDataSourceProvider = Provider<AchievementLocalDataSource>(
 /// 功能：管理用户成就的解锁、查询等业务逻辑
 final achievementRepositoryProvider = Provider<AchievementRepository>((ref) {
   final localDataSource = ref.watch(achievementLocalDataSourceProvider);
-  return AchievementRepositoryImpl(localDataSource: localDataSource);
+  final remoteDataSource = ref.watch(achievementRemoteDataSourceProvider);
+  return AchievementRepositoryImpl(
+    localDataSource: localDataSource,
+    remoteDataSource: remoteDataSource,
+  );
 });
 
 // ==================== 应用程序主入口 ====================

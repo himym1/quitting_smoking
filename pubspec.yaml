@@ -39,6 +39,7 @@ dependencies:
   flutter_riverpod: ^2.5.1 # 添加 flutter_riverpod
   freezed_annotation: ^2.4.1 # 添加 freezed_annotation
   json_annotation: ^4.9.0 # 添加 json_annotation
+  hive: ^2.2.3 # Hive数据库
   hive_flutter:
   path_provider:
   go_router: ^15.1.2
@@ -51,6 +52,15 @@ dependencies:
   timezone: ^0.10.1 # 添加 timezone 用于处理时区
   flutter_timezone: ^4.1.1 # 降级到更稳定的版本
   flutter_svg: ^2.1.0
+  # 网络请求相关依赖
+  dio: ^5.4.0 # HTTP客户端
+  retrofit: ^4.0.3 # API客户端代码生成
+  # 安全存储
+  flutter_secure_storage: ^9.0.0 # 安全存储JWT令牌
+  # 网络状态检测
+  connectivity_plus: ^5.0.2 # 网络连接状态监听
+  # 设备信息
+  device_info_plus: ^9.1.2 # 设备信息获取
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +71,8 @@ dev_dependencies:
   hive_generator: ^2.0.1 # 添加 hive_generator
   flutter_launcher_icons: ^0.13.1 # 添加 flutter_launcher_icons
   flutter_native_splash: ^2.4.1 # 添加 flutter_native_splash
+  # 网络层代码生成
+  retrofit_generator: ^8.0.6 # Retrofit API客户端生成器
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

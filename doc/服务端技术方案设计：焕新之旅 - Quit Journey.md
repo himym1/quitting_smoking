@@ -66,11 +66,11 @@
 ### 2.2 技术栈选择
 
 #### 后端技术栈
-- **编程语言**: Node.js (TypeScript) / Python (FastAPI) / Go
-- **Web框架**: Express.js / FastAPI / Gin
+- **编程语言**: Kotlin
+- **Web框架**: Spring Boot 3.x
 - **数据库**: PostgreSQL (主数据库) + Redis (缓存)
-- **认证**: JWT + OAuth 2.0
-- **API文档**: OpenAPI/Swagger
+- **认证**: Spring Security + JWT
+- **API文档**: SpringDoc OpenAPI 3
 - **消息队列**: Redis Pub/Sub / RabbitMQ
 
 #### 基础设施
@@ -78,21 +78,21 @@
 - **编排**: Kubernetes (生产环境)
 - **云服务**: AWS / Google Cloud / 阿里云
 - **CDN**: CloudFlare / AWS CloudFront
-- **监控**: Prometheus + Grafana
+- **监控**: Prometheus + Grafana + Micrometer
 - **日志**: ELK Stack (Elasticsearch + Logstash + Kibana)
 
-#### 推荐技术栈 (Node.js)
-```json
-{
-  "runtime": "Node.js 18+",
-  "framework": "Express.js + TypeScript",
-  "database": "PostgreSQL 15+",
-  "cache": "Redis 7+",
-  "orm": "Prisma / TypeORM",
-  "validation": "Joi / Zod",
-  "testing": "Jest + Supertest",
-  "documentation": "Swagger/OpenAPI 3.0"
-}
+#### 推荐技术栈 (Kotlin + Spring Boot)
+```yaml
+runtime: "JDK 17+"
+language: "Kotlin 1.9.x"
+framework: "Spring Boot 3.2.x"
+database: "PostgreSQL 15+"
+cache: "Redis 7+"
+orm: "Spring Data JPA + Hibernate"
+validation: "Spring Boot Validation"
+testing: "JUnit 5 + MockK + TestContainers"
+documentation: "SpringDoc OpenAPI 3.0"
+build_tool: "Gradle 8.x (Kotlin DSL)"
 ```
 
 ## 三、API 设计
@@ -497,17 +497,24 @@ CREATE TABLE data_change_logs (
 #### 6.1.1 Docker 配置
 ```dockerfile
 # Dockerfile
-FROM node:18-alpine
+FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
 
-COPY . .
-EXPOSE 3000
+# 复制 Gradle 构建文件
+COPY build.gradle.kts settings.gradle.kts ./
+COPY gradle/ gradle/
+COPY gradlew ./
 
-USER node
-CMD ["npm", "start"]
+# 复制源代码
+COPY src/ src/
+
+# 构建应用
+RUN ./gradlew build -x test
+
+# 运行应用
+EXPOSE 8080
+CMD ["java", "-jar", "build/libs/quit-journey-backend-1.0.0.jar"]
 ```
 
 #### 6.1.2 Docker Compose 配置
@@ -517,27 +524,40 @@ services:
   api:
     build: .
     ports:
-      - "3000:3000"
+      - "8080:8080"
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://user:pass@db:5432/quitjourney
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/quitjourney
+      - SPRING_DATASOURCE_USERNAME=quitjourney_user
+      - SPRING_DATASOURCE_PASSWORD=quitjourney_pass
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
     depends_on:
       - db
       - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   db:
     image: postgres:15-alpine
     environment:
       - POSTGRES_DB=quitjourney
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=quitjourney_user
+      - POSTGRES_PASSWORD=quitjourney_pass
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   redis:
     image: redis:7-alpine
     volumes:
       - redis_data:/data
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:

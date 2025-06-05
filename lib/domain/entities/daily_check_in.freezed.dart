@@ -20,10 +20,20 @@ DailyCheckIn _$DailyCheckInFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DailyCheckIn {
+  /// 打卡日期
+  /// 精确到日，用于唯一标识某一天的打卡记录
+  /// 通常使用 DateTime(year, month, day) 格式，忽略时分秒
   @HiveField(0)
   DateTime get date => throw _privateConstructorUsedError;
+
+  /// 是否已打卡
+  /// true: 当日已完成打卡
+  /// false: 当日未打卡或打卡失败
   @HiveField(1)
   bool get isCheckedIn => throw _privateConstructorUsedError;
+
+  /// 用户ID (可选)
+  /// 用于未来的多用户支持和数据同步
   @HiveField(2)
   String? get userId => throw _privateConstructorUsedError;
 
@@ -145,12 +155,22 @@ class _$DailyCheckInImpl extends _DailyCheckIn {
   factory _$DailyCheckInImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyCheckInImplFromJson(json);
 
+  /// 打卡日期
+  /// 精确到日，用于唯一标识某一天的打卡记录
+  /// 通常使用 DateTime(year, month, day) 格式，忽略时分秒
   @override
   @HiveField(0)
   final DateTime date;
+
+  /// 是否已打卡
+  /// true: 当日已完成打卡
+  /// false: 当日未打卡或打卡失败
   @override
   @HiveField(1)
   final bool isCheckedIn;
+
+  /// 用户ID (可选)
+  /// 用于未来的多用户支持和数据同步
   @override
   @HiveField(2)
   final String? userId;
@@ -201,12 +221,22 @@ abstract class _DailyCheckIn extends DailyCheckIn {
   factory _DailyCheckIn.fromJson(Map<String, dynamic> json) =
       _$DailyCheckInImpl.fromJson;
 
+  /// 打卡日期
+  /// 精确到日，用于唯一标识某一天的打卡记录
+  /// 通常使用 DateTime(year, month, day) 格式，忽略时分秒
   @override
   @HiveField(0)
   DateTime get date;
+
+  /// 是否已打卡
+  /// true: 当日已完成打卡
+  /// false: 当日未打卡或打卡失败
   @override
   @HiveField(1)
   bool get isCheckedIn;
+
+  /// 用户ID (可选)
+  /// 用于未来的多用户支持和数据同步
   @override
   @HiveField(2)
   String? get userId;

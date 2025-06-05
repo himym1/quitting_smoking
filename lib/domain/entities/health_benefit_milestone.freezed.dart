@@ -22,7 +22,6 @@ HealthBenefitMilestone _$HealthBenefitMilestoneFromJson(
 /// @nodoc
 mixin _$HealthBenefitMilestone {
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: 0)
   int get timeThresholdInMinutes =>
       throw _privateConstructorUsedError; // e.g., 20 (for 20 minutes), 480 (for 8 hours)
   String get titleKey =>
@@ -49,7 +48,7 @@ abstract class $HealthBenefitMilestoneCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(defaultValue: 0) int timeThresholdInMinutes,
+      int timeThresholdInMinutes,
       String titleKey,
       String descriptionKey,
       String? iconName});
@@ -113,7 +112,7 @@ abstract class _$$HealthBenefitMilestoneImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(defaultValue: 0) int timeThresholdInMinutes,
+      int timeThresholdInMinutes,
       String titleKey,
       String descriptionKey,
       String? iconName});
@@ -170,7 +169,7 @@ class __$$HealthBenefitMilestoneImplCopyWithImpl<$Res>
 class _$HealthBenefitMilestoneImpl extends _HealthBenefitMilestone {
   const _$HealthBenefitMilestoneImpl(
       {required this.id,
-      @JsonKey(defaultValue: 0) required this.timeThresholdInMinutes,
+      required this.timeThresholdInMinutes,
       required this.titleKey,
       required this.descriptionKey,
       this.iconName})
@@ -182,7 +181,6 @@ class _$HealthBenefitMilestoneImpl extends _HealthBenefitMilestone {
   @override
   final String id;
   @override
-  @JsonKey(defaultValue: 0)
   final int timeThresholdInMinutes;
 // e.g., 20 (for 20 minutes), 480 (for 8 hours)
   @override
@@ -240,7 +238,7 @@ class _$HealthBenefitMilestoneImpl extends _HealthBenefitMilestone {
 abstract class _HealthBenefitMilestone extends HealthBenefitMilestone {
   const factory _HealthBenefitMilestone(
       {required final String id,
-      @JsonKey(defaultValue: 0) required final int timeThresholdInMinutes,
+      required final int timeThresholdInMinutes,
       required final String titleKey,
       required final String descriptionKey,
       final String? iconName}) = _$HealthBenefitMilestoneImpl;
@@ -252,7 +250,6 @@ abstract class _HealthBenefitMilestone extends HealthBenefitMilestone {
   @override
   String get id;
   @override
-  @JsonKey(defaultValue: 0)
   int get timeThresholdInMinutes; // e.g., 20 (for 20 minutes), 480 (for 8 hours)
   @override
   String get titleKey; // Renamed from title

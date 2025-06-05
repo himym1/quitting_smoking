@@ -16,9 +16,7 @@ class HealthBenefitsDetailPage extends ConsumerWidget {
     final localizations = AppLocalizations.of(context);
     final _ = Theme.of(context);
     final healthBenefits = ref.watch(healthBenefitsNotifierProvider);
-    final _ = ref.read(
-      healthBenefitsNotifierProvider.notifier,
-    );
+    final _ = ref.read(healthBenefitsNotifierProvider.notifier);
 
     // 尝试查找当前里程碑
     final allBenefits = [
@@ -98,7 +96,10 @@ class HealthBenefitsDetailPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(localizations.healthBenefitsDetailPageTitle),
+        title: Text(
+          localizations.healthBenefitsDetailPageTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

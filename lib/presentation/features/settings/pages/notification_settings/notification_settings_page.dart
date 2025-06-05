@@ -15,7 +15,12 @@ class NotificationSettingsPage extends ConsumerWidget {
     final notificationSettings = ref.watch(notificationSettingsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.notificationsSettingTitle)),
+      appBar: AppBar(
+        title: Text(
+          localizations.notificationsSettingTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
       body: ListView(
         children: [
           Padding(

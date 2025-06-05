@@ -29,7 +29,7 @@ class AppTheme {
       iconTheme: IconThemeData(color: AppColors.backgroundWhite),
       titleTextStyle: TextStyle(
         color: AppColors.backgroundWhite,
-        fontSize: 20.0, // 或者根据设计规范调整
+        fontSize: 18.0, // 调整为更合适的大小
         fontWeight: FontWeight.w500, // Medium weight
         fontFamily: 'Inter', // 确保与全局字体一致或单独指定
       ),
@@ -68,6 +68,8 @@ class AppTheme {
       ),
       titleMedium: TextStyle(
         color: AppColors.textDarkGray,
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500,
         fontFamily: 'Inter',
       ),
       titleSmall: TextStyle(color: AppColors.textDarkGray, fontFamily: 'Inter'),

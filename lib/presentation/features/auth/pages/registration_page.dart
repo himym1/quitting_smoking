@@ -64,7 +64,12 @@ class RegistrationPage extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.registrationPageTitle)),
+      appBar: AppBar(
+        title: Text(
+          localizations.registrationPageTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),

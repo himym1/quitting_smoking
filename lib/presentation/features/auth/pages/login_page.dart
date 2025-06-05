@@ -62,7 +62,12 @@ class LoginPage extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.loginPageTitle)),
+      appBar: AppBar(
+        title: Text(
+          l10n.loginPageTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

@@ -34,7 +34,10 @@ class AchievementsPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('成就'),
+        title: const Text(
+          '成就',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
         backgroundColor: theme.colorScheme.surface,
         foregroundColor: theme.colorScheme.onSurface,
         elevation: 0,

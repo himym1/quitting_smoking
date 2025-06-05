@@ -18,7 +18,12 @@ class SettingsPage extends ConsumerWidget {
     final isDarkMode = ref.watch(isDarkModeProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.settingsPageTitle)),
+      appBar: AppBar(
+        title: Text(
+          localizations.settingsPageTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
       body: ListView(
         children: [
           // 用户信息卡片

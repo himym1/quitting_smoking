@@ -1,25 +1,24 @@
-/**
- * 焕新之旅 - 戒烟辅助应用
- * 
- * 首页/主看板 (HomePage)
- * 功能：
- * 1. 实时显示戒烟进度统计（时长、金钱、香烟数量）
- * 2. 展示健康效益快览卡片
- * 3. 显示用户戒烟宣言/理由
- * 4. 提供每日打卡功能
- * 5. 展示月度吸烟日历
- * 6. 提供"我想吸烟"应急按钮
- * 
- * 页面结构：
- * - AppBar: 应用标题
- * - 滚动内容区域：
- *   * 实时进度追踪卡片
- *   * 健康效益预览卡片
- *   * 戒烟宣言展示
- *   * 每日打卡区域
- *   * 月度吸烟记录日历
- * - 悬浮按钮：应急求助按钮
- */
+/// 焕新之旅 - 戒烟辅助应用
+///
+/// 首页/主看板 (HomePage)
+/// 功能：
+/// 1. 实时显示戒烟进度统计（时长、金钱、香烟数量）
+/// 2. 展示健康效益快览卡片
+/// 3. 显示用户戒烟宣言/理由
+/// 4. 提供每日打卡功能
+/// 5. 展示月度吸烟日历
+/// 6. 提供"我想吸烟"应急按钮
+///
+/// 页面结构：
+/// - AppBar: 应用标题
+/// - 滚动内容区域：
+///   * 实时进度追踪卡片
+///   * 健康效益预览卡片
+///   * 戒烟宣言展示
+///   * 每日打卡区域
+///   * 月度吸烟记录日历
+/// - 悬浮按钮：应急求助按钮
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,19 +30,45 @@ import 'package:quitting_smoking/presentation/features/home/providers/health_ben
 import 'package:quitting_smoking/presentation/features/home/providers/home_dashboard_stats_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quitting_smoking/presentation/widgets/monthly_smoking_calendar.dart';
-import 'package:quitting_smoking/presentation/providers/smoking_record_provider.dart';
-import 'package:quitting_smoking/main.dart';
+import 'package:quitting_smoking/presentation/features/home/pages/calendar_detail_page.dart';
+import 'package:quitting_smoking/presentation/providers/calendar_month_provider.dart';
+import 'package:quitting_smoking/core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart'; // 国际化支持
 
 /// 首页组件
 ///
 /// 应用的主要功能页面，展示戒烟进度和相关功能入口
-/// 使用 ConsumerWidget 以便访问 Riverpod 状态管理
-class HomePage extends ConsumerWidget {
+/// 使用 ConsumerStatefulWidget 以便管理滚动控制器
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  /// 平滑的月份切换方法
+  void _changeMonthWithScrollPosition(VoidCallback changeMonth) {
+    // 直接执行月份切换，AnimatedSwitcher会处理平滑过渡
+    changeMonth();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // 获取本地化文本
     final localizations = AppLocalizations.of(context);
 
@@ -61,7 +86,10 @@ class HomePage extends ConsumerWidget {
       /// 应用栏配置
       /// 显示应用标题，禁用返回按钮（因为这是Tab页面）
       appBar: AppBar(
-        title: Text(localizations.appTitle),
+        title: Text(
+          localizations.appTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
         automaticallyImplyLeading: false, // 不显示返回箭头
         elevation: 0, // 无阴影，与内容融合
       ),
@@ -69,6 +97,8 @@ class HomePage extends ConsumerWidget {
       /// 主体内容区域
       /// 使用 ListView 实现垂直滚动布局
       body: ListView(
+        key: const PageStorageKey<String>('home_page_scroll'),
+        controller: _scrollController,
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
         children: [
           // ==================== 核心功能区域 ====================
@@ -99,7 +129,16 @@ class HomePage extends ConsumerWidget {
 
           /// 5. 月度吸烟日历
           /// 可视化展示每月的吸烟记录情况
-          _buildMonthlySmokingCalendar(context, ref, localizations),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: Container(
+              key: ValueKey(ref.watch(calendarMonthProvider).toString()),
+              child: _buildMonthlySmokingCalendar(context, ref, localizations),
+            ),
+          ),
           const SizedBox(height: 32), // 为悬浮按钮留出额外空间
         ],
       ),
@@ -166,7 +205,7 @@ class HomePage extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
 
-            // 戒烟时长显示（居中大字体）
+            // 戒烟时长显示（居中适中字体）
             Center(
               child: Text(
                 localizations.homeProgressTime(
@@ -175,11 +214,14 @@ class HomePage extends ConsumerWidget {
                   m.toString(),
                   s.toString(),
                 ),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
+                  fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(height: 14),
@@ -382,7 +424,7 @@ class HomePage extends ConsumerWidget {
                     leading: CircleAvatar(
                       backgroundColor: Theme.of(
                         context,
-                      ).primaryColor.withOpacity(0.1),
+                      ).primaryColor.withValues(alpha: 0.1),
                       child: Icon(
                         getIconData(benefit.iconName),
                         color: Theme.of(context).primaryColor,
@@ -402,14 +444,16 @@ class HomePage extends ConsumerWidget {
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       size: 16,
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
+                      color: Theme.of(
+                        context,
+                      ).primaryColor.withValues(alpha: 0.5),
                     ),
                     onTap: () {
                       context.go('/health-benefits-detail/${benefit.id}');
                     },
                   ),
                 );
-              }).toList(),
+              }),
           ],
         ),
       ),
@@ -459,7 +503,7 @@ class HomePage extends ConsumerWidget {
                   fontStyle: FontStyle.italic,
                   color: Theme.of(
                     context,
-                  ).colorScheme.onSurface.withOpacity(0.8),
+                  ).colorScheme.onSurface.withValues(alpha: 0.8),
                 ),
               ),
             ),
@@ -578,11 +622,11 @@ class HomePage extends ConsumerWidget {
               decoration: BoxDecoration(
                 color:
                     dailyCheckInState.status == DailyCheckInStatus.checkedIn
-                        ? Colors.green.withOpacity(0.1)
+                        ? AppColors.successGreen.withValues(alpha: 0.1)
                         : dailyCheckInState.status ==
                             DailyCheckInStatus.notCheckedIn
-                        ? Colors.red.withOpacity(0.1)
-                        : Colors.grey.withOpacity(0.1),
+                        ? AppColors.warningRed.withValues(alpha: 0.1)
+                        : AppColors.textMediumGray.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
@@ -632,11 +676,12 @@ class HomePage extends ConsumerWidget {
     WidgetRef ref,
     AppLocalizations localizations,
   ) {
-    final currentMonth = DateTime.now();
+    final selectedMonth = ref.watch(calendarMonthProvider);
+    final monthNotifier = ref.read(calendarMonthProvider.notifier);
     final smokingCountsAsyncValue = ref.watch(
-      currentMonthSmokingCountsProvider,
+      selectedMonthSmokingCountsProvider,
     );
-    final dailyCheckInRepository = ref.watch(dailyCheckInRepositoryProvider);
+    final checkInDaysAsyncValue = ref.watch(selectedMonthCheckInDaysProvider);
 
     return Card(
       elevation: 3,
@@ -646,6 +691,7 @@ class HomePage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 标题和月份选择器
             Row(
               children: [
                 Icon(
@@ -654,37 +700,57 @@ class HomePage extends ConsumerWidget {
                   size: 22,
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  localizations.monthlyCalendar,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    localizations.monthlyCalendar,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // 月份选择器
+                Flexible(
+                  child: _buildMonthSelector(
+                    context,
+                    monthNotifier,
+                    selectedMonth,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 10),
+            // 日历内容
             smokingCountsAsyncValue.when(
               data: (smokingCounts) {
-                return FutureBuilder<Map<DateTime, bool>>(
-                  future: _getCheckInDays(dailyCheckInRepository, currentMonth),
-                  builder: (context, snapshot) {
-                    final checkInDays = snapshot.data ?? {};
+                return checkInDaysAsyncValue.when(
+                  data: (checkInDays) {
                     return MonthlySmokingCalendar(
-                      currentMonth: currentMonth,
+                      currentMonth: selectedMonth,
                       smokingCounts: smokingCounts,
                       checkInDays: checkInDays,
                       onDateTap: (date) {
-                        // TODO: 可以在这里添加日期点击事件处理
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              localizations.clickedDay(date.day.toString()),
-                            ),
+                        // 导航到日历详情页面
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                    CalendarDetailPage(selectedDate: date),
                           ),
                         );
                       },
                     );
                   },
+                  loading:
+                      () => const Center(child: CircularProgressIndicator()),
+                  error:
+                      (error, stackTrace) => Center(
+                        child: Text(
+                          '加载打卡数据失败：$error',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                      ),
                 );
               },
               loading: () => const Center(child: CircularProgressIndicator()),
@@ -704,31 +770,121 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Future<Map<DateTime, bool>> _getCheckInDays(
-    repository,
-    DateTime month,
-  ) async {
-    try {
-      final allCheckIns = await repository.getAllCheckIns();
-      final checkInDays = <DateTime, bool>{};
+  /// 构建月份选择器
+  Widget _buildMonthSelector(
+    BuildContext context,
+    CalendarMonthNotifier monthNotifier,
+    DateTime selectedMonth,
+  ) {
+    return SizedBox(
+      width: 120, // 固定宽度避免溢出
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // 上一个月按钮
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: IconButton(
+              onPressed:
+                  monthNotifier.canGoToPreviousMonth()
+                      ? () => _changeMonthWithScrollPosition(
+                        () => monthNotifier.previousMonth(),
+                      )
+                      : null,
+              icon: const Icon(Icons.chevron_left),
+              iconSize: 16,
+              padding: EdgeInsets.zero,
+            ),
+          ),
 
-      for (final checkIn in allCheckIns) {
-        if (checkIn.date.year == month.year &&
-            checkIn.date.month == month.month &&
-            checkIn.isCheckedIn) {
-          final dateKey = DateTime(
-            checkIn.date.year,
-            checkIn.date.month,
-            checkIn.date.day,
-          );
-          checkInDays[dateKey] = true;
-        }
+          // 月份显示
+          Expanded(
+            child: GestureDetector(
+              onTap:
+                  () => _showMonthPicker(context, monthNotifier, selectedMonth),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).primaryColor.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Text(
+                  monthNotifier.getMonthDisplayText(),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 11,
+                  ),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ),
+
+          // 下一个月按钮
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: IconButton(
+              onPressed:
+                  monthNotifier.canGoToNextMonth
+                      ? () => _changeMonthWithScrollPosition(
+                        () => monthNotifier.nextMonth(),
+                      )
+                      : null,
+              icon: const Icon(Icons.chevron_right),
+              iconSize: 16,
+              padding: EdgeInsets.zero,
+            ),
+          ),
+
+          // 回到当前月份按钮
+          if (!monthNotifier.isCurrentMonth)
+            SizedBox(
+              width: 24,
+              height: 24,
+              child: IconButton(
+                onPressed:
+                    () => _changeMonthWithScrollPosition(
+                      () => monthNotifier.resetToCurrentMonth(),
+                    ),
+                icon: const Icon(Icons.today),
+                iconSize: 14,
+                padding: EdgeInsets.zero,
+                tooltip: '回到当前月份',
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// 显示月份选择器对话框
+  void _showMonthPicker(
+    BuildContext context,
+    CalendarMonthNotifier monthNotifier,
+    DateTime selectedMonth,
+  ) {
+    showDatePicker(
+      context: context,
+      initialDate: selectedMonth,
+      firstDate: DateTime(2020, 1, 1),
+      lastDate: DateTime.now(),
+      initialDatePickerMode: DatePickerMode.year,
+    ).then((pickedDate) {
+      if (pickedDate != null) {
+        _changeMonthWithScrollPosition(
+          () => monthNotifier.setMonth(pickedDate),
+        );
       }
-
-      return checkInDays;
-    } catch (e) {
-      return {};
-    }
+    });
   }
 
   Widget _buildEmergencyButton(

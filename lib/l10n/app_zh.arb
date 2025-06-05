@@ -495,5 +495,81 @@
     }
   },
   "loadingCheckInRecordsError": "加载打卡记录时出错",
-  "today": "今天"
+  "today": "今天",
+
+  "calendarDetailTitle": "详情",
+  "todayRecord": "今天的戒烟记录",
+  "historyRecord": "历史戒烟记录",
+  "futureDate": "未来日期",
+  "checkedIn": "已打卡",
+  "notCheckedIn": "未打卡",
+  "checkinTime": "打卡时间: {time}",
+  "@checkinTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "supplementCheckin": "补充打卡",
+  "smokingRecords": "吸烟记录",
+  "addRecord": "添加",
+  "noSmokingRecordsToday": "当日无吸烟记录，坚持得很好！",
+  "cravingRecords": "烟瘾记录",
+  "noCravingRecordsToday": "今天没有烟瘾记录，继续保持！",
+  "quickActions": "快速操作",
+  "recordSmoking": "记录吸烟",
+  "recordCraving": "记录烟瘾",
+  "deleteSmokingRecord": "删除吸烟记录",
+  "confirmDeleteSmokingRecord": "确认要删除这条吸烟记录吗？",
+  "deleteCravingRecord": "删除烟瘾记录",
+  "confirmDeleteCravingRecord": "确认要删除这条烟瘾记录吗？",
+  "cannotUndo": "此操作无法撤销。",
+  "confirmDelete": "确认删除",
+  "deleteSuccess": "删除成功",
+  "deleteFailed": "删除失败：{error}",
+  "@deleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "supplementCheckinDialog": "补充打卡",
+  "supplementCheckinNote": "注意：只有在当日没有吸烟记录的情况下才能补充打卡。",
+  "confirmCheckin": "确认打卡",
+  "hasSmokingRecordsCannotCheckin": "当日有吸烟记录，无法补充打卡",
+  "supplementCheckinSuccess": "补充打卡成功！",
+  "supplementCheckinFailed": "补充打卡失败：{error}",
+  "@supplementCheckinFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "triggerFactors": "触发因素: {factors}",
+  "@triggerFactors": {
+    "placeholders": {
+      "factors": {
+        "type": "String"
+      }
+    }
+  },
+  "emotions": "情绪: {emotions}",
+  "@emotions": {
+    "placeholders": {
+      "emotions": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingCravingRecordsFailed": "加载烟瘾记录失败：{error}",
+  "@loadingCravingRecordsFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
 }

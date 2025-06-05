@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quitting_smoking/l10n/app_localizations.dart';
+import 'package:quitting_smoking/domain/entities/craving_log_entry.dart';
+import 'package:quitting_smoking/presentation/providers/craving_log_provider.dart';
 
-class CravingLogModal extends StatefulWidget {
+class CravingLogModal extends ConsumerStatefulWidget {
   const CravingLogModal({super.key});
 
   @override
-  State<CravingLogModal> createState() => _CravingLogModalState();
+  ConsumerState<CravingLogModal> createState() => _CravingLogModalState();
 }
 
-class _CravingLogModalState extends State<CravingLogModal> {
+class _CravingLogModalState extends ConsumerState<CravingLogModal> {
   int _cravingIntensity = 3; // 默认为中等强度 (1-5)
   String? _selectedTrigger;
   final TextEditingController _notesController = TextEditingController();
@@ -188,18 +191,7 @@ class _CravingLogModalState extends State<CravingLogModal> {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-                      // TODO: 实现保存烟瘾记录的逻辑
-                      // 这里应该调用一个provider来保存数据
-
-                      // 暂时只是关闭模态框并显示一个成功消息
-                      Navigator.of(context).pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(localizations.cravingLogSavedMessage),
-                        ),
-                      );
-                    },
+                    onPressed: () => _saveCravingLog(),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
@@ -212,5 +204,39 @@ class _CravingLogModalState extends State<CravingLogModal> {
         ),
       ),
     );
+  }
+
+  void _saveCravingLog() async {
+    final localizations = AppLocalizations.of(context);
+
+    try {
+      // 创建烟瘾记录
+      final cravingLog = CravingLogEntry(
+        timestamp: DateTime.now(),
+        triggerTags: _selectedTrigger != null ? [_selectedTrigger!] : null,
+        emotionTags: null, // 可以根据需要添加情绪标签
+      );
+
+      // 保存记录
+      final controller = ref.read(cravingLogControllerProvider.notifier);
+      await controller.addCravingLog(cravingLog);
+
+      if (!mounted) return;
+
+      // 返回结果并显示成功消息
+      Navigator.of(context).pop(cravingLog);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(localizations.cravingLogSavedMessage),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('保存失败：$e'), backgroundColor: Colors.red),
+      );
+    }
   }
 }

@@ -449,7 +449,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ).primaryColor.withValues(alpha: 0.5),
                     ),
                     onTap: () {
-                      context.go('/health-benefits-detail/${benefit.id}');
+                      // 使用 push 替代 go，以保留 ShellRoute 在导航栈中
+                      context.push('/health-benefits-detail/${benefit.id}');
                     },
                   ),
                 );

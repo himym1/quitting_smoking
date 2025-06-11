@@ -9,6 +9,8 @@ import 'package:quitting_smoking/data/repositories_impl/user_profile_repository_
 import 'package:quitting_smoking/presentation/features/achievements/controllers/achievement_controller.dart';
 import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/core/errors/network_exceptions.dart';
+import 'package:quitting_smoking/core/providers/network_providers.dart'; // Added import for dioClientProvider
+import 'package:quitting_smoking/core/network/dio_client.dart'; // Added import for DioClient
 import 'package:quitting_smoking/presentation/providers/auth_provider.dart'
     as new_auth;
 

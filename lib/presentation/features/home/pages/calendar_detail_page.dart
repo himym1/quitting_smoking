@@ -77,10 +77,7 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
 
             // 烟瘾记录区域
             _buildCravingLogsSection(theme, localizations),
-            const SizedBox(height: 16),
-
-            // 快速操作区域
-            _buildQuickActionsSection(theme, localizations),
+            // 快速操作区域已移除，功能按钮集成在各Section内部
           ],
         ),
       ),
@@ -148,7 +145,11 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
 
   /// 构建打卡状态区域
   Widget _buildCheckInSection(ThemeData theme, AppLocalizations localizations) {
+    // 获取打卡和吸烟记录数据
     final dailyCheckInRepository = ref.watch(dailyCheckInRepositoryProvider);
+    final smokingRecordsAsync = ref.watch(
+      dailySmokingRecordsProvider(widget.selectedDate),
+    );
 
     return Card(
       child: Padding(
@@ -173,17 +174,61 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
               ],
             ),
             const SizedBox(height: 12),
+            // 组合 FutureBuilder 和 AsyncValue 的状态
             FutureBuilder<DailyCheckIn?>(
               future: dailyCheckInRepository.getCheckInForDate(
                 widget.selectedDate,
               ),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
+                // 1. 处理加载状态: 任意一个数据未准备好
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    !smokingRecordsAsync.hasValue) {
                   return const Center(child: CircularProgressIndicator());
+                }
+                // 2. 处理错误状态
+                if (smokingRecordsAsync.hasError) {
+                  return Text(
+                    '加载吸烟记录失败: ${smokingRecordsAsync.error}',
+                    style: TextStyle(color: theme.colorScheme.error),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Text(
+                    '加载打卡记录失败: ${snapshot.error}',
+                    style: TextStyle(color: theme.colorScheme.error),
+                  );
                 }
 
                 final checkIn = snapshot.data;
                 final hasCheckIn = checkIn?.isCheckedIn ?? false;
+                final hasSmokingRecords =
+                    smokingRecordsAsync.value?.isNotEmpty ?? false;
+
+                // 3. 确定最终状态、图标、颜色和文本
+                IconData icon;
+                Color color;
+                String statusText;
+                bool isSuccess = false; // 标记是否为成功状态
+
+                if (hasSmokingRecords) {
+                  // 优先级最高：有吸烟记录则打卡失败
+                  icon = Icons.cancel_outlined;
+                  color = AppColors.warningRed;
+                  statusText = '打卡失败'; // (当日有吸烟记录)
+                  isSuccess = false;
+                } else if (hasCheckIn) {
+                  // 无吸烟记录且已打卡：成功
+                  icon = Icons.check_circle;
+                  color = AppColors.successGreen;
+                  statusText = '已打卡';
+                  isSuccess = true;
+                } else {
+                  // 无吸烟记录且未打卡
+                  icon = Icons.radio_button_unchecked;
+                  color = AppColors.textMediumGray;
+                  statusText = '未打卡';
+                  isSuccess = false;
+                }
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,29 +236,22 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
                     Row(
                       children: [
                         Icon(
-                          hasCheckIn
-                              ? Icons.check_circle
-                              : Icons.radio_button_unchecked,
-                          color:
-                              hasCheckIn
-                                  ? AppColors.successGreen
-                                  : AppColors.textMediumGray,
+                          icon, // 使用计算出的图标
+                          color: color, // 使用计算出的颜色
                           size: 24,
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          hasCheckIn ? '已打卡' : '未打卡',
+                          statusText, // 使用计算出的文本
                           style: theme.textTheme.bodyLarge?.copyWith(
-                            color:
-                                hasCheckIn
-                                    ? AppColors.successGreen
-                                    : AppColors.textMediumGray,
+                            color: color, // 使用计算出的颜色
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
                     ),
-                    if (hasCheckIn && checkIn != null) ...[
+                    // 仅在成功打卡时显示打卡时间
+                    if (isSuccess && checkIn != null) ...[
                       const SizedBox(height: 8),
                       Text(
                         '打卡时间: ${DateFormat('HH:mm').format(checkIn.date)}',
@@ -222,7 +260,10 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
                         ),
                       ),
                     ],
-                    if (!hasCheckIn && _isPastDate(widget.selectedDate)) ...[
+                    // 仅在未打卡且无吸烟记录时显示补充打卡按钮
+                    if (!hasCheckIn &&
+                        !hasSmokingRecords &&
+                        _isPastDate(widget.selectedDate)) ...[
                       const SizedBox(height: 8),
                       ElevatedButton.icon(
                         onPressed: () => _showSupplementCheckInDialog(),
@@ -231,6 +272,17 @@ class _CalendarDetailPageState extends ConsumerState<CalendarDetailPage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.accentYellow,
                           foregroundColor: AppColors.textDarkGray,
+                        ),
+                      ),
+                    ],
+                    // 如果因吸烟记录导致打卡失败，显示提示
+                    if (hasSmokingRecords) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        '提示：当日有吸烟记录，打卡无效。',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.warningRed,
+                          fontSize: 11,
                         ),
                       ),
                     ],

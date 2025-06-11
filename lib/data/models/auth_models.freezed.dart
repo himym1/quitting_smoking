@@ -150,7 +150,7 @@ class _$RegisterRequestModelImpl implements _RegisterRequestModel {
       {required this.email,
       required this.password,
       this.name,
-      this.agreeToTerms = false});
+      this.agreeToTerms = true});
 
   factory _$RegisterRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterRequestModelImplFromJson(json);

@@ -105,10 +105,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get passwordMismatchError => '两次输入的密码不一致。';
 
   @override
+  String get passwordTooShortError => '密码长度至少需要6个字符。';
+
+  @override
+  String get passwordTooLongError => '密码长度不能超过50个字符。';
+
+  @override
   String get emailAlreadyInUseError => '此邮箱已被注册。';
 
   @override
-  String get registrationFailedError => '注册失败，请重试。';
+  String get registrationFailedError => '注册失败，请检查输入信息：密码长度必须在6-50个字符之间，邮箱格式需正确。';
 
   @override
   String get termsAndConditionsCheckboxLabel => '我已阅读并同意[服务条款]和[隐私政策]。';

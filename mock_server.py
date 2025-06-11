@@ -237,7 +237,7 @@ class MockAPIHandler(BaseHTTPRequestHandler):
         }
         self.send_json_response(response)
 
-def run_server(port=8080):
+def run_server(port=8081):
     """启动模拟服务器"""
     server_address = ('0.0.0.0', port)  # 监听所有网络接口
     httpd = HTTPServer(server_address, MockAPIHandler)

@@ -105,6 +105,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordMismatchError => 'Passwords do not match.';
 
   @override
+  String get passwordTooShortError => 'Password must be at least 6 characters long.';
+
+  @override
+  String get passwordTooLongError => 'Password cannot exceed 50 characters.';
+
+  @override
   String get emailAlreadyInUseError => 'This email is already in use.';
 
   @override

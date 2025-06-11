@@ -16,22 +16,22 @@ part 'auth_models.freezed.dart';
 part 'auth_models.g.dart';
 
 /// 用户注册请求模型
-/// 
+///
 /// 对应Spring Boot的RegisterRequest
 @freezed
 class RegisterRequestModel with _$RegisterRequestModel {
   const factory RegisterRequestModel({
     /// 邮箱地址
     required String email,
-    
+
     /// 密码
     required String password,
-    
+
     /// 用户姓名（可选）
     String? name,
-    
+
     /// 是否同意服务条款
-    @Default(false) bool agreeToTerms,
+    @Default(true) bool agreeToTerms,
   }) = _RegisterRequestModel;
 
   /// 从JSON创建实例
@@ -40,17 +40,17 @@ class RegisterRequestModel with _$RegisterRequestModel {
 }
 
 /// 用户登录请求模型
-/// 
+///
 /// 对应Spring Boot的LoginRequest
 @freezed
 class LoginRequestModel with _$LoginRequestModel {
   const factory LoginRequestModel({
     /// 邮箱地址
     required String email,
-    
+
     /// 密码
     required String password,
-    
+
     /// 设备信息（可选）
     DeviceInfoModel? deviceInfo,
   }) = _LoginRequestModel;
@@ -61,17 +61,17 @@ class LoginRequestModel with _$LoginRequestModel {
 }
 
 /// 设备信息模型
-/// 
+///
 /// 对应Spring Boot的DeviceInfo
 @freezed
 class DeviceInfoModel with _$DeviceInfoModel {
   const factory DeviceInfoModel({
     /// 设备ID
     required String deviceId,
-    
+
     /// 平台类型
     required String platform,
-    
+
     /// 应用版本
     required String version,
   }) = _DeviceInfoModel;
@@ -82,7 +82,7 @@ class DeviceInfoModel with _$DeviceInfoModel {
 }
 
 /// 刷新令牌请求模型
-/// 
+///
 /// 对应Spring Boot的RefreshTokenRequest
 @freezed
 class RefreshTokenRequestModel with _$RefreshTokenRequestModel {
@@ -97,14 +97,14 @@ class RefreshTokenRequestModel with _$RefreshTokenRequestModel {
 }
 
 /// 认证响应模型
-/// 
+///
 /// 对应Spring Boot的AuthResponse
 @freezed
 class AuthResponseModel with _$AuthResponseModel {
   const factory AuthResponseModel({
     /// 用户信息
     required UserDtoModel user,
-    
+
     /// 令牌信息
     required TokenInfoModel tokens,
   }) = _AuthResponseModel;
@@ -115,20 +115,20 @@ class AuthResponseModel with _$AuthResponseModel {
 }
 
 /// 令牌信息模型
-/// 
+///
 /// 对应Spring Boot的TokenInfo
 @freezed
 class TokenInfoModel with _$TokenInfoModel {
   const factory TokenInfoModel({
     /// 访问令牌
     required String accessToken,
-    
+
     /// 刷新令牌
     required String refreshToken,
-    
+
     /// 过期时间（秒）
     required int expiresIn,
-    
+
     /// 令牌类型
     @Default('Bearer') String tokenType,
   }) = _TokenInfoModel;
@@ -139,26 +139,26 @@ class TokenInfoModel with _$TokenInfoModel {
 }
 
 /// 用户DTO模型
-/// 
+///
 /// 对应Spring Boot的UserDto
 @freezed
 class UserDtoModel with _$UserDtoModel {
   const factory UserDtoModel({
     /// 用户ID
     required String id,
-    
+
     /// 邮箱地址
     required String email,
-    
+
     /// 用户姓名
     String? name,
-    
+
     /// 邮箱是否已验证
     required bool emailVerified,
-    
+
     /// 用户资料
     UserProfileDtoModel? profile,
-    
+
     /// 创建时间
     required DateTime createdAt,
   }) = _UserDtoModel;
@@ -169,29 +169,29 @@ class UserDtoModel with _$UserDtoModel {
 }
 
 /// 用户资料DTO模型
-/// 
+///
 /// 对应Spring Boot的UserProfileDto
 @freezed
 class UserProfileDtoModel with _$UserProfileDtoModel {
   const factory UserProfileDtoModel({
     /// 戒烟开始日期
     DateTime? quitDate,
-    
+
     /// 戒烟理由
     String? quitReason,
-    
+
     /// 每日吸烟量
     int? cigarettesPerDay,
-    
+
     /// 香烟价格
     double? cigarettePrice,
-    
+
     /// 货币代码
     @Default('CNY') String currency,
-    
+
     /// 时区
     @Default('UTC') String timezone,
-    
+
     /// 语言代码
     @Default('zh-CN') String locale,
   }) = _UserProfileDtoModel;
@@ -220,7 +220,7 @@ class ResetPasswordRequestModel with _$ResetPasswordRequestModel {
   const factory ResetPasswordRequestModel({
     /// 重置令牌
     required String token,
-    
+
     /// 新密码
     required String newPassword,
   }) = _ResetPasswordRequestModel;

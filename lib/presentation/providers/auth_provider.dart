@@ -25,7 +25,7 @@ import 'package:quitting_smoking/core/errors/network_exceptions.dart';
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final remoteDataSource = ref.watch(authRemoteDataSourceProvider);
   final localDataSource = UserLocalDatasourceImpl(Hive);
-  final dioClient = ref.watch(dioClientProvider);
+  final dioClient = ref.watch(dioClientSyncProvider);
 
   return AuthRepositoryImpl(
     remoteDataSource: remoteDataSource,

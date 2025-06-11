@@ -206,6 +206,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
       unableToProcess: () => 'unableToProcessError',
       defaultError: (_) => 'unknownError',
       unexpectedError: () => 'unexpectedError',
+      // 认证相关异常
+      emailAlreadyExists: (_) => 'emailAlreadyExistsError',
+      registrationFailed: (_) => 'registrationFailedError',
+      loginFailed: (_) => 'loginFailedError',
       // 业务特定异常
       syncFailed: (_) => 'syncFailedError',
       checkInFailed: (_) => 'checkInFailedError',

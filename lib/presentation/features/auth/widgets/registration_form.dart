@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quitting_smoking/core/services/logger_service.dart';
 import 'package:quitting_smoking/presentation/features/auth/providers/auth_notifier.dart';
+import 'package:quitting_smoking/presentation/features/auth/providers/auth_state.dart';
 
 import '../../../../l10n/app_localizations.dart';
 
@@ -52,6 +54,13 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
     );
     final localizations = AppLocalizations.of(context);
 
+    // 监听认证状态变化并显示错误
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+      logDebug('注册表单监听到认证状态变化: $previous -> $next', tag: 'RegistrationForm');
+      // 移除错误显示逻辑，交给RegistrationPage处理
+      // 这里只保留必要的状态监听用于调试
+    });
+
     return Form(
       key: _formKey,
       child: Column(
@@ -88,7 +97,13 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
               if (value == null || value.isEmpty) {
                 return localizations.fieldRequiredError;
               }
-              // Add more password strength validation if needed
+              // 密码长度验证（与后端保持一致）
+              if (value.length < 6) {
+                return '密码长度至少需要6个字符';
+              }
+              if (value.length > 50) {
+                return '密码长度不能超过50个字符';
+              }
               return null;
             },
           ),

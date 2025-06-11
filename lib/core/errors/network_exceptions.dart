@@ -70,6 +70,14 @@ class NetworkException with _$NetworkException {
 
   // ==================== 业务特定异常 ====================
 
+  /// 认证相关错误
+  const factory NetworkException.emailAlreadyExists(String message) =
+      EmailAlreadyExistsException;
+  const factory NetworkException.registrationFailed(String message) =
+      RegistrationFailedException;
+  const factory NetworkException.loginFailed(String message) =
+      LoginFailedException;
+
   /// 数据同步失败
   const factory NetworkException.syncFailed(String message) =
       SyncFailedException;
@@ -134,11 +142,50 @@ class NetworkExceptionHandler {
   static NetworkException _handleResponseError(DioException dioException) {
     final statusCode = dioException.response?.statusCode;
     final data = dioException.response?.data;
+    final requestPath = dioException.requestOptions.path;
 
     switch (statusCode) {
       case 400:
-        return NetworkException.badRequest(_extractErrorMessage(data));
+        final errorMessage = _extractErrorMessage(data);
+        final errorCode = _extractErrorCode(data);
+
+        // 根据请求路径和错误信息进行更精确的分类
+        if (requestPath.contains('/auth/register')) {
+          // 检查错误代码和消息，优先处理邮箱已存在的情况
+          if (errorCode == 'REGISTRATION_ERROR' &&
+              (errorMessage.contains('邮箱已存在') ||
+                  errorMessage.contains('already exists'))) {
+            return NetworkException.emailAlreadyExists(errorMessage);
+          } else if (errorMessage.contains('密码') ||
+              errorMessage.contains('password')) {
+            return NetworkException.badRequest('密码要求：$errorMessage');
+          } else if (errorMessage.contains('邮箱') ||
+              errorMessage.contains('email')) {
+            return NetworkException.badRequest('邮箱格式错误：$errorMessage');
+          }
+          return NetworkException.registrationFailed(errorMessage);
+        } else if (requestPath.contains('/auth/login')) {
+          return NetworkException.loginFailed(errorMessage);
+        }
+        return NetworkException.badRequest(errorMessage);
       case 401:
+        // 根据请求路径判断具体的401错误类型
+        if (requestPath.contains('/auth/register')) {
+          final errorMessage = _extractErrorMessage(data);
+          // 如果是注册接口且错误消息为空或Unknown，可能是后端验证错误被Spring Security转换
+          if (errorMessage == 'Unknown error' || errorMessage.isEmpty) {
+            return NetworkException.registrationFailed(
+              '请检查输入信息：密码长度必须在6-50个字符之间，邮箱格式需正确',
+            );
+          }
+          if (errorMessage.contains('邮箱已存在') ||
+              errorMessage.contains('already exists')) {
+            return NetworkException.emailAlreadyExists(errorMessage);
+          }
+          return NetworkException.registrationFailed(errorMessage);
+        } else if (requestPath.contains('/auth/login')) {
+          return NetworkException.loginFailed(_extractErrorMessage(data));
+        }
         return NetworkException.unauthorizedRequest(_extractErrorMessage(data));
       case 404:
         return NetworkException.notFound(_extractErrorMessage(data));
@@ -182,24 +229,65 @@ class NetworkExceptionHandler {
 
     try {
       if (data is Map<String, dynamic>) {
+        // 尝试从Spring Boot的标准错误响应格式中提取错误消息
+        if (data.containsKey('message')) {
+          return data['message'] as String;
+        }
+
         // 尝试从API响应格式中提取错误消息
         if (data.containsKey('error')) {
           final error = data['error'];
           if (error is Map<String, dynamic> && error.containsKey('message')) {
             return error['message'] as String;
           }
+          if (error is String) {
+            return error;
+          }
         }
 
-        // 尝试从message字段提取
-        if (data.containsKey('message')) {
-          return data['message'] as String;
+        // 尝试从验证错误中提取详细信息
+        if (data.containsKey('errors')) {
+          final errors = data['errors'];
+          if (errors is List && errors.isNotEmpty) {
+            final firstError = errors.first;
+            if (firstError is Map<String, dynamic> &&
+                firstError.containsKey('defaultMessage')) {
+              return firstError['defaultMessage'] as String;
+            }
+          }
         }
       }
-
-      return data.toString();
     } catch (e) {
-      return 'Error parsing response';
+      // 忽略提取错误消息时的异常，返回默认错误
     }
+
+    return 'Unknown error';
+  }
+
+  /// 从响应数据中提取错误代码
+  static String _extractErrorCode(dynamic data) {
+    if (data == null) return '';
+
+    try {
+      if (data is Map<String, dynamic>) {
+        // 尝试从API响应格式中提取错误代码
+        if (data.containsKey('error')) {
+          final error = data['error'];
+          if (error is Map<String, dynamic> && error.containsKey('code')) {
+            return error['code'] as String;
+          }
+        }
+
+        // 尝试从根级别提取错误代码
+        if (data.containsKey('code')) {
+          return data['code'] as String;
+        }
+      }
+    } catch (e) {
+      // 忽略提取错误代码时的异常，返回空字符串
+    }
+
+    return '';
   }
 
   /// 获取用户友好的错误消息
@@ -222,6 +310,9 @@ class NetworkExceptionHandler {
       defaultError: (error) => error,
       unexpectedError: () => '发生意外错误',
       // 业务特定异常
+      emailAlreadyExists: (message) => '邮箱已存在：$message',
+      registrationFailed: (message) => '注册失败：$message',
+      loginFailed: (message) => '登录失败：$message',
       syncFailed: (message) => '数据同步失败：$message',
       checkInFailed: (message) => '打卡失败：$message',
       checkInAlreadyExists: (message) => '今日已打卡：$message',
@@ -256,6 +347,9 @@ class NetworkExceptionHandler {
       defaultError: (_) => false,
       unexpectedError: () => false,
       // 业务特定异常
+      emailAlreadyExists: (_) => false,
+      registrationFailed: (_) => false,
+      loginFailed: (_) => false,
       syncFailed: (_) => true,
       checkInFailed: (_) => true,
       checkInAlreadyExists: (_) => false,
@@ -290,6 +384,9 @@ class NetworkExceptionHandler {
       defaultError: (_) => false,
       unexpectedError: () => false,
       // 业务特定异常
+      emailAlreadyExists: (_) => false,
+      registrationFailed: (_) => false,
+      loginFailed: (_) => false,
       syncFailed: (_) => false,
       checkInFailed: (_) => false,
       checkInAlreadyExists: (_) => false,

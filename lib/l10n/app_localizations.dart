@@ -288,6 +288,18 @@ abstract class AppLocalizations {
   /// **'Passwords do not match.'**
   String get passwordMismatchError;
 
+  /// No description provided for @passwordTooShortError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters long.'**
+  String get passwordTooShortError;
+
+  /// No description provided for @passwordTooLongError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password cannot exceed 50 characters.'**
+  String get passwordTooLongError;
+
   /// No description provided for @emailAlreadyInUseError.
   ///
   /// In en, this message translates to:

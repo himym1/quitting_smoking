@@ -48,53 +48,53 @@ import 'package:quitting_smoking/presentation/features/auth/providers/auth_notif
 // ==================== 路由枚举定义 ====================
 
 /// 应用程序路由枚举
-/// 
+///
 /// 定义应用中所有页面的路由名称
 /// 包括：认证流程、主要功能页面、设置页面等
 enum AppRoute {
   // 认证流程
-  splash,                    // 启动页
-  login,                     // 登录页
-  registration,              // 注册页
-  onboarding,               // 初始化引导页
-  
+  splash, // 启动页
+  login, // 登录页
+  registration, // 注册页
+  onboarding, // 初始化引导页
+
   // 主要功能页面
-  home,                     // 首页/主看板
-  healthBenefitsDetail,     // 健康效益详情页
-  cravingCopingStrategies,  // 烟瘾应对策略页
-  breathingExerciseGuide,   // 呼吸练习指导页
-  achievements,             // 成就页面
-  
+  home, // 首页/主看板
+  healthBenefitsDetail, // 健康效益详情页
+  cravingCopingStrategies, // 烟瘾应对策略页
+  breathingExerciseGuide, // 呼吸练习指导页
+  achievements, // 成就页面
+
   // 设置页面
-  settings,                 // 设置主页
-  
+  settings, // 设置主页
+
   // 设置二级页面
-  notificationSettings,     // 通知设置
-  smokingData,             // 吸烟数据设置
-  quitDate,                // 戒烟日期设置
-  aboutApp,                // 关于应用
-  helpSupport,             // 帮助与支持
-  privacyPolicy;           // 隐私政策
+  notificationSettings, // 通知设置
+  smokingData, // 吸烟数据设置
+  quitDate, // 戒烟日期设置
+  aboutApp, // 关于应用
+  helpSupport, // 帮助与支持
+  privacyPolicy; // 隐私政策
 
   /// 获取路由路径
-  /// 
+  ///
   /// 返回每个路由对应的URL路径
   /// 支持参数传递和嵌套路由
   String get path {
     // 认证流程路由
-    if (this == AppRoute.splash) return '/';               // 根路径为启动页
+    if (this == AppRoute.splash) return '/'; // 根路径为启动页
     if (this == AppRoute.login) return '/login';
     if (this == AppRoute.registration) return '/registration';
     if (this == AppRoute.onboarding) return '/onboarding';
-    
+
     // 主功能页面路由（Shell 内部）
     if (this == AppRoute.home) return '/home';
     if (this == AppRoute.achievements) return '/achievements';
     if (this == AppRoute.settings) return '/settings';
-    
+
     // 二级页面路由（顶级导航）
     if (this == AppRoute.healthBenefitsDetail) {
-      return '/health-benefits-detail/:id';  // 支持ID参数
+      return '/health-benefits-detail/:id'; // 支持ID参数
     }
     if (this == AppRoute.cravingCopingStrategies) {
       return '/craving-coping-strategies';
@@ -140,7 +140,7 @@ final GlobalKey<NavigatorState> _shellNavigatorSettingsKey =
 // ==================== 路由提供者 ====================
 
 /// GoRouter 实例提供者
-/// 
+///
 /// 负责：
 /// 1. 监听认证状态变化
 /// 2. 实现基于认证的路由重定向
@@ -149,31 +149,55 @@ final GlobalKey<NavigatorState> _shellNavigatorSettingsKey =
 final routerProvider = Provider<GoRouter>((ref) {
   /// 监听认证状态
   /// 当用户登录/登出时自动更新路由
-  final authState = ref.watch(authNotifierProvider);
-  logDebug('路由提供者检测到认证状态变化: $authState', tag: 'AppRouter');
+  // 使用 refreshListenable 代替 watch 来触发 redirect
+  // final authState = ref.watch(authNotifierProvider);
+  logDebug('路由提供者初始化', tag: 'AppRouter');
 
   return GoRouter(
     // 基础配置
     navigatorKey: _rootNavigatorKey,
-    initialLocation: AppRoute.splash.path,    // 应用启动时的初始路由
-    debugLogDiagnostics: true,                // 开启调试日志
-    
+    initialLocation: AppRoute.splash.path, // 应用启动时的初始路由
+    debugLogDiagnostics: true, // 开启调试日志
     /// 路由刷新监听器
     /// 当认证状态变化时触发路由重新评估
     refreshListenable: _GoRouterRefreshStream(
       ref.read(authNotifierProvider.notifier).stream,
     ),
-    
+
     /// 路由重定向逻辑
-    /// 
+    ///
     /// 根据用户认证状态和引导完成状态决定重定向目标：
     /// - 未登录 → 登录页
     /// - 已登录但未完成引导 → 引导页
     /// - 已完成引导 → 主应用页面
     redirect: (BuildContext context, GoRouterState state) {
+      // 在 redirect 内部读取最新状态
+      final authState = ref.read(authNotifierProvider);
+      final String currentLocation = state.matchedLocation;
+
+      // 调试日志
+      logDebug(
+        '路由重定向检查: 当前位置=$currentLocation, 状态=$authState',
+        tag: 'AppRouter',
+      );
+
       // 认证状态加载中，不进行重定向
       if (authState.maybeWhen(loading: () => true, orElse: () => false)) {
         logDebug('认证状态加载中，不进行重定向', tag: 'AppRouter');
+        return null;
+      }
+
+      // 如果有错误状态，并且当前在登录或注册页，不进行重定向，让页面自己处理
+      final hasError = authState.maybeWhen(
+        unauthenticated: (message) => message != null && message.isNotEmpty,
+        orElse: () => false,
+      );
+      final isOnAuthPage =
+          currentLocation == AppRoute.login.path ||
+          currentLocation == AppRoute.registration.path;
+
+      if (hasError && isOnAuthPage) {
+        logDebug('在认证页面 ($currentLocation) 且有错误状态，不进行重定向', tag: 'AppRouter');
         return null;
       }
 
@@ -182,20 +206,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         authenticated: (_) => true,
         orElse: () => false,
       );
-      
+
       // 检查引导完成状态
       final bool onboardingCompleted = authState.maybeWhen(
         authenticated: (userProfile) => userProfile.onboardingCompleted,
         orElse: () => false,
       );
 
-      final String currentLocation = state.matchedLocation;
-
-      // 调试日志
-      logDebug(
-        '路由重定向检查: 当前位置=$currentLocation, 已登录=$loggedIn, 引导已完成=$onboardingCompleted',
-        tag: 'AppRouter',
-      );
+      // // 调试日志 - 已移动
+      // logDebug(
+      //   '路由重定向检查: 当前位置=$currentLocation, 已登录=$loggedIn, 引导已完成=$onboardingCompleted',
+      //   tag: 'AppRouter',
+      // );
 
       // 允许已登录用户访问主应用页面
       if ((currentLocation == AppRoute.home.path ||
@@ -217,6 +239,21 @@ final routerProvider = Provider<GoRouter>((ref) {
           logInfo('用户未登录，重定向到登录页', tag: 'AppRouter');
           return AppRoute.login.path;
         }
+
+        // 如果当前在登录页面或注册页面，保持在当前页面
+        // 不要因为错误状态而触发页面跳转
+        if (currentLocation == AppRoute.login.path ||
+            currentLocation == AppRoute.registration.path) {
+          logDebug('在认证页面，保持在当前页面', tag: 'AppRouter');
+          return null; // 保持在当前页面
+        }
+
+        // 如果在根路径且未登录，重定向到登录页（避免在引导完成后又回到splash）
+        if (currentLocation == AppRoute.splash.path) {
+          logInfo('在根路径且未登录，重定向到登录页', tag: 'AppRouter');
+          return AppRoute.login.path;
+        }
+
         return null; // 允许在启动页、登录页、注册页之间导航
       }
 
@@ -240,7 +277,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           return AppRoute.home.path;
         }
       }
-      
+
       return null; // 无需重定向
     },
     routes: <RouteBase>[

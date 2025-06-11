@@ -23,8 +23,11 @@ class ApiConfig {
   static const Environment currentEnvironment = Environment.development;
 
   /// 开发环境配置
-  /// 对于Android设备，使用10.0.2.2来访问主机的localhost
-  static const String _developmentBaseUrl = 'http://10.0.2.2:8080/api/v1';
+  /// 使用电脑IP地址，通过Nginx访问
+  static const String _developmentBaseUrl = 'http://192.168.2.109/api/v1';
+
+  /// Android模拟器专用配置
+  static const String _emulatorBaseUrl = 'http://10.0.2.2:8080/api/v1';
 
   /// 生产环境配置
   static const String _productionBaseUrl = 'https://api.quitjourney.com/api/v1';
@@ -46,6 +49,19 @@ class ApiConfig {
         return _productionBaseUrl;
     }
   }
+
+  /// 获取Android模拟器专用的基础URL
+  static String get emulatorBaseUrl => _emulatorBaseUrl;
+
+  /// 获取可能的开发环境URL列表（按优先级排序）
+  static List<String> get developmentUrls => [
+    'http://192.168.2.109/api/v1', // 当前IP (80端口 Nginx) - 推荐
+    'http://192.168.2.109:8080/api/v1', // 当前IP (8080端口 直接访问)
+    'http://10.0.2.2/api/v1', // Android模拟器 (80端口)
+    'http://10.0.2.2:8080/api/v1', // Android模拟器 (8080端口)
+    'http://localhost/api/v1', // 本地开发 (80端口)
+    'http://localhost:8080/api/v1', // 本地开发 (8080端口)
+  ];
 
   /// API版本
   static const String apiVersion = 'v1';

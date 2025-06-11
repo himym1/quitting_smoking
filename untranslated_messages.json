@@ -3,5 +3,10 @@
     "alreadySmoked",
     "termsAndPrivacyAgreement",
     "forgotPasswordNotImplemented"
+  ],
+
+  "zh_CN": [
+    "passwordTooShortError",
+    "passwordTooLongError"
   ]
 }

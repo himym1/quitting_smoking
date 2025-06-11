@@ -1,0 +1,1154 @@
+## 焕新之旅 - 戒烟辅助应用 (Quit Journey)
+
+> 一款专为戒烟者设计的Flutter移动应用，提供全面的戒烟支持和进度跟踪功能
+
+> 帮助用户建立健康的生活习惯，通过科学的方法和持续的激励来成功戒烟
+
+> 开发中 - MVP版本已完成，正在进行API集成和后端服务对接
+
+> 个人项目 - 独立开发者项目
+
+> Flutter 3.x + Dart, Spring Boot + Kotlin (后端), PostgreSQL + Redis, Docker部署
+
+
+
+## Dependencies (Flutter pubspec.yaml)
+
+### 核心框架
+* flutter: SDK - Flutter框架核心
+* flutter_localizations: SDK - 国际化支持
+* dart: ^3.7.0 - Dart语言版本
+
+### 状态管理与架构
+* flutter_riverpod: ^2.5.1 - 状态管理框架，用于Provider模式
+* go_router: ^15.1.2 - 路由管理
+
+### 数据序列化与存储
+* freezed_annotation: ^2.4.1 - 不可变数据类生成
+* json_annotation: ^4.9.0 - JSON序列化注解
+* hive: ^2.2.3 - 本地NoSQL数据库
+* hive_flutter: - Hive Flutter集成
+* flutter_secure_storage: ^9.0.0 - 安全存储（JWT令牌）
+
+### 网络请求
+* dio: ^5.4.0 - HTTP客户端
+* retrofit: ^4.0.3 - API客户端代码生成
+* connectivity_plus: ^5.0.2 - 网络状态监听
+
+### UI组件与动画
+* cupertino_icons: ^1.0.8 - iOS风格图标
+* dots_indicator: ^3.0.0 - 页面指示器
+* lottie: ^3.0.0 - Lottie动画支持
+* flutter_svg: ^2.1.0 - SVG图片支持
+
+### 系统集成
+* flutter_local_notifications: 19.2.1 - 本地通知
+* timezone: ^0.10.1 - 时区处理
+* flutter_timezone: ^4.1.1 - Flutter时区集成
+* package_info_plus: ^8.3.0 - 应用信息获取
+* device_info_plus: ^9.1.2 - 设备信息获取
+* url_launcher: ^6.3.1 - 外部链接打开
+* path_provider: - 文件路径获取
+
+### 开发工具
+* build_runner: ^2.4.10 - 代码生成工具
+* freezed: ^2.5.2 - 数据类生成器
+* json_serializable: ^6.8.0 - JSON序列化生成器
+* hive_generator: ^2.0.1 - Hive适配器生成器
+* retrofit_generator: ^8.0.6 - Retrofit代码生成器
+* flutter_launcher_icons: ^0.13.1 - 应用图标生成
+* flutter_native_splash: ^2.4.1 - 启动屏幕生成
+
+
+## Development Environment
+
+### 必需工具
+* Flutter SDK 3.x+ - 移动应用开发框架
+* Dart SDK ^3.7.0 - 编程语言
+* Android Studio / VS Code - 开发IDE
+* Android SDK - Android应用构建
+* Xcode (macOS) - iOS应用构建
+
+### 后端服务
+* Docker & Docker Compose - 容器化部署
+* Spring Boot + Kotlin - 后端API服务
+* PostgreSQL - 主数据库
+* Redis - 缓存和会话存储
+
+### 开发命令
+```bash
+# 获取依赖
+flutter pub get
+
+# 代码生成
+flutter packages pub run build_runner build --delete-conflicting-outputs
+
+# 运行应用
+flutter run
+
+# 构建发布版本
+flutter build apk --release
+flutter build ios --release
+```
+
+### API服务配置
+* 开发环境: http://localhost:8080/api/v1
+* Android模拟器: http://10.0.2.2:8080/api/v1
+* 真实设备: http://192.168.2.108:8080/api/v1
+
+
+## Structrue (init from project tree)
+
+> It is essential to consistently refine the analysis down to the file level — this level of granularity is of utmost importance.
+
+> If the number of files is too large, you should at least list all the directories, and provide comments for the parts you consider particularly important.
+
+> In the code block below, add comments to the directories/files to explain their functionality and usage scenarios.
+
+> if you think the directory/file is not important, you can not skip it, just add a simple comment to it.
+
+> but if you think the directory/file is important, you should read the files and add more detail comments on it (e.g. add comments on the functions, classes, and variables. explain the functionality and usage scenarios. write the importance of the directory/file).
+```
+root
+- .augment_memory
+    - activeContext.md
+    - core
+        - architecture.md
+        - best-practices.md
+        - decisions.md
+        - patterns.md
+        - tech-stack.md
+    - memory-index.md
+    - session-history.md
+    - task-logs
+        - task-log_2025-01-27_augment_init.md
+        - task-log_2025-01-27_bug_fixes.md
+        - task-log_2025-01-27_calendar_detail_enhancement_FINAL.md
+        - task-log_2025-01-27_calendar_detail_enhancement_step1.md
+        - task-log_2025-01-27_calendar_detail_enhancement_step2.md
+        - task-log_2025-01-27_calendar_detail_enhancement_step3.md
+        - task-log_2025-01-27_calendar_detail_enhancement_step4.md
+        - task-log_2025-01-27_calendar_detail_feature.md
+        - task-log_2025-01-27_final_fixes.md
+        - task-log_2025-01-27_server_architecture_design.md
+- .augment_memory_config
+    - DEPLOYMENT_VERIFICATION.md
+    - README.md
+    - augment_master_config.md
+- .dart_tool
+- .env.example
+- .gitignore
+- .metadata
+- DEPLOYMENT.md
+- README.md
+- analysis_options.yaml
+- android
+    - .gitignore
+    - .gradle
+        - 8.10.2
+            - checksums
+                - checksums.lock
+                - md5-checksums.bin
+                - sha1-checksums.bin
+            - dependencies-accessors
+                - gc.properties
+            - executionHistory
+                - executionHistory.bin
+                - executionHistory.lock
+            - expanded
+            - fileChanges
+                - last-build.bin
+            - fileHashes
+                - fileHashes.bin
+                - fileHashes.lock
+                - resourceHashesCache.bin
+            - gc.properties
+            - vcsMetadata
+        - buildOutputCleanup
+            - buildOutputCleanup.lock
+            - cache.properties
+            - outputFiles.bin
+        - file-system.probe
+        - kotlin
+            - errors
+            - sessions
+        - noVersion
+            - buildLogic.lock
+        - vcs-1
+            - gc.properties
+    - app
+        - .cxx
+            - Debug
+                - 3e2a535d
+                    - arm64-v8a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-2294a266dff9f9955659.json
+                                        - cmakeFiles-v1-0e680dc874446236d2fa.json
+                                        - codemodel-v2-6b5b9494858b19ea3823.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-06-09T07-08-17-0611.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - armeabi-v7a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-a7e5fb699c028f2207a5.json
+                                        - cmakeFiles-v1-de98c4ca5a50ba7a2cde.json
+                                        - codemodel-v2-dff5a3d8ee8d6abf8f9a.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-06-09T07-08-18-0420.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - hash_key.txt
+                    - x86
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-2dfa2c8518fe1ca40131.json
+                                        - cmakeFiles-v1-551a4bf3ee05e333e12b.json
+                                        - codemodel-v2-9cd55f422d89bdf34a05.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-06-09T07-08-18-0842.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - x86_64
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-304dc03490772d7c63d2.json
+                                        - cmakeFiles-v1-9dfa425f8befa4667347.json
+                                        - codemodel-v2-80be4ffbdf15015db150.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-06-09T07-08-19-0232.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                - 3h166w6e
+                    - arm64-v8a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-a35c2fde74bd9155a03c.json
+                                        - cmakeFiles-v1-67bc94c718deb4733338.json
+                                        - codemodel-v2-8bb4e748f4c07e2df845.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-21T09-32-20-0810.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - armeabi-v7a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-df5ffa3b5d35ea31440d.json
+                                        - cmakeFiles-v1-105aa3b81ae1cc3917cd.json
+                                        - codemodel-v2-1a336748fbd280a11e03.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-21T09-32-21-0526.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - hash_key.txt
+                    - x86
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-31dda9c74d1db2309a0d.json
+                                        - cmakeFiles-v1-7611d1c2c72d32a4234c.json
+                                        - codemodel-v2-d11ea1255c235d149ed5.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-21T09-32-22-0013.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - x86_64
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-b4a4f66b5db6faf4b5c7.json
+                                        - cmakeFiles-v1-ad48e51b5bdd86d71270.json
+                                        - codemodel-v2-d695d6c598712411edae.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-21T09-32-22-0475.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                - 5k706o35
+                    - arm64-v8a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-53e35289e2e733e85643.json
+                                        - cmakeFiles-v1-16b19b43e4592d1411d1.json
+                                        - codemodel-v2-5f87271416dc7c70c1ae.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-22T01-35-31-0450.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - armeabi-v7a
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-e4f70fdad6ee2b2d7f1c.json
+                                        - cmakeFiles-v1-41e16e7116f2e6e52b85.json
+                                        - codemodel-v2-ada93df9f7da672d73b6.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-22T01-35-31-0741.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - hash_key.txt
+                    - x86
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-8d98c47579b201938fdc.json
+                                        - cmakeFiles-v1-0bc88d0a2162a96e6f9c.json
+                                        - codemodel-v2-1726175a11d6e77e9798.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-22T01-35-31-0996.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+                    - x86_64
+                        - .cmake
+                            - api
+                                - v1
+                                    - query
+                                        - client-agp
+                                            - cache-v2
+                                            - cmakeFiles-v1
+                                            - codemodel-v2
+                                    - reply
+                                        - cache-v2-94aaeccae614c4f45830.json
+                                        - cmakeFiles-v1-89ecbd7430edb431c3d6.json
+                                        - codemodel-v2-ae0bd39a7632f1921df8.json
+                                        - directory-.-Debug-f5ebdc15457944623624.json
+                                        - index-2025-05-22T01-35-32-0248.json
+                        - CMakeCache.txt
+                        - CMakeFiles
+                            - 3.22.1-g37088a8
+                                - CMakeCCompiler.cmake
+                                - CMakeCXXCompiler.cmake
+                                - CMakeDetermineCompilerABI_C.bin
+                                - CMakeDetermineCompilerABI_CXX.bin
+                                - CMakeSystem.cmake
+                                - CompilerIdC
+                                    - CMakeCCompilerId.c
+                                    - CMakeCCompilerId.o
+                                    - tmp
+                                - CompilerIdCXX
+                                    - CMakeCXXCompilerId.cpp
+                                    - CMakeCXXCompilerId.o
+                                    - tmp
+                            - CMakeOutput.log
+                            - CMakeTmp
+                            - TargetDirectories.txt
+                            - cmake.check_cache
+                            - rules.ninja
+                        - additional_project_files.txt
+                        - android_gradle_build.json
+                        - android_gradle_build_mini.json
+                        - build.ninja
+                        - build_file_index.txt
+                        - cmake_install.cmake
+                        - configure_fingerprint.bin
+                        - metadata_generation_command.txt
+                        - prefab_config.json
+                        - symbol_folder_index.txt
+        - build.gradle.kts
+        - src
+            - debug
+                - AndroidManifest.xml
+            - main
+                - AndroidManifest.xml
+                - java
+                    - io
+                        - flutter
+                            - plugins
+                                - GeneratedPluginRegistrant.java
+                - kotlin
+                    - com
+                        - example
+                            - quitting_smoking
+                                - MainActivity.kt
+                - res
+                    - drawable
+                        - launch_background.xml
+                    - drawable-hdpi
+                        - ic_launcher_foreground.png
+                    - drawable-mdpi
+                        - ic_launcher_foreground.png
+                    - drawable-v21
+                        - launch_background.xml
+                    - drawable-xhdpi
+                        - ic_launcher_foreground.png
+                    - drawable-xxhdpi
+                        - ic_launcher_foreground.png
+                    - drawable-xxxhdpi
+                        - ic_launcher_foreground.png
+                    - mipmap-anydpi-v26
+                        - ic_launcher.xml
+                    - mipmap-hdpi
+                        - ic_launcher.png
+                    - mipmap-mdpi
+                        - ic_launcher.png
+                    - mipmap-xhdpi
+                        - ic_launcher.png
+                    - mipmap-xxhdpi
+                        - ic_launcher.png
+                    - mipmap-xxxhdpi
+                        - ic_launcher.png
+                    - values
+                        - colors.xml
+                        - styles.xml
+                    - values-night
+                        - styles.xml
+            - profile
+                - AndroidManifest.xml
+    - build.gradle.kts
+    - gradle
+        - wrapper
+            - gradle-wrapper.jar
+            - gradle-wrapper.properties
+    - gradle.properties
+    - gradlew
+    - gradlew.bat
+    - local.properties
+    - quitting_smoking_android.iml
+    - settings.gradle.kts
+- assets
+    - .DS_Store
+    - data
+        - achievement_definitions_en.json
+        - achievement_definitions_zh_CN.json
+        - health_benefits_en.json
+        - health_benefits_zh_CN.json
+    - images
+        - .DS_Store
+        - app_icon.png
+    - lottie
+        - achievement_unlocked.json
+- build
+- design
+    - img.png
+    - img_1.png
+    - img_10.png
+    - img_11.png
+    - img_12.png
+    - img_13.png
+    - img_14.png
+    - img_15.png
+    - img_16.png
+    - img_17.png
+    - img_18.png
+    - img_19.png
+    - img_2.png
+    - img_20.png
+    - img_21.png
+    - img_3.png
+    - img_4.png
+    - img_5.png
+    - img_6.png
+    - img_7.png
+    - img_8.png
+    - img_9.png
+- doc
+    - API详细设计文档：焕新之旅 - Quit Journey.md
+    - UX设计与页面功能说明：焕新之旅 - Quit Journey (MVP).md
+    - 一、客户端 (Flutter App) 技术说明文档.md
+    - 代码注释总结.md
+    - 功能实现状态报告.md
+    - 日志系统升级说明.md
+    - 服务端技术方案设计：焕新之旅 - Quit Journey.md
+    - 软件方案说明书：焕新之旅 - Quit Journey.md
+- docker-compose.prod.yml
+- ios
+    - .gitignore
+    - Flutter
+        - AppFrameworkInfo.plist
+        - Debug.xcconfig
+        - Generated.xcconfig
+        - Release.xcconfig
+        - flutter_export_environment.sh
+    - Podfile
+    - Runner
+        - AppDelegate.swift
+        - Assets.xcassets
+            - AppIcon.appiconset
+                - Contents.json
+                - Icon-App-1024x1024@1x.png
+                - Icon-App-20x20@1x.png
+                - Icon-App-20x20@2x.png
+                - Icon-App-20x20@3x.png
+                - Icon-App-29x29@1x.png
+                - Icon-App-29x29@2x.png
+                - Icon-App-29x29@3x.png
+                - Icon-App-40x40@1x.png
+                - Icon-App-40x40@2x.png
+                - Icon-App-40x40@3x.png
+                - Icon-App-50x50@1x.png
+                - Icon-App-50x50@2x.png
+                - Icon-App-57x57@1x.png
+                - Icon-App-57x57@2x.png
+                - Icon-App-60x60@2x.png
+                - Icon-App-60x60@3x.png
+                - Icon-App-72x72@1x.png
+                - Icon-App-72x72@2x.png
+                - Icon-App-76x76@1x.png
+                - Icon-App-76x76@2x.png
+                - Icon-App-83.5x83.5@2x.png
+            - LaunchImage.imageset
+                - Contents.json
+                - LaunchImage.png
+                - LaunchImage@2x.png
+                - LaunchImage@3x.png
+                - README.md
+        - Base.lproj
+            - LaunchScreen.storyboard
+            - Main.storyboard
+        - GeneratedPluginRegistrant.h
+        - GeneratedPluginRegistrant.m
+        - Info.plist
+        - Runner-Bridging-Header.h
+    - Runner.xcodeproj
+        - project.pbxproj
+        - project.xcworkspace
+            - contents.xcworkspacedata
+            - xcshareddata
+                - IDEWorkspaceChecks.plist
+                - WorkspaceSettings.xcsettings
+                - swiftpm
+                    - configuration
+        - xcshareddata
+            - xcschemes
+                - Runner.xcscheme
+    - Runner.xcworkspace
+        - contents.xcworkspacedata
+        - xcshareddata
+            - IDEWorkspaceChecks.plist
+            - WorkspaceSettings.xcsettings
+            - swiftpm
+                - configuration
+    - RunnerTests
+        - RunnerTests.swift
+- issues
+    - API集成完成报告.md
+- l10n.yaml
+- lib
+    - app_widget.dart
+    - core
+        - config
+            - api_config.dart
+        - constants
+            - hive_constants.dart
+        - errors
+            - network_exceptions.dart
+            - network_exceptions.freezed.dart
+        - network
+            - dio_client.dart
+        - providers
+            - locale_provider.dart
+            - network_providers.dart
+            - notification_provider.dart
+        - router
+            - app_router.dart
+        - services
+            - data_sync_service.dart
+            - logger_service.dart
+            - notification_service.dart
+            - token_storage_service.dart
+        - theme
+            - app_colors.dart
+            - app_theme.dart
+            - app_theme_provider.dart
+        - utils
+            - localization_extensions.dart
+    - data
+        - datasources
+            - local
+                - achievement_local_datasource.dart
+                - achievement_local_datasource_impl.dart
+                - craving_log_local_datasource.dart
+                - craving_log_local_datasource_impl.dart
+                - daily_check_in_local_datasource.dart
+                - daily_check_in_local_datasource_impl.dart
+                - health_benefit_local_datasource.dart
+                - health_benefit_local_datasource_impl.dart
+                - hive_service.dart
+                - smoking_record_local_datasource.dart
+                - smoking_record_local_datasource_impl.dart
+                - user_local_datasource.dart
+                - user_local_datasource_impl.dart
+            - remote
+                - achievement_remote_datasource.dart
+                - achievement_remote_datasource_impl.dart
+                - auth_remote_datasource.dart
+                - auth_remote_datasource_impl.dart
+                - daily_check_in_remote_datasource.dart
+                - daily_check_in_remote_datasource_impl.dart
+                - smoking_record_remote_datasource.dart
+                - smoking_record_remote_datasource_impl.dart
+                - user_profile_remote_datasource.dart
+                - user_profile_remote_datasource_impl.dart
+        - local
+            - hive_init.dart
+        - mappers
+            - achievement_mapper.dart
+            - auth_mapper.dart
+            - daily_check_in_mapper.dart
+            - smoking_record_mapper.dart
+            - user_profile_mapper.dart
+        - models
+            - achievement_models.dart
+            - achievement_models.freezed.dart
+            - achievement_models.g.dart
+            - api_response_model.dart
+            - api_response_model.freezed.dart
+            - api_response_model.g.dart
+            - auth_models.dart
+            - auth_models.freezed.dart
+            - auth_models.g.dart
+            - daily_check_in_models.dart
+            - daily_check_in_models.freezed.dart
+            - daily_check_in_models.g.dart
+            - smoking_record_models.dart
+            - smoking_record_models.freezed.dart
+            - smoking_record_models.g.dart
+            - user_profile_models.dart
+            - user_profile_models.freezed.dart
+            - user_profile_models.g.dart
+        - repositories
+            - achievement_repository.dart
+        - repositories_impl
+            - achievement_repository_impl.dart
+            - auth_repository_impl.dart
+            - craving_log_repository_impl.dart
+            - daily_check_in_repository_impl.dart
+            - health_benefit_repository_impl.dart
+            - smoking_record_repository_impl.dart
+            - user_profile_repository_impl.dart
+    - domain
+        - entities
+            - achievement_definition.dart
+            - achievement_definition.freezed.dart
+            - achievement_definition.g.dart
+            - craving_log_entry.dart
+            - craving_log_entry.freezed.dart
+            - craving_log_entry.g.dart
+            - daily_check_in.dart
+            - daily_check_in.freezed.dart
+            - daily_check_in.g.dart
+            - health_benefit_milestone.dart
+            - health_benefit_milestone.freezed.dart
+            - health_benefit_milestone.g.dart
+            - smoking_record.dart
+            - smoking_record.freezed.dart
+            - smoking_record.g.dart
+            - unlocked_achievement.dart
+            - unlocked_achievement.freezed.dart
+            - unlocked_achievement.g.dart
+            - unlocked_achievement_adapter.dart
+            - user_profile.dart
+            - user_profile.freezed.dart
+            - user_profile.g.dart
+        - repositories
+            - achievement_repository.dart
+            - auth_repository.dart
+            - craving_log_repository.dart
+            - daily_check_in_repository.dart
+            - health_benefit_repository.dart
+            - smoking_record_repository.dart
+            - user_profile_repository.dart
+        - usecases
+    - l10n
+        - app_en.arb
+        - app_localizations.dart
+        - app_localizations_en.dart
+        - app_localizations_zh.dart
+        - app_zh.arb
+        - app_zh_CN.arb
+    - main.dart
+    - presentation
+        - common_widgets
+            - bottom_sheet_wrapper.dart
+            - custom_card.dart
+            - dialog_wrapper.dart
+            - empty_state_widget.dart
+            - health_milestone_countdown.dart
+            - icon_text_row.dart
+            - loading_indicator.dart
+            - lottie_animation.dart
+            - primary_button.dart
+            - quit_progress_indicator.dart
+            - secondary_button.dart
+            - section_title.dart
+            - text_button_with_icon.dart
+        - features
+            - achievements
+                - controllers
+                    - achievement_controller.dart
+                - pages
+                    - achievements_page.dart
+                - providers
+                    - achievement_notifier.dart
+                    - achievement_notifier.freezed.dart
+                - widgets
+                    - achievement_unlocked_modal.dart
+            - auth
+                - pages
+                    - login_page.dart
+                    - onboarding_page.dart
+                    - registration_page.dart
+                    - splash_screen.dart
+                - providers
+                    - auth_notifier.dart
+                    - auth_state.dart
+                    - auth_state.freezed.dart
+                    - onboarding_notifier.dart
+                    - onboarding_notifier.freezed.dart
+                    - splash_screen_notifier.dart
+                - widgets
+                    - login_form.dart
+                    - onboarding_step_daily_cigarettes.dart
+                    - onboarding_step_pack_price.dart
+                    - onboarding_step_quit_date.dart
+                    - onboarding_step_quit_reason.dart
+                    - onboarding_step_smoking_years.dart
+                    - registration_form.dart
+            - home
+                - pages
+                    - breathing_exercise_guide_page.dart
+                    - calendar_detail_page.dart
+                    - craving_coping_strategies_page.dart
+                    - craving_log_modal.dart
+                    - health_benefits_detail_page.dart
+                    - home_page.dart
+                    - smoking_record_modal.dart
+                - providers
+                    - daily_check_in_notifier.dart
+                    - health_benefits_provider.dart
+                    - home_dashboard_stats_provider.dart
+                - widgets
+                    - health_milestone_countdown.dart
+                    - quit_progress_indicator.dart
+            - settings
+                - pages
+                    - about
+                        - about_page.dart
+                    - help_support
+                        - help_support_page.dart
+                    - notification_settings
+                        - notification_settings_page.dart
+                    - privacy_policy
+                        - privacy_policy_page.dart
+                    - quit_date
+                        - quit_date_page.dart
+                    - settings_page.dart
+                    - smoking_data
+                        - smoking_data_page.dart
+                - providers
+                - widgets
+            - statistics
+                - pages
+                    - check_in_statistics_page.dart
+                    - statistics_home_page.dart
+        - providers
+            - auth_provider.dart
+            - calendar_month_provider.dart
+            - craving_log_provider.dart
+            - data_sync_provider.dart
+            - smoking_record_provider.dart
+        - shell
+            - main_app_shell.dart
+        - widgets
+            - monthly_smoking_calendar.dart
+- mock_server.py
+- pubspec.lock
+- pubspec.yaml
+- test
+    - widget_test.dart
+- test_api.dart
+- untranslated_messages.json
+```

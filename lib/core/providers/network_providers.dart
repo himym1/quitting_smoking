@@ -26,10 +26,22 @@ import 'package:quitting_smoking/data/datasources/remote/achievement_remote_data
 
 // ==================== 网络基础设施 Providers ====================
 
-/// Dio HTTP客户端 Provider
+/// Dio HTTP客户端 Provider（异步初始化）
 ///
-/// 提供配置好的HTTP客户端实例
-final dioClientProvider = Provider<DioClient>((ref) {
+/// 提供配置好的HTTP客户端实例，支持自动网络检测
+final dioClientProvider = FutureProvider<DioClient>((ref) async {
+  final client = DioClient();
+
+  // 在开发环境中初始化网络检测
+  await client.initializeWithDetection();
+
+  return client;
+});
+
+/// 同步 Dio HTTP客户端 Provider（用于需要立即使用的场景）
+///
+/// 提供基础配置的HTTP客户端实例，不进行网络检测
+final dioClientSyncProvider = Provider<DioClient>((ref) {
   return DioClient();
 });
 
@@ -96,7 +108,7 @@ final isTokenExpiringSoonProvider = FutureProvider<bool>((ref) async {
 ///
 /// 提供认证相关的API调用服务
 final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>((ref) {
-  final dioClient = ref.watch(dioClientProvider);
+  final dioClient = ref.watch(dioClientSyncProvider);
   return AuthRemoteDataSourceImpl(dioClient);
 });
 
@@ -105,7 +117,7 @@ final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>((ref) {
 /// 提供用户资料相关的API调用服务
 final userProfileRemoteDataSourceProvider =
     Provider<UserProfileRemoteDataSource>((ref) {
-      final dioClient = ref.watch(dioClientProvider);
+      final dioClient = ref.watch(dioClientSyncProvider);
       return UserProfileRemoteDataSourceImpl(dioClient);
     });
 
@@ -114,7 +126,7 @@ final userProfileRemoteDataSourceProvider =
 /// 提供打卡相关的API调用服务
 final dailyCheckInRemoteDataSourceProvider =
     Provider<DailyCheckInRemoteDataSource>((ref) {
-      final dioClient = ref.watch(dioClientProvider);
+      final dioClient = ref.watch(dioClientSyncProvider);
       return DailyCheckInRemoteDataSourceImpl(dioClient);
     });
 
@@ -123,7 +135,7 @@ final dailyCheckInRemoteDataSourceProvider =
 /// 提供吸烟记录相关的API调用服务
 final smokingRecordRemoteDataSourceProvider =
     Provider<SmokingRecordRemoteDataSource>((ref) {
-      final dioClient = ref.watch(dioClientProvider);
+      final dioClient = ref.watch(dioClientSyncProvider);
       return SmokingRecordRemoteDataSourceImpl(dioClient);
     });
 
@@ -132,7 +144,7 @@ final smokingRecordRemoteDataSourceProvider =
 /// 提供成就相关的API调用服务
 final achievementRemoteDataSourceProvider =
     Provider<AchievementRemoteDataSource>((ref) {
-      final dioClient = ref.watch(dioClientProvider);
+      final dioClient = ref.watch(dioClientSyncProvider);
       return AchievementRemoteDataSourceImpl(dioClient);
     });
 

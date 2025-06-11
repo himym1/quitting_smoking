@@ -12,7 +12,7 @@ _$RegisterRequestModelImpl _$$RegisterRequestModelImplFromJson(
       email: json['email'] as String,
       password: json['password'] as String,
       name: json['name'] as String?,
-      agreeToTerms: json['agreeToTerms'] as bool? ?? false,
+      agreeToTerms: json['agreeToTerms'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$RegisterRequestModelImplToJson(

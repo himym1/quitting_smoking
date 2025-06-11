@@ -34,6 +34,9 @@ mixin _$NetworkException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -65,6 +68,9 @@ mixin _$NetworkException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -96,6 +102,9 @@ mixin _$NetworkException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -128,6 +137,11 @@ mixin _$NetworkException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -167,6 +181,9 @@ mixin _$NetworkException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -202,6 +219,9 @@ mixin _$NetworkException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -299,6 +319,9 @@ class _$RequestCancelledImpl implements RequestCancelled {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -333,6 +356,9 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -367,6 +393,9 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -405,6 +434,11 @@ class _$RequestCancelledImpl implements RequestCancelled {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -447,6 +481,9 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -485,6 +522,9 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -597,6 +637,9 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -631,6 +674,9 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -665,6 +711,9 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -703,6 +752,11 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -745,6 +799,9 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -783,6 +840,9 @@ class _$UnauthorizedRequestImpl implements UnauthorizedRequest {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -903,6 +963,9 @@ class _$BadRequestImpl implements BadRequest {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -937,6 +1000,9 @@ class _$BadRequestImpl implements BadRequest {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -971,6 +1037,9 @@ class _$BadRequestImpl implements BadRequest {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -1009,6 +1078,11 @@ class _$BadRequestImpl implements BadRequest {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -1051,6 +1125,9 @@ class _$BadRequestImpl implements BadRequest {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -1089,6 +1166,9 @@ class _$BadRequestImpl implements BadRequest {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -1208,6 +1288,9 @@ class _$NotFoundImpl implements NotFound {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -1242,6 +1325,9 @@ class _$NotFoundImpl implements NotFound {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -1276,6 +1362,9 @@ class _$NotFoundImpl implements NotFound {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -1314,6 +1403,11 @@ class _$NotFoundImpl implements NotFound {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -1356,6 +1450,9 @@ class _$NotFoundImpl implements NotFound {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -1394,6 +1491,9 @@ class _$NotFoundImpl implements NotFound {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -1486,6 +1586,9 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -1520,6 +1623,9 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -1554,6 +1660,9 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -1592,6 +1701,11 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -1634,6 +1748,9 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -1672,6 +1789,9 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -1756,6 +1876,9 @@ class _$NotAcceptableImpl implements NotAcceptable {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -1790,6 +1913,9 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -1824,6 +1950,9 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -1862,6 +1991,11 @@ class _$NotAcceptableImpl implements NotAcceptable {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -1904,6 +2038,9 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -1942,6 +2079,9 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -2026,6 +2166,9 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -2060,6 +2203,9 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -2094,6 +2240,9 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -2132,6 +2281,11 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -2174,6 +2328,9 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -2212,6 +2369,9 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -2296,6 +2456,9 @@ class _$SendTimeoutImpl implements SendTimeout {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -2330,6 +2493,9 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -2364,6 +2530,9 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -2402,6 +2571,11 @@ class _$SendTimeoutImpl implements SendTimeout {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -2444,6 +2618,9 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -2482,6 +2659,9 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -2593,6 +2773,9 @@ class _$ConflictImpl implements Conflict {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -2627,6 +2810,9 @@ class _$ConflictImpl implements Conflict {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -2661,6 +2847,9 @@ class _$ConflictImpl implements Conflict {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -2699,6 +2888,11 @@ class _$ConflictImpl implements Conflict {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -2741,6 +2935,9 @@ class _$ConflictImpl implements Conflict {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -2779,6 +2976,9 @@ class _$ConflictImpl implements Conflict {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -2872,6 +3072,9 @@ class _$InternalServerErrorImpl implements InternalServerError {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -2906,6 +3109,9 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -2940,6 +3146,9 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -2978,6 +3187,11 @@ class _$InternalServerErrorImpl implements InternalServerError {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -3020,6 +3234,9 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -3058,6 +3275,9 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -3142,6 +3362,9 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -3176,6 +3399,9 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -3210,6 +3436,9 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -3248,6 +3477,11 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -3290,6 +3524,9 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -3328,6 +3565,9 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -3413,6 +3653,9 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -3447,6 +3690,9 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -3481,6 +3727,9 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -3519,6 +3768,11 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -3561,6 +3815,9 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -3599,6 +3856,9 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -3683,6 +3943,9 @@ class _$FormatExceptionImpl implements FormatException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -3717,6 +3980,9 @@ class _$FormatExceptionImpl implements FormatException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -3751,6 +4017,9 @@ class _$FormatExceptionImpl implements FormatException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -3789,6 +4058,11 @@ class _$FormatExceptionImpl implements FormatException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -3831,6 +4105,9 @@ class _$FormatExceptionImpl implements FormatException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -3869,6 +4146,9 @@ class _$FormatExceptionImpl implements FormatException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -3953,6 +4233,9 @@ class _$UnableToProcessImpl implements UnableToProcess {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -3987,6 +4270,9 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -4021,6 +4307,9 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -4059,6 +4348,11 @@ class _$UnableToProcessImpl implements UnableToProcess {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -4101,6 +4395,9 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -4139,6 +4436,9 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -4250,6 +4550,9 @@ class _$DefaultErrorImpl implements DefaultError {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -4284,6 +4587,9 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -4318,6 +4624,9 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -4356,6 +4665,11 @@ class _$DefaultErrorImpl implements DefaultError {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -4398,6 +4712,9 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -4436,6 +4753,9 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -4528,6 +4848,9 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -4562,6 +4885,9 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -4596,6 +4922,9 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -4634,6 +4963,11 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -4676,6 +5010,9 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -4714,6 +5051,9 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -4739,6 +5079,994 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
 
 abstract class UnexpectedError implements NetworkException {
   const factory UnexpectedError() = _$UnexpectedErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$EmailAlreadyExistsExceptionImplCopyWith<$Res> {
+  factory _$$EmailAlreadyExistsExceptionImplCopyWith(
+          _$EmailAlreadyExistsExceptionImpl value,
+          $Res Function(_$EmailAlreadyExistsExceptionImpl) then) =
+      __$$EmailAlreadyExistsExceptionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$EmailAlreadyExistsExceptionImplCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res,
+        _$EmailAlreadyExistsExceptionImpl>
+    implements _$$EmailAlreadyExistsExceptionImplCopyWith<$Res> {
+  __$$EmailAlreadyExistsExceptionImplCopyWithImpl(
+      _$EmailAlreadyExistsExceptionImpl _value,
+      $Res Function(_$EmailAlreadyExistsExceptionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$EmailAlreadyExistsExceptionImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EmailAlreadyExistsExceptionImpl implements EmailAlreadyExistsException {
+  const _$EmailAlreadyExistsExceptionImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'NetworkException.emailAlreadyExists(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmailAlreadyExistsExceptionImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmailAlreadyExistsExceptionImplCopyWith<_$EmailAlreadyExistsExceptionImpl>
+      get copyWith => __$$EmailAlreadyExistsExceptionImplCopyWithImpl<
+          _$EmailAlreadyExistsExceptionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestCancelled,
+    required TResult Function(String reason) unauthorizedRequest,
+    required TResult Function(String reason) badRequest,
+    required TResult Function(String reason) notFound,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() notAcceptable,
+    required TResult Function() requestTimeout,
+    required TResult Function() sendTimeout,
+    required TResult Function(String reason) conflict,
+    required TResult Function() internalServerError,
+    required TResult Function() serviceUnavailable,
+    required TResult Function() noInternetConnection,
+    required TResult Function() formatException,
+    required TResult Function() unableToProcess,
+    required TResult Function(String error) defaultError,
+    required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
+    required TResult Function(String message) syncFailed,
+    required TResult Function(String message) checkInFailed,
+    required TResult Function(String message) checkInAlreadyExists,
+    required TResult Function(String message) checkInNotFound,
+    required TResult Function(String message) smokingRecordFailed,
+    required TResult Function(String message) smokingRecordNotFound,
+    required TResult Function(String message) invalidSmokingData,
+    required TResult Function(String message) achievementFailed,
+    required TResult Function(String message) achievementAlreadyUnlocked,
+    required TResult Function(String message) achievementNotFound,
+    required TResult Function(String message) achievementConditionNotMet,
+  }) {
+    return emailAlreadyExists(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestCancelled,
+    TResult? Function(String reason)? unauthorizedRequest,
+    TResult? Function(String reason)? badRequest,
+    TResult? Function(String reason)? notFound,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? notAcceptable,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? sendTimeout,
+    TResult? Function(String reason)? conflict,
+    TResult? Function()? internalServerError,
+    TResult? Function()? serviceUnavailable,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? formatException,
+    TResult? Function()? unableToProcess,
+    TResult? Function(String error)? defaultError,
+    TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
+    TResult? Function(String message)? syncFailed,
+    TResult? Function(String message)? checkInFailed,
+    TResult? Function(String message)? checkInAlreadyExists,
+    TResult? Function(String message)? checkInNotFound,
+    TResult? Function(String message)? smokingRecordFailed,
+    TResult? Function(String message)? smokingRecordNotFound,
+    TResult? Function(String message)? invalidSmokingData,
+    TResult? Function(String message)? achievementFailed,
+    TResult? Function(String message)? achievementAlreadyUnlocked,
+    TResult? Function(String message)? achievementNotFound,
+    TResult? Function(String message)? achievementConditionNotMet,
+  }) {
+    return emailAlreadyExists?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestCancelled,
+    TResult Function(String reason)? unauthorizedRequest,
+    TResult Function(String reason)? badRequest,
+    TResult Function(String reason)? notFound,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? notAcceptable,
+    TResult Function()? requestTimeout,
+    TResult Function()? sendTimeout,
+    TResult Function(String reason)? conflict,
+    TResult Function()? internalServerError,
+    TResult Function()? serviceUnavailable,
+    TResult Function()? noInternetConnection,
+    TResult Function()? formatException,
+    TResult Function()? unableToProcess,
+    TResult Function(String error)? defaultError,
+    TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
+    TResult Function(String message)? syncFailed,
+    TResult Function(String message)? checkInFailed,
+    TResult Function(String message)? checkInAlreadyExists,
+    TResult Function(String message)? checkInNotFound,
+    TResult Function(String message)? smokingRecordFailed,
+    TResult Function(String message)? smokingRecordNotFound,
+    TResult Function(String message)? invalidSmokingData,
+    TResult Function(String message)? achievementFailed,
+    TResult Function(String message)? achievementAlreadyUnlocked,
+    TResult Function(String message)? achievementNotFound,
+    TResult Function(String message)? achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (emailAlreadyExists != null) {
+      return emailAlreadyExists(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestCancelled value) requestCancelled,
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(NotAcceptable value) notAcceptable,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(SendTimeout value) sendTimeout,
+    required TResult Function(Conflict value) conflict,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnableToProcess value) unableToProcess,
+    required TResult Function(DefaultError value) defaultError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
+    required TResult Function(SyncFailedException value) syncFailed,
+    required TResult Function(CheckInFailedException value) checkInFailed,
+    required TResult Function(CheckInAlreadyExistsException value)
+        checkInAlreadyExists,
+    required TResult Function(CheckInNotFoundException value) checkInNotFound,
+    required TResult Function(SmokingRecordFailedException value)
+        smokingRecordFailed,
+    required TResult Function(SmokingRecordNotFoundException value)
+        smokingRecordNotFound,
+    required TResult Function(InvalidSmokingDataException value)
+        invalidSmokingData,
+    required TResult Function(AchievementFailedException value)
+        achievementFailed,
+    required TResult Function(AchievementAlreadyUnlockedException value)
+        achievementAlreadyUnlocked,
+    required TResult Function(AchievementNotFoundException value)
+        achievementNotFound,
+    required TResult Function(AchievementConditionNotMetException value)
+        achievementConditionNotMet,
+  }) {
+    return emailAlreadyExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestCancelled value)? requestCancelled,
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(NotFound value)? notFound,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(NotAcceptable value)? notAcceptable,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(SendTimeout value)? sendTimeout,
+    TResult? Function(Conflict value)? conflict,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnableToProcess value)? unableToProcess,
+    TResult? Function(DefaultError value)? defaultError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
+    TResult? Function(SyncFailedException value)? syncFailed,
+    TResult? Function(CheckInFailedException value)? checkInFailed,
+    TResult? Function(CheckInAlreadyExistsException value)?
+        checkInAlreadyExists,
+    TResult? Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult? Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult? Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult? Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult? Function(AchievementFailedException value)? achievementFailed,
+    TResult? Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult? Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult? Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+  }) {
+    return emailAlreadyExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestCancelled value)? requestCancelled,
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(NotAcceptable value)? notAcceptable,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(SendTimeout value)? sendTimeout,
+    TResult Function(Conflict value)? conflict,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnableToProcess value)? unableToProcess,
+    TResult Function(DefaultError value)? defaultError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
+    TResult Function(SyncFailedException value)? syncFailed,
+    TResult Function(CheckInFailedException value)? checkInFailed,
+    TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
+    TResult Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult Function(AchievementFailedException value)? achievementFailed,
+    TResult Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (emailAlreadyExists != null) {
+      return emailAlreadyExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailAlreadyExistsException implements NetworkException {
+  const factory EmailAlreadyExistsException(final String message) =
+      _$EmailAlreadyExistsExceptionImpl;
+
+  String get message;
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EmailAlreadyExistsExceptionImplCopyWith<_$EmailAlreadyExistsExceptionImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegistrationFailedExceptionImplCopyWith<$Res> {
+  factory _$$RegistrationFailedExceptionImplCopyWith(
+          _$RegistrationFailedExceptionImpl value,
+          $Res Function(_$RegistrationFailedExceptionImpl) then) =
+      __$$RegistrationFailedExceptionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$RegistrationFailedExceptionImplCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res,
+        _$RegistrationFailedExceptionImpl>
+    implements _$$RegistrationFailedExceptionImplCopyWith<$Res> {
+  __$$RegistrationFailedExceptionImplCopyWithImpl(
+      _$RegistrationFailedExceptionImpl _value,
+      $Res Function(_$RegistrationFailedExceptionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$RegistrationFailedExceptionImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegistrationFailedExceptionImpl implements RegistrationFailedException {
+  const _$RegistrationFailedExceptionImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'NetworkException.registrationFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegistrationFailedExceptionImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegistrationFailedExceptionImplCopyWith<_$RegistrationFailedExceptionImpl>
+      get copyWith => __$$RegistrationFailedExceptionImplCopyWithImpl<
+          _$RegistrationFailedExceptionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestCancelled,
+    required TResult Function(String reason) unauthorizedRequest,
+    required TResult Function(String reason) badRequest,
+    required TResult Function(String reason) notFound,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() notAcceptable,
+    required TResult Function() requestTimeout,
+    required TResult Function() sendTimeout,
+    required TResult Function(String reason) conflict,
+    required TResult Function() internalServerError,
+    required TResult Function() serviceUnavailable,
+    required TResult Function() noInternetConnection,
+    required TResult Function() formatException,
+    required TResult Function() unableToProcess,
+    required TResult Function(String error) defaultError,
+    required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
+    required TResult Function(String message) syncFailed,
+    required TResult Function(String message) checkInFailed,
+    required TResult Function(String message) checkInAlreadyExists,
+    required TResult Function(String message) checkInNotFound,
+    required TResult Function(String message) smokingRecordFailed,
+    required TResult Function(String message) smokingRecordNotFound,
+    required TResult Function(String message) invalidSmokingData,
+    required TResult Function(String message) achievementFailed,
+    required TResult Function(String message) achievementAlreadyUnlocked,
+    required TResult Function(String message) achievementNotFound,
+    required TResult Function(String message) achievementConditionNotMet,
+  }) {
+    return registrationFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestCancelled,
+    TResult? Function(String reason)? unauthorizedRequest,
+    TResult? Function(String reason)? badRequest,
+    TResult? Function(String reason)? notFound,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? notAcceptable,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? sendTimeout,
+    TResult? Function(String reason)? conflict,
+    TResult? Function()? internalServerError,
+    TResult? Function()? serviceUnavailable,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? formatException,
+    TResult? Function()? unableToProcess,
+    TResult? Function(String error)? defaultError,
+    TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
+    TResult? Function(String message)? syncFailed,
+    TResult? Function(String message)? checkInFailed,
+    TResult? Function(String message)? checkInAlreadyExists,
+    TResult? Function(String message)? checkInNotFound,
+    TResult? Function(String message)? smokingRecordFailed,
+    TResult? Function(String message)? smokingRecordNotFound,
+    TResult? Function(String message)? invalidSmokingData,
+    TResult? Function(String message)? achievementFailed,
+    TResult? Function(String message)? achievementAlreadyUnlocked,
+    TResult? Function(String message)? achievementNotFound,
+    TResult? Function(String message)? achievementConditionNotMet,
+  }) {
+    return registrationFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestCancelled,
+    TResult Function(String reason)? unauthorizedRequest,
+    TResult Function(String reason)? badRequest,
+    TResult Function(String reason)? notFound,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? notAcceptable,
+    TResult Function()? requestTimeout,
+    TResult Function()? sendTimeout,
+    TResult Function(String reason)? conflict,
+    TResult Function()? internalServerError,
+    TResult Function()? serviceUnavailable,
+    TResult Function()? noInternetConnection,
+    TResult Function()? formatException,
+    TResult Function()? unableToProcess,
+    TResult Function(String error)? defaultError,
+    TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
+    TResult Function(String message)? syncFailed,
+    TResult Function(String message)? checkInFailed,
+    TResult Function(String message)? checkInAlreadyExists,
+    TResult Function(String message)? checkInNotFound,
+    TResult Function(String message)? smokingRecordFailed,
+    TResult Function(String message)? smokingRecordNotFound,
+    TResult Function(String message)? invalidSmokingData,
+    TResult Function(String message)? achievementFailed,
+    TResult Function(String message)? achievementAlreadyUnlocked,
+    TResult Function(String message)? achievementNotFound,
+    TResult Function(String message)? achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (registrationFailed != null) {
+      return registrationFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestCancelled value) requestCancelled,
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(NotAcceptable value) notAcceptable,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(SendTimeout value) sendTimeout,
+    required TResult Function(Conflict value) conflict,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnableToProcess value) unableToProcess,
+    required TResult Function(DefaultError value) defaultError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
+    required TResult Function(SyncFailedException value) syncFailed,
+    required TResult Function(CheckInFailedException value) checkInFailed,
+    required TResult Function(CheckInAlreadyExistsException value)
+        checkInAlreadyExists,
+    required TResult Function(CheckInNotFoundException value) checkInNotFound,
+    required TResult Function(SmokingRecordFailedException value)
+        smokingRecordFailed,
+    required TResult Function(SmokingRecordNotFoundException value)
+        smokingRecordNotFound,
+    required TResult Function(InvalidSmokingDataException value)
+        invalidSmokingData,
+    required TResult Function(AchievementFailedException value)
+        achievementFailed,
+    required TResult Function(AchievementAlreadyUnlockedException value)
+        achievementAlreadyUnlocked,
+    required TResult Function(AchievementNotFoundException value)
+        achievementNotFound,
+    required TResult Function(AchievementConditionNotMetException value)
+        achievementConditionNotMet,
+  }) {
+    return registrationFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestCancelled value)? requestCancelled,
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(NotFound value)? notFound,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(NotAcceptable value)? notAcceptable,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(SendTimeout value)? sendTimeout,
+    TResult? Function(Conflict value)? conflict,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnableToProcess value)? unableToProcess,
+    TResult? Function(DefaultError value)? defaultError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
+    TResult? Function(SyncFailedException value)? syncFailed,
+    TResult? Function(CheckInFailedException value)? checkInFailed,
+    TResult? Function(CheckInAlreadyExistsException value)?
+        checkInAlreadyExists,
+    TResult? Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult? Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult? Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult? Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult? Function(AchievementFailedException value)? achievementFailed,
+    TResult? Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult? Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult? Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+  }) {
+    return registrationFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestCancelled value)? requestCancelled,
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(NotAcceptable value)? notAcceptable,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(SendTimeout value)? sendTimeout,
+    TResult Function(Conflict value)? conflict,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnableToProcess value)? unableToProcess,
+    TResult Function(DefaultError value)? defaultError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
+    TResult Function(SyncFailedException value)? syncFailed,
+    TResult Function(CheckInFailedException value)? checkInFailed,
+    TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
+    TResult Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult Function(AchievementFailedException value)? achievementFailed,
+    TResult Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (registrationFailed != null) {
+      return registrationFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegistrationFailedException implements NetworkException {
+  const factory RegistrationFailedException(final String message) =
+      _$RegistrationFailedExceptionImpl;
+
+  String get message;
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RegistrationFailedExceptionImplCopyWith<_$RegistrationFailedExceptionImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoginFailedExceptionImplCopyWith<$Res> {
+  factory _$$LoginFailedExceptionImplCopyWith(_$LoginFailedExceptionImpl value,
+          $Res Function(_$LoginFailedExceptionImpl) then) =
+      __$$LoginFailedExceptionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$LoginFailedExceptionImplCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res, _$LoginFailedExceptionImpl>
+    implements _$$LoginFailedExceptionImplCopyWith<$Res> {
+  __$$LoginFailedExceptionImplCopyWithImpl(_$LoginFailedExceptionImpl _value,
+      $Res Function(_$LoginFailedExceptionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$LoginFailedExceptionImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoginFailedExceptionImpl implements LoginFailedException {
+  const _$LoginFailedExceptionImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'NetworkException.loginFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginFailedExceptionImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginFailedExceptionImplCopyWith<_$LoginFailedExceptionImpl>
+      get copyWith =>
+          __$$LoginFailedExceptionImplCopyWithImpl<_$LoginFailedExceptionImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestCancelled,
+    required TResult Function(String reason) unauthorizedRequest,
+    required TResult Function(String reason) badRequest,
+    required TResult Function(String reason) notFound,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() notAcceptable,
+    required TResult Function() requestTimeout,
+    required TResult Function() sendTimeout,
+    required TResult Function(String reason) conflict,
+    required TResult Function() internalServerError,
+    required TResult Function() serviceUnavailable,
+    required TResult Function() noInternetConnection,
+    required TResult Function() formatException,
+    required TResult Function() unableToProcess,
+    required TResult Function(String error) defaultError,
+    required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
+    required TResult Function(String message) syncFailed,
+    required TResult Function(String message) checkInFailed,
+    required TResult Function(String message) checkInAlreadyExists,
+    required TResult Function(String message) checkInNotFound,
+    required TResult Function(String message) smokingRecordFailed,
+    required TResult Function(String message) smokingRecordNotFound,
+    required TResult Function(String message) invalidSmokingData,
+    required TResult Function(String message) achievementFailed,
+    required TResult Function(String message) achievementAlreadyUnlocked,
+    required TResult Function(String message) achievementNotFound,
+    required TResult Function(String message) achievementConditionNotMet,
+  }) {
+    return loginFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestCancelled,
+    TResult? Function(String reason)? unauthorizedRequest,
+    TResult? Function(String reason)? badRequest,
+    TResult? Function(String reason)? notFound,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? notAcceptable,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? sendTimeout,
+    TResult? Function(String reason)? conflict,
+    TResult? Function()? internalServerError,
+    TResult? Function()? serviceUnavailable,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? formatException,
+    TResult? Function()? unableToProcess,
+    TResult? Function(String error)? defaultError,
+    TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
+    TResult? Function(String message)? syncFailed,
+    TResult? Function(String message)? checkInFailed,
+    TResult? Function(String message)? checkInAlreadyExists,
+    TResult? Function(String message)? checkInNotFound,
+    TResult? Function(String message)? smokingRecordFailed,
+    TResult? Function(String message)? smokingRecordNotFound,
+    TResult? Function(String message)? invalidSmokingData,
+    TResult? Function(String message)? achievementFailed,
+    TResult? Function(String message)? achievementAlreadyUnlocked,
+    TResult? Function(String message)? achievementNotFound,
+    TResult? Function(String message)? achievementConditionNotMet,
+  }) {
+    return loginFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestCancelled,
+    TResult Function(String reason)? unauthorizedRequest,
+    TResult Function(String reason)? badRequest,
+    TResult Function(String reason)? notFound,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? notAcceptable,
+    TResult Function()? requestTimeout,
+    TResult Function()? sendTimeout,
+    TResult Function(String reason)? conflict,
+    TResult Function()? internalServerError,
+    TResult Function()? serviceUnavailable,
+    TResult Function()? noInternetConnection,
+    TResult Function()? formatException,
+    TResult Function()? unableToProcess,
+    TResult Function(String error)? defaultError,
+    TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
+    TResult Function(String message)? syncFailed,
+    TResult Function(String message)? checkInFailed,
+    TResult Function(String message)? checkInAlreadyExists,
+    TResult Function(String message)? checkInNotFound,
+    TResult Function(String message)? smokingRecordFailed,
+    TResult Function(String message)? smokingRecordNotFound,
+    TResult Function(String message)? invalidSmokingData,
+    TResult Function(String message)? achievementFailed,
+    TResult Function(String message)? achievementAlreadyUnlocked,
+    TResult Function(String message)? achievementNotFound,
+    TResult Function(String message)? achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (loginFailed != null) {
+      return loginFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestCancelled value) requestCancelled,
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(NotAcceptable value) notAcceptable,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(SendTimeout value) sendTimeout,
+    required TResult Function(Conflict value) conflict,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnableToProcess value) unableToProcess,
+    required TResult Function(DefaultError value) defaultError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
+    required TResult Function(SyncFailedException value) syncFailed,
+    required TResult Function(CheckInFailedException value) checkInFailed,
+    required TResult Function(CheckInAlreadyExistsException value)
+        checkInAlreadyExists,
+    required TResult Function(CheckInNotFoundException value) checkInNotFound,
+    required TResult Function(SmokingRecordFailedException value)
+        smokingRecordFailed,
+    required TResult Function(SmokingRecordNotFoundException value)
+        smokingRecordNotFound,
+    required TResult Function(InvalidSmokingDataException value)
+        invalidSmokingData,
+    required TResult Function(AchievementFailedException value)
+        achievementFailed,
+    required TResult Function(AchievementAlreadyUnlockedException value)
+        achievementAlreadyUnlocked,
+    required TResult Function(AchievementNotFoundException value)
+        achievementNotFound,
+    required TResult Function(AchievementConditionNotMetException value)
+        achievementConditionNotMet,
+  }) {
+    return loginFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestCancelled value)? requestCancelled,
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(NotFound value)? notFound,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(NotAcceptable value)? notAcceptable,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(SendTimeout value)? sendTimeout,
+    TResult? Function(Conflict value)? conflict,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnableToProcess value)? unableToProcess,
+    TResult? Function(DefaultError value)? defaultError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
+    TResult? Function(SyncFailedException value)? syncFailed,
+    TResult? Function(CheckInFailedException value)? checkInFailed,
+    TResult? Function(CheckInAlreadyExistsException value)?
+        checkInAlreadyExists,
+    TResult? Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult? Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult? Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult? Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult? Function(AchievementFailedException value)? achievementFailed,
+    TResult? Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult? Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult? Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+  }) {
+    return loginFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestCancelled value)? requestCancelled,
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(NotAcceptable value)? notAcceptable,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(SendTimeout value)? sendTimeout,
+    TResult Function(Conflict value)? conflict,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnableToProcess value)? unableToProcess,
+    TResult Function(DefaultError value)? defaultError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
+    TResult Function(SyncFailedException value)? syncFailed,
+    TResult Function(CheckInFailedException value)? checkInFailed,
+    TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
+    TResult Function(CheckInNotFoundException value)? checkInNotFound,
+    TResult Function(SmokingRecordFailedException value)? smokingRecordFailed,
+    TResult Function(SmokingRecordNotFoundException value)?
+        smokingRecordNotFound,
+    TResult Function(InvalidSmokingDataException value)? invalidSmokingData,
+    TResult Function(AchievementFailedException value)? achievementFailed,
+    TResult Function(AchievementAlreadyUnlockedException value)?
+        achievementAlreadyUnlocked,
+    TResult Function(AchievementNotFoundException value)? achievementNotFound,
+    TResult Function(AchievementConditionNotMetException value)?
+        achievementConditionNotMet,
+    required TResult orElse(),
+  }) {
+    if (loginFailed != null) {
+      return loginFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginFailedException implements NetworkException {
+  const factory LoginFailedException(final String message) =
+      _$LoginFailedExceptionImpl;
+
+  String get message;
+
+  /// Create a copy of NetworkException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoginFailedExceptionImplCopyWith<_$LoginFailedExceptionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -4826,6 +6154,9 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -4860,6 +6191,9 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -4894,6 +6228,9 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -4932,6 +6269,11 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -4974,6 +6316,9 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -5012,6 +6357,9 @@ class _$SyncFailedExceptionImpl implements SyncFailedException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -5135,6 +6483,9 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -5169,6 +6520,9 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -5203,6 +6557,9 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -5241,6 +6598,11 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -5283,6 +6645,9 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -5321,6 +6686,9 @@ class _$CheckInFailedExceptionImpl implements CheckInFailedException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -5447,6 +6815,9 @@ class _$CheckInAlreadyExistsExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -5481,6 +6852,9 @@ class _$CheckInAlreadyExistsExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -5515,6 +6889,9 @@ class _$CheckInAlreadyExistsExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -5553,6 +6930,11 @@ class _$CheckInAlreadyExistsExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -5595,6 +6977,9 @@ class _$CheckInAlreadyExistsExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -5633,6 +7018,9 @@ class _$CheckInAlreadyExistsExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -5757,6 +7145,9 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -5791,6 +7182,9 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -5825,6 +7219,9 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -5863,6 +7260,11 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -5905,6 +7307,9 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -5943,6 +7348,9 @@ class _$CheckInNotFoundExceptionImpl implements CheckInNotFoundException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -6069,6 +7477,9 @@ class _$SmokingRecordFailedExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -6103,6 +7514,9 @@ class _$SmokingRecordFailedExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -6137,6 +7551,9 @@ class _$SmokingRecordFailedExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -6175,6 +7592,11 @@ class _$SmokingRecordFailedExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -6217,6 +7639,9 @@ class _$SmokingRecordFailedExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -6255,6 +7680,9 @@ class _$SmokingRecordFailedExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -6382,6 +7810,9 @@ class _$SmokingRecordNotFoundExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -6416,6 +7847,9 @@ class _$SmokingRecordNotFoundExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -6450,6 +7884,9 @@ class _$SmokingRecordNotFoundExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -6488,6 +7925,11 @@ class _$SmokingRecordNotFoundExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -6530,6 +7972,9 @@ class _$SmokingRecordNotFoundExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -6568,6 +8013,9 @@ class _$SmokingRecordNotFoundExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -6693,6 +8141,9 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -6727,6 +8178,9 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -6761,6 +8215,9 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -6799,6 +8256,11 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -6841,6 +8303,9 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -6879,6 +8344,9 @@ class _$InvalidSmokingDataExceptionImpl implements InvalidSmokingDataException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -7003,6 +8471,9 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -7037,6 +8508,9 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -7071,6 +8545,9 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -7109,6 +8586,11 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -7151,6 +8633,9 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -7189,6 +8674,9 @@ class _$AchievementFailedExceptionImpl implements AchievementFailedException {
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -7315,6 +8803,9 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -7349,6 +8840,9 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -7383,6 +8877,9 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -7421,6 +8918,11 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -7463,6 +8965,9 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -7501,6 +9006,9 @@ class _$AchievementAlreadyUnlockedExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -7628,6 +9136,9 @@ class _$AchievementNotFoundExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -7662,6 +9173,9 @@ class _$AchievementNotFoundExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -7696,6 +9210,9 @@ class _$AchievementNotFoundExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -7734,6 +9251,11 @@ class _$AchievementNotFoundExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -7776,6 +9298,9 @@ class _$AchievementNotFoundExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -7814,6 +9339,9 @@ class _$AchievementNotFoundExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
@@ -7941,6 +9469,9 @@ class _$AchievementConditionNotMetExceptionImpl
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
+    required TResult Function(String message) emailAlreadyExists,
+    required TResult Function(String message) registrationFailed,
+    required TResult Function(String message) loginFailed,
     required TResult Function(String message) syncFailed,
     required TResult Function(String message) checkInFailed,
     required TResult Function(String message) checkInAlreadyExists,
@@ -7975,6 +9506,9 @@ class _$AchievementConditionNotMetExceptionImpl
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
+    TResult? Function(String message)? emailAlreadyExists,
+    TResult? Function(String message)? registrationFailed,
+    TResult? Function(String message)? loginFailed,
     TResult? Function(String message)? syncFailed,
     TResult? Function(String message)? checkInFailed,
     TResult? Function(String message)? checkInAlreadyExists,
@@ -8009,6 +9543,9 @@ class _$AchievementConditionNotMetExceptionImpl
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
+    TResult Function(String message)? emailAlreadyExists,
+    TResult Function(String message)? registrationFailed,
+    TResult Function(String message)? loginFailed,
     TResult Function(String message)? syncFailed,
     TResult Function(String message)? checkInFailed,
     TResult Function(String message)? checkInAlreadyExists,
@@ -8047,6 +9584,11 @@ class _$AchievementConditionNotMetExceptionImpl
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(EmailAlreadyExistsException value)
+        emailAlreadyExists,
+    required TResult Function(RegistrationFailedException value)
+        registrationFailed,
+    required TResult Function(LoginFailedException value) loginFailed,
     required TResult Function(SyncFailedException value) syncFailed,
     required TResult Function(CheckInFailedException value) checkInFailed,
     required TResult Function(CheckInAlreadyExistsException value)
@@ -8089,6 +9631,9 @@ class _$AchievementConditionNotMetExceptionImpl
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult? Function(RegistrationFailedException value)? registrationFailed,
+    TResult? Function(LoginFailedException value)? loginFailed,
     TResult? Function(SyncFailedException value)? syncFailed,
     TResult? Function(CheckInFailedException value)? checkInFailed,
     TResult? Function(CheckInAlreadyExistsException value)?
@@ -8127,6 +9672,9 @@ class _$AchievementConditionNotMetExceptionImpl
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(EmailAlreadyExistsException value)? emailAlreadyExists,
+    TResult Function(RegistrationFailedException value)? registrationFailed,
+    TResult Function(LoginFailedException value)? loginFailed,
     TResult Function(SyncFailedException value)? syncFailed,
     TResult Function(CheckInFailedException value)? checkInFailed,
     TResult Function(CheckInAlreadyExistsException value)? checkInAlreadyExists,
